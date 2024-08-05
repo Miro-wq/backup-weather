@@ -2,7 +2,7 @@ import {
   getWeatherByCoordinates,
   getReverseGeocoding,
   getWeatherByCityName,
-  getWeatherForecastByCityName
+  getWeatherForecastByCityName,
 } from '../apiOpenWeather.js';
 import { setBackgroundForCity } from './backgroundImage.js';
 import { fetchAdditionalWeatherData } from './additionalWeather.js';
@@ -29,13 +29,17 @@ export function displayWeatherDataOnCard(data) {
   ) {
     cityNameElement.textContent = data.name;
     temperatureElement.textContent = `${Math.round(data.main.temp)}`;
-    descriptionElement.innerHTML = `<img src="${getWeatherIconUrl(data.weather[0].icon)}" alt="${data.weather[0].description}" title="${data.weather[0].description}">`;
+    descriptionElement.innerHTML = `<img src="${getWeatherIconUrl(
+      data.weather[0].icon
+    )}" alt="${data.weather[0].description}" title="${
+      data.weather[0].description
+    }">`;
     humidityElement.textContent = `Humidity: ${data.main.humidity}%`;
     minTempElement.textContent = `${Math.round(data.main.temp_min)} °C`;
     maxTempElement.textContent = `${Math.round(data.main.temp_max)} °C`;
 
     setBackgroundForCity(data.name);
-    
+
     if (forecastContainer) {
       forecastContainer.style.display = 'none';
     }
@@ -53,9 +57,10 @@ export function displayFiveDayForecast(data) {
   const chartContainer = document.getElementById('chart-container');
   const forecastLocationElement = document.getElementById('forecast-location');
 
-  forecastContainer.innerHTML = ''; 
+  forecastContainer.innerHTML = '';
 
   forecastLocationElement.textContent = data.city.name;
+  forecastLocationElement.style.display = 'block';
 
   data.list.forEach((forecast, index) => {
     if (index % 8 === 0) {
@@ -64,12 +69,18 @@ export function displayFiveDayForecast(data) {
 
       const date = new Date(forecast.dt * 1000);
       const dayName = date.toLocaleDateString('en-US', { weekday: 'long' });
-      const dateString = date.toLocaleDateString('en-US', { day: 'numeric', month: 'short' });
+      const dateString = date.toLocaleDateString('en-US', {
+        day: 'numeric',
+        month: 'short',
+      });
 
       forecastElement.innerHTML = `
+      
         <h3 class="date">${dayName}</h3>
         <p class="date">${dateString}</p>
-        <img src="${getWeatherIconUrl(forecast.weather[0].icon)}" alt="${forecast.weather[0].description}">
+        <img src="${getWeatherIconUrl(forecast.weather[0].icon)}" alt="${
+        forecast.weather[0].description
+      }">
         <p class="temp temp-min">${Math.round(forecast.main.temp_min)}°C</p>
         <p class="temp temp-max">${Math.round(forecast.main.temp_max)}°C</p>
         <p class="more-info">more info</p>
@@ -133,12 +144,16 @@ export function initializeWeatherCard() {
   const fiveDayButton = document.getElementById('five-day-forecast');
   const showChartButton = document.getElementById('show-chart');
   const chartContent = document.getElementById('chart-content');
+  const forecastLocationElement = document.getElementById('forecast-location');
 
   if (todayButton) {
     todayButton.addEventListener('click', () => {
       const city = document.getElementById('city-name').textContent;
       fetchAndDisplayWeatherForCity(city);
       todayButton.focus();
+      if (forecastLocationElement) {
+        forecastLocationElement.style.display = 'none';
+      }
     });
   }
 
