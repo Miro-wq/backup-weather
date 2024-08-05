@@ -46,10 +46,16 @@ export function displayWeatherDataOnCard(data) {
     if (chartContainer) {
       chartContainer.style.display = 'none';
     }
+
+    // Verificăm dacă `data.name` este definit
+    if (data.name) {
+      fetchAdditionalWeatherData(data.name);
+    } else {
+      console.error('City name is undefined');
+    }
   } else {
     console.error('One or more elements not found in the DOM');
   }
-  fetchAdditionalWeatherData(data.name);
 }
 
 export function displayFiveDayForecast(data) {

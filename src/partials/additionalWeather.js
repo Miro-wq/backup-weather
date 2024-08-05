@@ -4,8 +4,18 @@ import { getAuthorByCity, getQuoteByAuthor } from '../quotesApi.js';
 import { getTimeZoneByCoordinates } from '../timezoneApi.js';
 
 export async function fetchAdditionalWeatherData(city) {
+  if (!city) {
+    console.error('City is not defined');
+    return;
+  }
+
   try {
     const weatherData = await getWeatherByCityName(city);
+    if (!weatherData || !weatherData.coord) {
+      console.error('Invalid weather data received');
+      return;
+    }
+
     const timeZoneData = await getTimeZoneByCoordinates(
       weatherData.coord.lat,
       weatherData.coord.lon
@@ -13,10 +23,23 @@ export async function fetchAdditionalWeatherData(city) {
     updateAdditionalWeatherCard(weatherData, timeZoneData.zoneName);
 
     const authorData = await getAuthorByCity(city);
+    if (!authorData) {
+      // Actualizare card citat cu mesaje de eroare
+      updateQuote('Quote not found', 'Author not found');
+      return;
+    }
     const quote = await getQuoteByAuthor(authorData);
+    if (!quote) {
+      // Actualizare card citat cu mesaje de eroare dacă nu se găsește citatul
+      updateQuote('Quote not found', authorData.author);
+      return;
+    }
+    // Actualizare card citat cu datele găsite
     updateQuote(quote, authorData.author);
   } catch (error) {
     console.error('Error fetching additional weather data:', error);
+    // Actualizare card citat cu mesaje de eroare în caz de excepție
+    updateQuote('Quote not found', 'Author not found');
   }
 }
 
@@ -55,6 +78,7 @@ function updateQuote(quote, author) {
   const quoteCard = document.getElementById('quote-card');
 
   if (quoteCard) {
+    // Actualizare text citat și autor în cardul de citat
     quoteCard.querySelector('.quote-text').textContent = quote;
     quoteCard.querySelector('.quote-author').textContent = `— ${author}`;
   } else {
