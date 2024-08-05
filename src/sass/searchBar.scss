@@ -1,0 +1,117 @@
+// .search-container {
+//     display: flex;
+//     justify-content: center;
+//     margin: 20px 0;
+//   }
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+  
+  #search-input {
+    padding: 10px;
+    font-size: 16px;
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+  }
+  
+  #search-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  #search-button:hover {
+    background-color: #0056b3;
+  }
+  
+  #weather-data {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  #weather-data img {
+    width: 50px;
+    height: 50px;
+  }
+
+  #search-form {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 0.5em;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  #city-input {
+    flex: 1;
+    border: none;
+    padding: 0.5em;
+    font-size: 1em;
+    outline: none;
+  }
+
+#location-icon,
+#star-icon {
+  width: 24px;
+  fill: #999; 
+  cursor: pointer;
+}
+
+#location-icon:hover,
+#star-icon:hover {
+  fill: #666; 
+}
+#favorites-list {
+  list-style-type: none; 
+  padding: 0; 
+  margin-top: 1em; 
+  max-width: 400px; 
+  border: 1px solid #ddd; 
+  border-radius: 20px; 
+  background-color: #f9f9f9; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+#favorites-list li {
+  background-color: rgba(16, 33, 54, 0.5); 
+  color: #FFFFFF;
+  border-bottom: 1px solid #ddd; 
+  padding: 0.5em 1em; 
+  margin: 0; 
+  border-radius: 20px; 
+  display: inline-block; 
+  text-align: center; 
+}
+
+#favorites-list li:last-child {
+  border-bottom: none; 
+}
+
+#favorites-list li .remove-favorite {
+  cursor: pointer; 
+  color: rgba(255, 255, 255, 0.5); 
+  font-size: 1.2em; 
+  transition: color 0.3s ease; 
+}
+
+#favorites-list li .remove-favorite:hover {
+  color: #cc0000; 
+}
+
+#favorites-list li .favorite-text {
+  font-size: 1em; 
+  text-decoration: underline;
+}

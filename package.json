@@ -1,0 +1,45 @@
+{
+  "name": "parcel-project-template",
+  "version": "2.0.0",
+  "description": "",
+  "homepage": "https://MatacheAlexandru.github.io/WeatherApp-TeamWork",
+  "scripts": {
+    "start": "parcel src/*.html",
+    "sass": "node-sass --include-path scss src/sass/index.scss src/index.css -w",
+    "build": "parcel build src/*.html --public-url /WeatherApp-TeamWork/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MatacheAlexandru/WeatherApp-TeamWork.git"
+  },
+  "keywords": [],
+  "author": "Alexander Repeta <alexander.repeta@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MatacheAlexandru/WeatherApp-TeamWork/issues"
+  },
+  "dependencies": {
+    "compression": "^1.7.4",
+    "express": "^4.19.2",
+    "modern-normalize": "^1.1.0",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.6.0",
+    "assert": "^2.1.0",
+    "browserify-zlib": "^0.2.0",
+    "buffer": "^6.0.3",
+    "events": "^3.3.0",
+    "https-browserify": "^1.0.0",
+    "parcel": "^2.6.0",
+    "parcel-reporter-clean-dist": "^1.0.4",
+    "path-browserify": "^1.0.1",
+    "posthtml-include": "^1.7.4",
+    "process": "^0.11.10",
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
+    "url": "^0.11.3",
+    "util": "^0.12.5"
+  },
+  "browserslist": "> 0.5%, last 2 versions, not dead"
+}

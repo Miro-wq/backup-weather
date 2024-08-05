@@ -1,0 +1,11 @@
+@import './sass/searchBar.scss';
+/* @import './sass/weatherCard.scss';
+@import './sass/backgroundImage.scss'; */
+/* Alte importuri SCSS dacă sunt necesare */
+@import url(./sass/weathercard.scss);
+
+:root {
+    --font-family: "Lato", sans-serif;
+  }
+  
+  
