@@ -1,10 +1,16 @@
+import moment from 'moment-timezone';
 import { getWeatherByCityName } from '../apiOpenWeather.js';
 import { getAuthorByCity, getQuoteByAuthor } from '../quotesApi.js';
+import { getTimeZoneByCoordinates } from '../timezoneApi.js';
 
 export async function fetchAdditionalWeatherData(city) {
   try {
     const weatherData = await getWeatherByCityName(city);
-    updateAdditionalWeatherCard(weatherData);
+    const timeZoneData = await getTimeZoneByCoordinates(
+      weatherData.coord.lat,
+      weatherData.coord.lon
+    );
+    updateAdditionalWeatherCard(weatherData, timeZoneData.zoneName);
 
     const authorData = await getAuthorByCity(city);
     const quote = await getQuoteByAuthor(authorData);
@@ -14,24 +20,26 @@ export async function fetchAdditionalWeatherData(city) {
   }
 }
 
-function updateAdditionalWeatherCard(weatherData) {
+function updateAdditionalWeatherCard(weatherData, timeZoneId) {
   const weatherCard = document.getElementById('additional-weather-card');
 
   if (weatherCard) {
-    // Actualizare timp și date
-    const currentDate = new Date();
+    // Actualizare timp și date folosind fusul orar
+    const currentDate = moment().tz(timeZoneId);
     weatherCard.querySelector('.current-date').textContent =
-      currentDate.toLocaleDateString();
+      currentDate.format('YYYY-MM-DD');
     weatherCard.querySelector('.current-time').textContent =
-      currentDate.toLocaleTimeString();
+      currentDate.format('HH:mm:ss');
 
-    // Actualizare răsărit și apus
-    const sunriseTime = new Date(
-      weatherData.sys.sunrise * 1000
-    ).toLocaleTimeString();
-    const sunsetTime = new Date(
-      weatherData.sys.sunset * 1000
-    ).toLocaleTimeString();
+    // Actualizare răsărit și apus folosind fusul orar
+    const sunriseTime = moment
+      .unix(weatherData.sys.sunrise)
+      .tz(timeZoneId)
+      .format('HH:mm:ss');
+    const sunsetTime = moment
+      .unix(weatherData.sys.sunset)
+      .tz(timeZoneId)
+      .format('HH:mm:ss');
     weatherCard.querySelector(
       '.sunrise-time'
     ).textContent = `Sunrise: ${sunriseTime}`;
