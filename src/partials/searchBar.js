@@ -141,5 +141,6 @@ export function initializeSearch() {
     });
   }
 
-  displayFavorites(); // Display favorites when the page loads
+  displayFavorites(); // Display favorites when the page loads 
+  //test
 }
