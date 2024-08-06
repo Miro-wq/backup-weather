@@ -53,7 +53,7 @@ export function displayWeatherDataOnCard(data) {
     // Afișăm cardul meteo și butoanele
     masterWeatherCard.style.display = 'block';
 
-    // Verificăm dacă `data.name` este definit
+    // modif
     if (data.name) {
       fetchAdditionalWeatherData(data.name);
     } else {
@@ -63,6 +63,7 @@ export function displayWeatherDataOnCard(data) {
     console.error('One or more elements not found in the DOM');
   }
 }
+//pana aici
 
 export function displayFiveDayForecast(data) {
   const forecastContainer = document.getElementById('forecast-container');
@@ -178,6 +179,7 @@ export async function initializeWeatherCard() {
   const showChartButton = document.getElementById('show-chart');
   const chartContent = document.getElementById('chart-content');
   const forecastLocationElement = document.getElementById('forecast-location');
+  const weatherCardElement = document.getElementById('weather-card'); // Adaugă referința la elementul cardului meteo curent
 
   if (todayButton) {
     todayButton.addEventListener('click', async () => {
@@ -186,6 +188,9 @@ export async function initializeWeatherCard() {
       todayButton.focus();
       if (forecastLocationElement) {
         forecastLocationElement.style.display = 'none';
+      }
+      if (weatherCardElement) {
+        weatherCardElement.style.display = 'block'; // sa afiseze cardul de today
       }
       if (cityName) {
         loadAndRenderChart(cityName);
@@ -200,6 +205,9 @@ export async function initializeWeatherCard() {
         const data = await getWeatherForecastByCityName(city);
         displayFiveDayForecast(data);
         fiveDayButton.focus();
+        if (weatherCardElement) {
+          weatherCardElement.style.display = 'none'; // sa ascunda cardul de today la click pe 5 days
+        }
       } catch (error) {
         console.error('Error fetching 5-day forecast data:', error);
       }
@@ -213,6 +221,7 @@ export async function initializeWeatherCard() {
     });
   }
 }
+
 
 // Noua funcție pentru a exporta datele pentru grafic
 export async function getWeatherDataForChart(city) {

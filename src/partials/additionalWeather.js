@@ -80,11 +80,10 @@ function updateAdditionalWeatherCard(weatherData, timeZoneId) {
       .format('HH:mm:ss');
     weatherCard.querySelector(
       '.sunrise-time'
-    ).innerHTML = `<img src="sunrise.svg" alt="Sunrise Icon"> ${sunriseTime}`;
+    ).innerHTML = `<img src="sunrise.svg" alt="S"> ${sunriseTime}`; //am scos momentan denumirea de Sunrise Icon ca ma incurca :)))
     weatherCard.querySelector(
       '.sunset-time'
-    ).innerHTML = `<img src="sunset.svg" alt="Sunset Icon"> ${sunsetTime}`;
-
+    ).innerHTML = `<img src="sunset.svg" alt="S"> ${sunsetTime}`; //idem si aici
   } else {
     console.error('Additional weather card element not found in the DOM');
   }
