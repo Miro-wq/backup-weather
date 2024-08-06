@@ -1,5 +1,9 @@
-import { fetchAndDisplayWeatherForCity, fetchAndDisplayWeatherForLocation } from './weathercard.js';
-import { loadAndRenderChart } from './grafic.js';
+import {
+  fetchAndDisplayWeatherForCity,
+  fetchAndDisplayWeatherForLocation,
+} from './weathercard.js';
+
+let favoritesList;
 
 function addToFavorites(city) {
   let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
@@ -14,48 +18,34 @@ function addToFavorites(city) {
 }
 
 function displayFavorites() {
-  const favoritesList = document.getElementById('favorites-list');
-  const favoritesDropdown = document.getElementById('favorites-dropdown');
-  const favoritesToggle = document.getElementById('favorites-toggle');
-  let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-
-  favoritesList.innerHTML = '';
-  favoritesDropdown.innerHTML = '';
-
-  favorites.forEach((city, index) => {
-    const li = document.createElement('li');
-    li.textContent = city;
-    li.classList.add('favorite-item');
-    li.addEventListener('click', () => {
-      fetchAndDisplayWeatherForCity(city);
-    });
-
-    const removeBtn = document.createElement('span');
-    removeBtn.textContent = '×';
-    removeBtn.classList.add('remove-favorite');
-    removeBtn.addEventListener('click', (event) => {
-      event.stopPropagation();
-      removeFromFavorites(city);
-    });
-
-    li.appendChild(removeBtn);
-
-    if (index < 4) {
-      favoritesList.appendChild(li);
-    } else {
-      const dropdownLi = li.cloneNode(true);
-      dropdownLi.addEventListener('click', () => {
+  favoritesList = document.getElementById('favorites-list');
+  const showMoreBtn = document.getElementById('show-more-btn');
+  const showLessBtn = document.getElementById('show-less-btn');
+  if (favoritesList) {
+    favoritesList.innerHTML = '';
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    favorites.forEach((city, index) => {
+      const li = document.createElement('li');
+      li.textContent = city;
+      li.addEventListener('click', () => {
         fetchAndDisplayWeatherForCity(city);
       });
-      favoritesDropdown.appendChild(dropdownLi);
-    }
-  });
-
-  if (favorites.length > 4) {
-    favoritesToggle.style.display = 'block';
-    favoritesDropdown.style.display = 'none'; // Ascundem meniul derulant implicit
-  } else {
-    favoritesToggle.style.display = 'none';
+      const removeBtn = document.createElement('span');
+      removeBtn.textContent = '×';
+      removeBtn.classList.add('remove-favorite');
+      removeBtn.addEventListener('click', (event) => {
+        event.stopPropagation(); // Optează evenimentul de click pe listă
+        removeFromFavorites(city);
+      });
+      li.appendChild(removeBtn);
+      favoritesList.appendChild(li);
+    });
+    const items = favoritesList.querySelectorAll('li');
+    items.forEach((item, index) => {
+      item.style.display = index < 4 ? 'inline-block' : 'none';
+    });
+    showMoreBtn.style.display = favorites.length > 4 ? 'block' : 'none';
+    showLessBtn.style.display = 'none';
   }
 }
 
@@ -70,7 +60,8 @@ export function initializeSearch() {
   const cityInput = document.getElementById('city-input');
   const starIcon = document.getElementById('star-icon');
   const locationIcon = document.getElementById('location-icon');
-  const favoritesToggle = document.getElementById('favorites-toggle');
+  const showMoreBtn = document.getElementById('show-more-btn');
+  const showLessBtn = document.getElementById('show-less-btn');
 
   if (cityInput) {
     cityInput.addEventListener('keydown', function (event) {
@@ -79,12 +70,11 @@ export function initializeSearch() {
         const city = cityInput.value.trim();
         if (city) {
           fetchAndDisplayWeatherForCity(city);
-          document.querySelector('.master-weather-card').style.display = 'block';
-          document.querySelector('.five-days-container').style.display = 'block';
-          document.querySelector('#forecast-container').style.display = 'block';
         }
       }
     });
+  } else {
+    console.warn('City input element not found.');
   }
 
   if (starIcon) {
@@ -94,20 +84,22 @@ export function initializeSearch() {
         addToFavorites(city);
       }
     });
+  } else {
+    console.warn('Star icon element not found.');
   }
 
   if (locationIcon) {
-    locationIcon.addEventListener('click', () => {
+    locationIcon.addEventListener('click', async () => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           async position => {
             const { latitude, longitude } = position.coords;
-            const cityName = await fetchAndDisplayWeatherForLocation(latitude, longitude);
+            const cityName = await fetchAndDisplayWeatherForLocation(
+              latitude,
+              longitude
+            );
             if (cityName) {
               loadAndRenderChart(cityName);
-              document.querySelector('.master-weather-card').style.display = 'block';
-              document.querySelector('.five-days-container').style.display = 'block';
-              document.querySelector('#forecast-container').style.display = 'block';
             }
           },
           async error => {
@@ -115,9 +107,6 @@ export function initializeSearch() {
             const cityName = await fetchAndDisplayWeatherForCity('București');
             if (cityName) {
               loadAndRenderChart(cityName);
-              document.querySelector('.master-weather-card').style.display = 'block';
-              document.querySelector('.five-days-container').style.display = 'block';
-              document.querySelector('#forecast-container').style.display = 'block';
             }
           }
         );
@@ -126,21 +115,34 @@ export function initializeSearch() {
         const cityName = await fetchAndDisplayWeatherForCity('București');
         if (cityName) {
           loadAndRenderChart(cityName);
-          document.querySelector('.master-weather-card').style.display = 'block';
-          document.querySelector('.five-days-container').style.display = 'block';
-          document.querySelector('#forecast-container').style.display = 'block';
         }
       }
     });
+  } else {
+    console.warn('Location icon element not found.');
   }
 
-  if (favoritesToggle) {
-    favoritesToggle.addEventListener('click', () => {
-      const dropdown = document.getElementById('favorites-dropdown');
-      dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+  if (showMoreBtn) {
+    showMoreBtn.addEventListener('click', () => {
+      const favoriteItems = favoritesList.querySelectorAll('li');
+      favoriteItems.forEach(item => {
+        item.style.display = 'inline-block';
+      });
+      showMoreBtn.style.display = 'none';
+      showLessBtn.style.display = 'block';
     });
   }
 
-  displayFavorites(); // Display favorites when the page loads 
-  //test
+  if (showLessBtn) {
+    showLessBtn.addEventListener('click', () => {
+      const favoriteItems = favoritesList.querySelectorAll('li');
+      favoriteItems.forEach((item, index) => {
+        item.style.display = index < 4 ? 'inline-block' : 'none';
+      });
+      showMoreBtn.style.display = 'block';
+      showLessBtn.style.display = 'none';
+    });
+  }
+
+  displayFavorites(); // Display favorites when the page loads
 }
