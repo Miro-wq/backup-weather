@@ -84,3 +84,4 @@ function updateQuote(quote, author) {
     console.error('Quote card element not found in the DOM');
   }
 }
+//com
