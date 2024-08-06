@@ -7,5 +7,5 @@ import { loadAndRenderChart } from './partials/grafic.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
   initializeSearch();
-  initializeWeatherCard();
+  await initializeWeatherCard();
 });

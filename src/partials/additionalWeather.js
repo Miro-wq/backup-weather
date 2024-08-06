@@ -24,21 +24,17 @@ export async function fetchAdditionalWeatherData(city) {
 
     const authorData = await getAuthorByCity(city);
     if (!authorData) {
-      // Actualizare card citat cu mesaje de eroare
       updateQuote('Quote not found', 'Author not found');
       return;
     }
     const quote = await getQuoteByAuthor(authorData);
     if (!quote) {
-      // Actualizare card citat cu mesaje de eroare dacă nu se găsește citatul
       updateQuote('Quote not found', authorData.author);
       return;
     }
-    // Actualizare card citat cu datele găsite
     updateQuote(quote, authorData.author);
   } catch (error) {
     console.error('Error fetching additional weather data:', error);
-    // Actualizare card citat cu mesaje de eroare în caz de excepție
     updateQuote('Quote not found', 'Author not found');
   }
 }
@@ -47,14 +43,12 @@ function updateAdditionalWeatherCard(weatherData, timeZoneId) {
   const weatherCard = document.getElementById('additional-weather-card');
 
   if (weatherCard) {
-    // Actualizare timp și date folosind fusul orar
     const currentDate = moment().tz(timeZoneId);
     weatherCard.querySelector('.current-date').textContent =
       currentDate.format('YYYY-MM-DD');
     weatherCard.querySelector('.current-time').textContent =
       currentDate.format('HH:mm:ss');
 
-    // Actualizare răsărit și apus folosind fusul orar
     const sunriseTime = moment
       .unix(weatherData.sys.sunrise)
       .tz(timeZoneId)
@@ -69,6 +63,9 @@ function updateAdditionalWeatherCard(weatherData, timeZoneId) {
     weatherCard.querySelector(
       '.sunset-time'
     ).textContent = `Sunset: ${sunsetTime}`;
+
+    // Afișează cardul suplimentar
+    weatherCard.style.display = 'block';
   } else {
     console.error('Additional weather card element not found in the DOM');
   }
@@ -78,9 +75,11 @@ function updateQuote(quote, author) {
   const quoteCard = document.getElementById('quote-card');
 
   if (quoteCard) {
-    // Actualizare text citat și autor în cardul de citat
     quoteCard.querySelector('.quote-text').textContent = quote;
     quoteCard.querySelector('.quote-author').textContent = `— ${author}`;
+
+    // Afișează cardul de citat
+    quoteCard.style.display = 'block';
   } else {
     console.error('Quote card element not found in the DOM');
   }

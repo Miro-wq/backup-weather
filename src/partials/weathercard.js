@@ -18,6 +18,7 @@ export function displayWeatherDataOnCard(data) {
   const weatherCardElement = document.getElementById('weather-card');
   const forecastContainer = document.getElementById('forecast-container');
   const chartContainer = document.getElementById('chart-container');
+  const masterWeatherCard = document.querySelector('.master-weather-card');
 
   if (
     cityNameElement &&
@@ -26,7 +27,8 @@ export function displayWeatherDataOnCard(data) {
     humidityElement &&
     minTempElement &&
     maxTempElement &&
-    weatherCardElement
+    weatherCardElement &&
+    masterWeatherCard
   ) {
     cityNameElement.textContent = data.name;
     temperatureElement.textContent = `${Math.round(data.main.temp)}`;
@@ -47,6 +49,9 @@ export function displayWeatherDataOnCard(data) {
     if (chartContainer) {
       chartContainer.style.display = 'none';
     }
+
+    // Afișăm cardul meteo și butoanele
+    masterWeatherCard.style.display = 'block';
 
     // Verificăm dacă `data.name` este definit
     if (data.name) {
@@ -134,35 +139,39 @@ export async function fetchAndDisplayWeatherForLocation(lat, lon) {
   }
 }
 
-export function initializeWeatherCard() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      async position => {
-        const { latitude, longitude } = position.coords;
-        const cityName = await fetchAndDisplayWeatherForLocation(
-          latitude,
-          longitude
+export async function initializeWeatherCard() {
+  // Mutăm cererea de geolocalizare într-o acțiune de utilizator
+  document
+    .getElementById('location-icon')
+    .addEventListener('click', async () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          async position => {
+            const { latitude, longitude } = position.coords;
+            const cityName = await fetchAndDisplayWeatherForLocation(
+              latitude,
+              longitude
+            );
+            if (cityName) {
+              loadAndRenderChart(cityName);
+            }
+          },
+          async error => {
+            console.error('Error getting location:', error);
+            const cityName = await fetchAndDisplayWeatherForCity('București');
+            if (cityName) {
+              loadAndRenderChart(cityName);
+            }
+          }
         );
-        if (cityName) {
-          loadAndRenderChart(cityName);
-        }
-      },
-      async error => {
-        console.error('Error getting location:', error);
+      } else {
+        console.error('Geolocation is not supported by this browser');
         const cityName = await fetchAndDisplayWeatherForCity('București');
         if (cityName) {
           loadAndRenderChart(cityName);
         }
       }
-    );
-  } else {
-    console.error('Geolocation is not supported by this browser');
-    fetchAndDisplayWeatherForCity('București').then(cityName => {
-      if (cityName) {
-        loadAndRenderChart(cityName);
-      }
     });
-  }
 
   const todayButton = document.getElementById('today-weather');
   const fiveDayButton = document.getElementById('five-day-forecast');
