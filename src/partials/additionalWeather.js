@@ -49,8 +49,29 @@ function updateAdditionalWeatherCard(weatherData, timeZoneId) {
   if (weatherCard) {
     // Actualizare timp și date folosind fusul orar
     const currentDate = moment().tz(timeZoneId);
-    weatherCard.querySelector('.current-date').textContent =
-      currentDate.format('YYYY-MM-DD');
+
+    // Funcție pentru a obține sufixul ordinal
+    function getOrdinalSuffix(day) {
+      if (day > 3 && day < 21) return 'th'; // 4th-20th
+      switch (day % 10) {
+        case 1:
+          return 'st';
+        case 2:
+          return 'nd';
+        case 3:
+          return 'rd';
+        default:
+          return 'th';
+      }
+    }
+
+    const day = currentDate.date();
+    const dayOfWeek = currentDate.format('ddd'); // Ziua săptămânii (prescurtat)
+    const month = currentDate.format('MMMM'); // Luna completă
+    const formattedDate = `${day}${getOrdinalSuffix(day)} ${dayOfWeek}`;
+
+    weatherCard.querySelector('.current-date').textContent = formattedDate;
+    weatherCard.querySelector('.current-month').textContent = month;
     weatherCard.querySelector('.current-time').textContent =
       currentDate.format('HH:mm:ss');
 
@@ -65,10 +86,10 @@ function updateAdditionalWeatherCard(weatherData, timeZoneId) {
       .format('HH:mm:ss');
     weatherCard.querySelector(
       '.sunrise-time'
-    ).textContent = `Sunrise: ${sunriseTime}`;
+    ).innerHTML = `<img src="sunrise.svg" alt="Sunrise Icon"> ${sunriseTime}`;
     weatherCard.querySelector(
       '.sunset-time'
-    ).textContent = `Sunset: ${sunsetTime}`;
+    ).innerHTML = `<img src="sunset.svg" alt="Sunset Icon"> ${sunsetTime}`;
   } else {
     console.error('Additional weather card element not found in the DOM');
   }
