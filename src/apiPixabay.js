@@ -98,7 +98,7 @@ async function getPopularVideos(
 async function getRandomImages(query, page = 1, perPage = 3) {
   try {
     const url = `${BASE_URL}/?key=${API_KEY}&q=${query}&image_type=photo&per_page=${perPage}&page=${page}`;
-    console.log('Fetching image from URL:', url); // Log pentru verificarea URL-ului
+
     return await fetchFromAPI(url);
   } catch (error) {
     console.error(`Error fetching random images with query "${query}":`, error);
