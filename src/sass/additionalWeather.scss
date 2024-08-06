@@ -1,23 +1,25 @@
 #additional-weather-card {
-  position: absolute;
-  width: 433px;
-  height: 128px;
-  top: 732px;
-  left: 110px;
-  border-radius: 0px 34px 0px 0px;
+  box-sizing: border-box;
   background: rgba(16, 33, 54, 0.6);
-  display: flex;
+  border-radius: 0 34px 0 0;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  color: white;
+  /* align-items: center; */
   padding: 20px;
-  box-sizing: border-box;
+  display: flex;
+  position: absolute;
+  /* top: 732px; */
+  bottom: 0;
+  width: 630px;
 }
 
 .current-date {
-  font-size: 24px;
-  margin-bottom: 8px; /* Space between date and time */
+  font-family: var(--font-family);
+  font-weight: 300;
+  font-size: 90px;
+  letter-spacing: 0.04em;
+  color: #fff;
+  margin-bottom: 10px;
 }
 
 .current-info {
@@ -26,14 +28,38 @@
   justify-content: space-between;
   width: 100%;
   font-size: 18px;
+  margin-bottom: 90px;
 }
 
-.current-info span {
-  margin: 0 10px; /* Space between elements */
-  display: flex;
-  align-items: center;
+.current-info .current-month,
+.current-info .current-time,
+.current-info .sunrise-time,
+.current-info .sunset-time {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: 0.04em;
+  color: #fff;
 }
 
+.current-info .current-month {
+  border-right: 1px solid white;
+  padding-right: 20px;
+}
+
+.current-info .current-time {
+  margin-left: 20px;
+  margin-right: 40px;
+}
+
+.current-info .sunrise-time {
+  padding-right: 20px;
+  border-right: 1px solid white;
+}
+
+.current-info .sunset-time {
+  margin-left: 20px;
+}
 .current-info img {
   margin-right: 8px; /* Space between icon and text */
 }
@@ -42,8 +68,8 @@
   position: absolute;
   width: 340px;
   height: 132px;
-  top: 702px;
-  left: 830px;
+  // top: 702px;
+  // left: 830px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -52,6 +78,8 @@
   box-sizing: border-box;
   text-align: right;
   color: white;
+  right: 110px;
+  bottom: 116px;
 }
 
 .quote-text,
@@ -60,10 +88,20 @@
 }
 
 .quote-text {
-  font-size: 24px;
-  margin-bottom: 8px;
+  font-family: var(--font-family);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 22px;
+  letter-spacing: 0.04em;
+  text-align: right;
+  color: #fff;
 }
 
 .quote-author {
+  font-family: var(--font-family);
+  font-weight: 400;
   font-size: 18px;
+  letter-spacing: 0.04em;
+  text-align: right;
+  color: #fff;
 }

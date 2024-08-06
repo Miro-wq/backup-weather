@@ -29,6 +29,8 @@
     color: hsla(0, 0%, 100%, .302);
     line-height: 1.375;
     margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
 }
 
 .temperature-card {
@@ -46,13 +48,17 @@
   }
 
   .description {
-    color: #FFFFFF;
+    // color: #FFFFFF;
+    display: flex;
+    justify-content: center;
   }
 
   .min-temp,
   .max-temp,
   .humidity {
     color: hsla(0, 0%, 100%, .302);
+    display: flex;
+    justify-content: center;
   }
 
   .min-temp,
@@ -84,10 +90,12 @@ height: 40px;
 
 .temps-divide {
     display: flex;
+    justify-content: center;
 }
 
 .button-container {
   margin-top: 10px;
+  z-index: 10;
 }
 
 .today-button {
@@ -199,7 +207,7 @@ color: #fff;
   font-weight: 700;
   font-size: 14px;
   text-decoration: underline;
-  text-decoration-skip-ink: none;
+  // text-decoration-skip-ink: none;
   text-align: center;
   color: #fff;
   opacity: 0.3;

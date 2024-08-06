@@ -59,13 +59,10 @@ function updateAdditionalWeatherCard(weatherData, timeZoneId) {
       .format('HH:mm:ss');
     weatherCard.querySelector(
       '.sunrise-time'
-    ).textContent = `Sunrise: ${sunriseTime}`;
+    ).innerHTML = `<img src="sunrise.svg" alt="S"> ${sunriseTime}`; //am scos momentan denumirea de Sunrise Icon ca ma incurca :)))
     weatherCard.querySelector(
       '.sunset-time'
-    ).textContent = `Sunset: ${sunsetTime}`;
-
-    // Afișează cardul suplimentar
-    weatherCard.style.display = 'block';
+    ).innerHTML = `<img src="sunset.svg" alt="S"> ${sunsetTime}`; //idem si aici
   } else {
     console.error('Additional weather card element not found in the DOM');
   }
