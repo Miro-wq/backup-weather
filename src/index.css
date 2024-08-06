@@ -4,7 +4,7 @@
 /* Alte importuri SCSS dacă sunt necesare */
 @import url(./sass/weathercard.scss);
 @import url(./sass/grafic.scss);
-
-:root  {
+@import url(./sass/additionalWeather.scss);
+:root {
   --font-family: 'Lato', sans-serif;
 }
