@@ -6,6 +6,7 @@ import {
 } from '../apiOpenWeather.js';
 import { setBackgroundForCity } from './backgroundImage.js';
 import { fetchAdditionalWeatherData } from './additionalWeather.js';
+import { loadAndRenderChart } from './grafic.js'; // Importăm funcția loadAndRenderChart
 
 export function displayWeatherDataOnCard(data) {
   const cityNameElement = document.getElementById('city-name');
@@ -113,6 +114,8 @@ export async function fetchAndDisplayWeatherForCity(city) {
   try {
     const data = await getWeatherByCityName(city);
     displayWeatherDataOnCard(data);
+    await loadAndRenderChart(data.name); // Actualizăm graficul cu numele orașului
+    return data.name;
   } catch (error) {
     console.error('Error fetching weather data:', error);
   }
@@ -124,6 +127,8 @@ export async function fetchAndDisplayWeatherForLocation(lat, lon) {
     const locationData = await getReverseGeocoding(lat, lon);
     data.name = locationData[0].name;
     displayWeatherDataOnCard(data);
+    await loadAndRenderChart(data.name); // Actualizăm graficul cu numele orașului
+    return data.name;
   } catch (error) {
     console.error('Error fetching weather data:', error);
   }
@@ -132,18 +137,31 @@ export async function fetchAndDisplayWeatherForLocation(lat, lon) {
 export function initializeWeatherCard() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
-      position => {
+      async position => {
         const { latitude, longitude } = position.coords;
-        fetchAndDisplayWeatherForLocation(latitude, longitude);
+        const cityName = await fetchAndDisplayWeatherForLocation(
+          latitude,
+          longitude
+        );
+        if (cityName) {
+          loadAndRenderChart(cityName);
+        }
       },
-      error => {
+      async error => {
         console.error('Error getting location:', error);
-        fetchAndDisplayWeatherForCity('București');
+        const cityName = await fetchAndDisplayWeatherForCity('București');
+        if (cityName) {
+          loadAndRenderChart(cityName);
+        }
       }
     );
   } else {
     console.error('Geolocation is not supported by this browser');
-    fetchAndDisplayWeatherForCity('București');
+    fetchAndDisplayWeatherForCity('București').then(cityName => {
+      if (cityName) {
+        loadAndRenderChart(cityName);
+      }
+    });
   }
 
   const todayButton = document.getElementById('today-weather');
@@ -153,12 +171,15 @@ export function initializeWeatherCard() {
   const forecastLocationElement = document.getElementById('forecast-location');
 
   if (todayButton) {
-    todayButton.addEventListener('click', () => {
+    todayButton.addEventListener('click', async () => {
       const city = document.getElementById('city-name').textContent;
-      fetchAndDisplayWeatherForCity(city);
+      const cityName = await fetchAndDisplayWeatherForCity(city);
       todayButton.focus();
       if (forecastLocationElement) {
         forecastLocationElement.style.display = 'none';
+      }
+      if (cityName) {
+        loadAndRenderChart(cityName);
       }
     });
   }
@@ -181,5 +202,34 @@ export function initializeWeatherCard() {
       chartContent.innerHTML = '<p>Aici va fi afișat graficul cu vremea.</p>';
       showChartButton.focus();
     });
+  }
+}
+
+// Noua funcție pentru a exporta datele pentru grafic
+export async function getWeatherDataForChart(city) {
+  try {
+    const data = await getWeatherForecastByCityName(city);
+    const formattedData = {
+      daysData: data.list
+        .filter((_, index) => index % 8 === 0)
+        .map((forecast, index) => ({
+          date: {
+            month: new Date(forecast.dt * 1000).toLocaleString('en-US', {
+              month: 'short',
+            }),
+            day: new Date(forecast.dt * 1000).getDate(),
+            year: new Date(forecast.dt * 1000).getFullYear(),
+          },
+          forecasts: data.list.slice(index * 8, (index + 1) * 8).map(entry => ({
+            humidity: entry.main.humidity,
+            pressure: entry.main.pressure,
+            temperature: entry.main.temp,
+            windSpeed: entry.wind.speed,
+          })),
+        })),
+    };
+    return formattedData;
+  } catch (error) {
+    console.error('Error fetching weather data for chart:', error);
   }
 }
