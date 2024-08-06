@@ -1,12 +1,18 @@
+import { Chart, registerables } from 'chart.js';
 import { getWeatherDataForChart } from './weathercard.js';
+
+Chart.register(...registerables);
 
 const ctx = document.querySelector('#myChart').getContext('2d');
 const chartShowBtn = document.querySelector('.chart-show-link');
 const chartCloseBtn = document.querySelector('.chart-hide-link');
 const chartContainer = document.querySelector('.chart-main-container');
+const chartShowButtonContainer = document.querySelector(
+  '.chart-show-button-container'
+);
 
 function chartDisplay() {
-  chartShowBtn.parentElement.classList.toggle('is-closed');
+  chartShowButtonContainer.classList.toggle('is-closed');
   chartContainer.classList.toggle('is-closed');
   chartContainer.style.display = chartContainer.classList.contains('is-closed')
     ? 'none'
@@ -150,23 +156,63 @@ function getChartData(weather) {
 }
 
 let weatherChart;
-
 function renderChart(weather) {
   if (weatherChart) {
     weatherChart.data.datasets = getChartData(weather).data.datasets;
-    weatherChart.update();
+    weatherChart.update(); // Actualizăm graficul
   } else {
     let chartData = getChartData(weather);
-    weatherChart = new Chart(ctx, chartData);
+    weatherChart = new Chart(ctx, chartData); // Pasăm canvas-ul și obiectul de configurare complet
   }
   return weatherChart;
 }
 
-async function loadAndRenderChart(city) {
+export async function loadAndRenderChart(city) {
   const weatherData = await getWeatherDataForChart(city);
-  if (weatherData) {
-    renderChart(weatherData);
-  }
+  renderChart(weatherData);
+  chartShowButtonContainer.style.display = 'block'; // Afișăm butonul Show Chart
+  chartContainer.style.display = 'none'; // Ne asigurăm că graficul este ascuns inițial
 }
 
-export { chartDisplay, average, getChartData, renderChart, loadAndRenderChart };
+// Example of test data (you can remove this when using real data)
+const testWeatherData = {
+  daysData: [
+    {
+      date: { month: 'Feb', day: '9', year: '2020' },
+      forecasts: [
+        { humidity: 45, pressure: 1012, temperature: -5, windSpeed: 1.5 },
+        { humidity: 47, pressure: 1013, temperature: -4.5, windSpeed: 1.8 },
+      ],
+    },
+    {
+      date: { month: 'Feb', day: '10', year: '2020' },
+      forecasts: [
+        { humidity: 50, pressure: 1014, temperature: -4, windSpeed: 2 },
+        { humidity: 52, pressure: 1016, temperature: -3.5, windSpeed: 2.2 },
+      ],
+    },
+    {
+      date: { month: 'Feb', day: '11', year: '2020' },
+      forecasts: [
+        { humidity: 55, pressure: 1018, temperature: -3, windSpeed: 3 },
+        { humidity: 57, pressure: 1020, temperature: -2.5, windSpeed: 3.5 },
+      ],
+    },
+    {
+      date: { month: 'Feb', day: '12', year: '2020' },
+      forecasts: [
+        { humidity: 60, pressure: 1022, temperature: -2, windSpeed: 4 },
+        { humidity: 62, pressure: 1024, temperature: -1.5, windSpeed: 4.5 },
+      ],
+    },
+    {
+      date: { month: 'Feb', day: '13', year: '2020' },
+      forecasts: [
+        { humidity: 65, pressure: 1025, temperature: -1, windSpeed: 5 },
+        { humidity: 67, pressure: 1027, temperature: -0.5, windSpeed: 5.5 },
+      ],
+    },
+  ],
+};
+// Renderizamos el gráfico con los datos de prueba
+renderChart(testWeatherData);
