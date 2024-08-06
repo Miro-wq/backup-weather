@@ -59,10 +59,13 @@ function updateAdditionalWeatherCard(weatherData, timeZoneId) {
       .format('HH:mm:ss');
     weatherCard.querySelector(
       '.sunrise-time'
-    ).innerHTML = `<img src="sunrise.svg" alt="S"> ${sunriseTime}`; //am scos momentan denumirea de Sunrise Icon ca ma incurca :)))
+    ).innerHTML = `<img src="sunrise.svg" alt="Sunrise Icon"> ${sunriseTime}`;
     weatherCard.querySelector(
       '.sunset-time'
-    ).innerHTML = `<img src="sunset.svg" alt="S"> ${sunsetTime}`; //idem si aici
+    ).innerHTML = `<img src="sunset.svg" alt="Sunset Icon"> ${sunsetTime}`;
+
+    // Afișează cardul de vreme suplimentară
+    weatherCard.style.display = 'block';
   } else {
     console.error('Additional weather card element not found in the DOM');
   }
@@ -81,4 +84,3 @@ function updateQuote(quote, author) {
     console.error('Quote card element not found in the DOM');
   }
 }
-//com
