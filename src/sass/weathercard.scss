@@ -1,19 +1,20 @@
 .master-weather-card {
-  display: flex;
+  display: flex !important;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
   position: absolute;
   right: 0;
   overflow-x: hidden;
+  width: 100%;
 }
 .weather-card {
     width: 100%;
     border-radius: 35px;
     background-color: #102136;
     box-shadow: 0 8px 43px 0 rgba(16, 33, 54, .59);
-    padding: 30px 0 38px;
+    // padding: 30px 0 38px;
     margin-bottom: 32px;
-    justify-content: space-between;
+    // justify-content: space-between;
     //modif af ==
     display: flex;
     flex-direction: column;
@@ -24,11 +25,11 @@
 .city-name {
     font-size: 18px;
     line-height: 1.222;
-    margin-bottom: 26px;
+    // margin-bottom: 26px;
     font-size: 16px;
     color: hsla(0, 0%, 100%, .302);
     line-height: 1.375;
-    margin-bottom: 20px;
+    margin-bottom: 0;
     display: flex;
     justify-content: center;
 }
@@ -94,8 +95,11 @@ height: 40px;
 }
 
 .button-container {
-  margin-top: 10px;
   z-index: 10;
+  margin-top: 10px;
+  right: 57px;
+  position: absolute;
+  bottom: 43%;
 }
 
 .today-button {
@@ -138,7 +142,7 @@ color: #fff;
   background-color: #36454F;
   /* color: white; */
   border-radius: 34px;
-  width: 1060px;
+  width: 90%;
   height: 308px;
   box-shadow: 0 8px 43px 0 rgba(16, 33, 54, 0.6);
   background: rgba(16, 33, 54, 0.8);
@@ -183,10 +187,20 @@ color: #fff;
 .forecast-day .date {
   font-family: var(--font-family);
   font-weight: 400;
-  font-size: 25px;
+  font-size: 18px;
   letter-spacing: 0.04em;
   text-align: center;
-  color: #fff;
+  color: hsla(0, 0%, 100%, .302);
+}
+
+.forecast-day p.date {
+  color: #fff !important;
+  font-family: var(--font-family) !important;
+font-weight: 400 !important;
+font-size: 25px !important;
+letter-spacing: 0.04em !important;
+text-align: center !important;
+color: #fff !important;
 }
 
 .forecast-day .temp {
@@ -214,9 +228,10 @@ color: #fff;
 }
 @media (min-width: 768px) {
     .weather-card {
-        width: 492px;
-        margin-bottom: 0;
-        right: -31px;
-        position: relative;
+      width: 450px;
+      // margin-bottom: 0;
+      position: relative;
+      right: -31px;
+      height: 300px;
     }
 }

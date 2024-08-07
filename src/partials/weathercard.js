@@ -12,7 +12,7 @@ export function displayWeatherDataOnCard(data) {
   const cityNameElement = document.getElementById('city-name');
   const temperatureElement = document.getElementById('temperature');
   const descriptionElement = document.getElementById('description');
-  const humidityElement = document.getElementById('humidity');
+  // const humidityElement = document.getElementById('humidity');
   const minTempElement = document.getElementById('min-temp');
   const maxTempElement = document.getElementById('max-temp');
   const weatherCardElement = document.getElementById('weather-card');
@@ -24,7 +24,7 @@ export function displayWeatherDataOnCard(data) {
     cityNameElement &&
     temperatureElement &&
     descriptionElement &&
-    humidityElement &&
+    // humidityElement &&
     minTempElement &&
     maxTempElement &&
     weatherCardElement &&
@@ -37,7 +37,7 @@ export function displayWeatherDataOnCard(data) {
     )}" alt="${data.weather[0].description}" title="${
       data.weather[0].description
     }">`;
-    humidityElement.textContent = `Humidity: ${data.main.humidity}%`;
+    // humidityElement.textContent = `Humidity: ${data.main.humidity}%`;
     minTempElement.textContent = `${Math.round(data.main.temp_min)} °C`;
     maxTempElement.textContent = `${Math.round(data.main.temp_max)} °C`;
 
@@ -239,7 +239,7 @@ export async function getWeatherDataForChart(city) {
             year: new Date(forecast.dt * 1000).getFullYear(),
           },
           forecasts: data.list.slice(index * 8, (index + 1) * 8).map(entry => ({
-            humidity: entry.main.humidity,
+            // humidity: entry.main.humidity,
             pressure: entry.main.pressure,
             temperature: entry.main.temp,
             windSpeed: entry.wind.speed,

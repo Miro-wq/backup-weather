@@ -70,19 +70,21 @@ sup {
 }
 
 #quote-card {
-  position: absolute;
-  width: 340px;
-  height: 132px;
-  top: 702px;
-  left: 830px;
-  display: flex;
+  // width: 340px;
+  /* height: 132px; */
+  box-sizing: border-box;
+  text-align: right;
+  color: #fff;
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
   padding: 20px;
-  box-sizing: border-box;
-  text-align: right;
-  color: white;
+  display: flex;
+  position: absolute;
+  /* top: 702px; */
+  /* left: 830px; */
+  bottom: 116px;
+  right: 110px;
 }
 
 .quote-text,
