@@ -4,6 +4,7 @@ import { getAuthorByCity, getQuoteByAuthor } from '../quotesApi.js';
 import { getTimeZoneByCoordinates } from '../timezoneApi.js';
 
 export async function fetchAdditionalWeatherData(city) {
+  console.log('fetchAdditionalWeatherData called');
   if (!city) {
     console.error('City is not defined');
     return;
@@ -44,28 +45,43 @@ function updateAdditionalWeatherCard(weatherData, timeZoneId) {
 
   if (weatherCard) {
     const currentDate = moment().tz(timeZoneId);
-    weatherCard.querySelector('.current-date').textContent =
-      currentDate.format('YYYY-MM-DD');
+
+    function getOrdinalSuffix(day) {
+      if (day > 3 && day < 21) return 'th';
+      switch (day % 10) {
+        case 1:
+          return 'st';
+        case 2:
+          return 'nd';
+        case 3:
+          return 'rd';
+        default:
+          return 'th';
+      }
+    }
+
+    const day = currentDate.date();
+    const dayOfWeek = currentDate.format('ddd');
+    const month = currentDate.format('MMMM');
+    const formattedDate = `${day}<sup>${getOrdinalSuffix(
+      day
+    )}</sup> ${dayOfWeek}`;
+
+    weatherCard.querySelector('.current-date').innerHTML = formattedDate;
+    weatherCard.querySelector('.current-month').textContent = month;
     weatherCard.querySelector('.current-time').textContent =
       currentDate.format('HH:mm:ss');
 
+    // Testare cu date hardcodate
     const sunriseTime = moment
-      .unix(weatherData.sys.sunrise)
-      .tz(timeZoneId)
-      .format('HH:mm:ss');
+      .tz('2024-08-07 06:30:00', timeZoneId)
+      .format('HH:mm');
     const sunsetTime = moment
-      .unix(weatherData.sys.sunset)
-      .tz(timeZoneId)
-      .format('HH:mm:ss');
-    weatherCard.querySelector(
-      '.sunrise-time'
-    ).innerHTML = `<img src="sunrise.svg" alt="Sunrise Icon"> ${sunriseTime}`;
-    weatherCard.querySelector(
-      '.sunset-time'
-    ).innerHTML = `<img src="sunset.svg" alt="Sunset Icon"> ${sunsetTime}`;
+      .tz('2024-08-07 20:00:00', timeZoneId)
+      .format('HH:mm');
 
-    // Afișează cardul de vreme suplimentară
-    weatherCard.style.display = 'block';
+    weatherCard.querySelector('.sunrise-time').innerHTML = sunriseTime;
+    weatherCard.querySelector('.sunset-time').innerHTML = sunsetTime;
   } else {
     console.error('Additional weather card element not found in the DOM');
   }
@@ -77,9 +93,6 @@ function updateQuote(quote, author) {
   if (quoteCard) {
     quoteCard.querySelector('.quote-text').textContent = quote;
     quoteCard.querySelector('.quote-author').textContent = `— ${author}`;
-
-    // Afișează cardul de citat
-    quoteCard.style.display = 'block';
   } else {
     console.error('Quote card element not found in the DOM');
   }
