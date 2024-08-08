@@ -22,6 +22,7 @@ sup {
   font-size: 90px;
   letter-spacing: 0.04em;
   color: #fff;
+  margin: 0;
 }
 
 .current-info {
@@ -34,7 +35,7 @@ sup {
 }
 
 .current-info span {
-  margin: 0 10px; /* Space between elements */
+  margin: 0 10px;
   display: flex;
   align-items: center;
 }
