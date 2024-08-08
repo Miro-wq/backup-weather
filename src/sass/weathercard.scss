@@ -85,6 +85,18 @@
     border-right: 2px solid hsla(0, 0%, 100%, .302);
 }
 
+
+
+.min-max-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+
+
+
+
 .divide-line {
 height: 40px;
 }
@@ -190,30 +202,50 @@ color: #fff;
   font-size: 18px;
   letter-spacing: 0.04em;
   text-align: center;
-  color: hsla(0, 0%, 100%, .302);
+  color: #fff;
+  opacity: 0.55;
 }
 
 .forecast-day p.date {
-  color: #fff !important;
+  color: #fff;
+  opacity: 1;
   font-family: var(--font-family) !important;
-font-weight: 400 !important;
-font-size: 25px !important;
-letter-spacing: 0.04em !important;
-text-align: center !important;
-color: #fff !important;
+  font-weight: 400 !important;
+  font-size: 25px !important;
+  letter-spacing: 0.04em !important;
+  text-align: center !important;
 }
 
 .forecast-day .temp {
   font-size: 1em;
 }
 
+.forecast-day .temp-min {
+  border-right: 1px solid #fff;
+  padding-right: 20px;
+  border-color: hsla(0, 0%, 100%, .302);
+}
+
 .forecast-day .temp-min,
 .forecast-day .temp-max {
   font-family: var(--font-family);
-  font-weight: 700;
-  font-size: 25px;
   text-align: center;
   color: #ff6b09;
+  font-size: 25px;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+}
+
+.five-days-min,
+.five-days-max {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 18px;
+  text-align: center;
+  color: #fff;
+  opacity: 0.55;
+  margin-bottom: 6px;
 }
 
 .forecast-day .more-info {

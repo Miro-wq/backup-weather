@@ -94,8 +94,10 @@ export function displayFiveDayForecast(data) {
         <img src="${getWeatherIconUrl(forecast.weather[0].icon)}" alt="${
         forecast.weather[0].description
       }">
-        <p class="temp temp-min">${Math.round(forecast.main.temp_min)}°C</p>
-        <p class="temp temp-max">${Math.round(forecast.main.temp_max)}°C</p>
+      <div class = "min-max-container">
+        <p class="temp temp-min"><span class="five-days-min">min</span>${Math.round(forecast.main.temp_min)}°</p>
+        <p class="temp temp-max"><span class="five-days-max">max</span>${Math.round(forecast.main.temp_max)}°</p>
+        </div>
         <p class="more-info">more info</p>
       `;
 
