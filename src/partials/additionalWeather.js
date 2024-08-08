@@ -4,7 +4,6 @@ import { getAuthorByCity, getQuoteByAuthor } from '../quotesApi.js';
 import { getTimeZoneByCoordinates } from '../timezoneApi.js';
 
 export async function fetchAdditionalWeatherData(city) {
-  console.log('fetchAdditionalWeatherData called');
   if (!city) {
     console.error('City is not defined');
     return;
@@ -26,17 +25,21 @@ export async function fetchAdditionalWeatherData(city) {
     const authorData = await getAuthorByCity(city);
     if (!authorData) {
       updateQuote('Quote not found', 'Author not found');
+      showAdditionalWeatherCard(); // Afișează cardul suplimentar
       return;
     }
     const quote = await getQuoteByAuthor(authorData);
     if (!quote) {
       updateQuote('Quote not found', authorData.author);
+      showAdditionalWeatherCard(); // Afișează cardul suplimentar
       return;
     }
     updateQuote(quote, authorData.author);
+    showAdditionalWeatherCard(); // Afișează cardul suplimentar
   } catch (error) {
     console.error('Error fetching additional weather data:', error);
     updateQuote('Quote not found', 'Author not found');
+    showAdditionalWeatherCard(); // Afișează cardul suplimentar chiar și în caz de eroare
   }
 }
 
@@ -72,12 +75,13 @@ function updateAdditionalWeatherCard(weatherData, timeZoneId) {
     weatherCard.querySelector('.current-time').textContent =
       currentDate.format('HH:mm:ss');
 
-    // Testare cu date hardcodate
     const sunriseTime = moment
-      .tz('2024-08-07 06:30:00', timeZoneId)
+      .unix(weatherData.sys.sunrise)
+      .tz(timeZoneId)
       .format('HH:mm');
     const sunsetTime = moment
-      .tz('2024-08-07 20:00:00', timeZoneId)
+      .unix(weatherData.sys.sunset)
+      .tz(timeZoneId)
       .format('HH:mm');
 
     weatherCard.querySelector('.sunrise-time').innerHTML = sunriseTime;
@@ -97,3 +101,34 @@ function updateQuote(quote, author) {
     console.error('Quote card element not found in the DOM');
   }
 }
+
+export function showAdditionalWeatherCard() {
+  const additionalWeatherCard = document.getElementById(
+    'additional-weather-card'
+  );
+  const quoteCard = document.getElementById('quote-card');
+
+  if (additionalWeatherCard) {
+    additionalWeatherCard.style.display = 'block';
+  }
+  if (quoteCard) {
+    quoteCard.style.display = 'block';
+  }
+}
+
+export function hideAdditionalWeatherCard() {
+  const additionalWeatherCard = document.getElementById(
+    'additional-weather-card'
+  );
+  const quoteCard = document.getElementById('quote-card');
+
+  if (additionalWeatherCard) {
+    additionalWeatherCard.style.display = 'none';
+  }
+  if (quoteCard) {
+    quoteCard.style.display = 'none';
+  }
+}
+
+// Ascundem inițial cardul suplimentar
+hideAdditionalWeatherCard();
