@@ -1,6 +1,6 @@
 import moment from 'moment-timezone';
 import { getWeatherByCityName } from '../apiOpenWeather.js';
-import { getAuthorByCity, getQuoteByAuthor } from '../quotesApi.js';
+// import { getAuthorByCity, getQuoteByAuthor } from '../quotesApi.js'; // Acestea nu mai sunt necesare
 import { getTimeZoneByCoordinates } from '../timezoneApi.js';
 import 'animate.css';
 
@@ -23,24 +23,33 @@ export async function fetchAdditionalWeatherData(city) {
     );
     updateAdditionalWeatherCard(weatherData, timeZoneData.zoneName);
 
-    const authorData = await getAuthorByCity(city);
-    if (!authorData) {
+    // Quotes API pentru citate aleatorii la fiecare search
+    const quoteData = await fetchRandomQuote();
+    if (!quoteData) {
       updateQuote('Quote not found', 'Author not found');
       showAdditionalWeatherCard(); // Afișează cardul suplimentar
       return;
     }
-    const quote = await getQuoteByAuthor(authorData);
-    if (!quote) {
-      updateQuote('Quote not found', authorData.author);
-      showAdditionalWeatherCard(); // Afișează cardul suplimentar
-      return;
-    }
-    updateQuote(quote, authorData.author);
+    updateQuote(quoteData.content, quoteData.author);
     showAdditionalWeatherCard(); // Afișează cardul suplimentar
   } catch (error) {
     console.error('Error fetching additional weather data:', error);
     updateQuote('Quote not found', 'Author not found');
     showAdditionalWeatherCard(); // Afișează cardul suplimentar chiar și în caz de eroare
+  }
+}
+
+async function fetchRandomQuote() {
+  try {
+    const response = await fetch('https://api.quotable.io/random');
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching quote:', error);
+    return null;
   }
 }
 
