@@ -65,6 +65,7 @@ export function displayWeatherDataOnCard(data) {
 }
 //pana aici
 
+//modiff more-info
 export function displayFiveDayForecast(data) {
   const forecastContainer = document.getElementById('forecast-container');
   const chartContainer = document.getElementById('chart-container');
@@ -88,21 +89,36 @@ export function displayFiveDayForecast(data) {
       });
 
       forecastElement.innerHTML = `
-      
         <h3 class="date">${dayName}</h3>
         <p class="date">${dateString}</p>
-        <img src="${getWeatherIconUrl(forecast.weather[0].icon)}" alt="${
-        forecast.weather[0].description
-      }">
-      <div class = "min-max-container">
-        <p class="temp temp-min"><span class="five-days-min">min</span>${Math.round(forecast.main.temp_min)}°</p>
-        <p class="temp temp-max"><span class="five-days-max">max</span>${Math.round(forecast.main.temp_max)}°</p>
+        <img src="${getWeatherIconUrl(forecast.weather[0].icon)}" alt="${forecast.weather[0].description}">
+        <div class="min-max-container">
+          <p class="temp temp-min"><span class="five-days-min">min</span>${Math.round(forecast.main.temp_min)}°</p>
+          <p class="temp temp-max"><span class="five-days-max">max</span>${Math.round(forecast.main.temp_max)}°</p>
         </div>
         <p class="more-info">more info</p>
+
+        <div class="additional-info" style="display: none;">
+          <p class="info-hour">00:00</p>
+          <p><img src="${getWeatherIconUrl(forecast.weather[0].icon)}" alt="${forecast.weather[0].description}" /></p>
+          <p class="info-temp">${Math.round(forecast.main.temp)}°</p>
+          <p class="info-pressure">${forecast.main.pressure} mm <img src="pressure-icon-url" alt="Pressure Icon"></p>
+          <p class="info-forecast">${forecast.pop * 100}% <img src="precipitation-icon-url" alt="Precipitation Icon"></p>
+          <p class="wind-speed">${forecast.wind.speed} m/s <img src="wind-icon-url" alt="Wind Icon"></p>
+        </div>
       `;
 
       forecastContainer.appendChild(forecastElement);
     }
+  });
+
+  document.querySelectorAll('.more-info').forEach(button => {
+    button.addEventListener('click', () => {
+
+      document.querySelectorAll('.additional-info').forEach(info => {
+        info.style.display = info.style.display === 'none' ? 'block' : 'none';
+      });
+    });
   });
 
   if (forecastContainer) {
@@ -113,6 +129,7 @@ export function displayFiveDayForecast(data) {
     chartContainer.style.display = 'block';
   }
 }
+//pana aici
 
 function getWeatherIconUrl(iconCode) {
   return `https://openweathermap.org/img/wn/${iconCode}.png`;
