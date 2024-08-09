@@ -10,7 +10,9 @@
   position: absolute;
   bottom: 0;
   width: 630px;
+  transition: all 0.5s ease-in-out;
 }
+
 sup {
   vertical-align: super;
   font-size: smaller;
@@ -86,6 +88,16 @@ sup {
   /* left: 830px; */
   bottom: 116px;
   right: 110px;
+}
+
+#quote-card.animate-from-right {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+#quote-card.show {
+  transform: translateX(0);
+  opacity: 1;
 }
 
 .quote-text,

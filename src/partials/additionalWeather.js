@@ -2,6 +2,7 @@ import moment from 'moment-timezone';
 import { getWeatherByCityName } from '../apiOpenWeather.js';
 import { getAuthorByCity, getQuoteByAuthor } from '../quotesApi.js';
 import { getTimeZoneByCoordinates } from '../timezoneApi.js';
+import 'animate.css';
 
 export async function fetchAdditionalWeatherData(city) {
   if (!city) {
@@ -108,11 +109,27 @@ export function showAdditionalWeatherCard() {
   );
   const quoteCard = document.getElementById('quote-card');
 
-  if (additionalWeatherCard) {
+  if (additionalWeatherCard && quoteCard) {
     additionalWeatherCard.style.display = 'block';
-  }
-  if (quoteCard) {
     quoteCard.style.display = 'block';
+
+    // Eliminăm clasele de animație pentru a reseta starea inițială
+    additionalWeatherCard.classList.remove(
+      'animate__animated',
+      'animate__fadeInLeft'
+    );
+    quoteCard.classList.remove('animate__animated', 'animate__fadeInRight');
+
+    // Forțăm reflow pentru a reseta animațiile
+    void additionalWeatherCard.offsetWidth;
+    void quoteCard.offsetWidth;
+
+    // Adăugăm clasele pentru animații
+    additionalWeatherCard.classList.add(
+      'animate__animated',
+      'animate__fadeInLeft'
+    );
+    quoteCard.classList.add('animate__animated', 'animate__fadeInRight');
   }
 }
 
@@ -122,11 +139,16 @@ export function hideAdditionalWeatherCard() {
   );
   const quoteCard = document.getElementById('quote-card');
 
-  if (additionalWeatherCard) {
+  if (additionalWeatherCard && quoteCard) {
     additionalWeatherCard.style.display = 'none';
-  }
-  if (quoteCard) {
     quoteCard.style.display = 'none';
+
+    // Eliminăm clasele de animație pentru a reseta starea inițială
+    additionalWeatherCard.classList.remove(
+      'animate__animated',
+      'animate__fadeInLeft'
+    );
+    quoteCard.classList.remove('animate__animated', 'animate__fadeInRight');
   }
 }
 
