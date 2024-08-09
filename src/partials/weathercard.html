@@ -30,5 +30,17 @@
 <div class="five-days-container">
   <h2 id="forecast-location"></h2>
   <div id="forecast-container"></div>
-  <div id="chart-container" style="display: none"></div>
+  <div id="chart-container" style="display: none">
+    <div class="chart-show-button-container is-closed" style="display: none">
+      <button type="button" class="chart-show-link">Show Chart</button>
+    </div>
+    <div class="chart-main-container is-closed" style="display: none">
+      <div class="chart-hide-button-container">
+        <button type="button" class="chart-hide-link">Hide Chart</button>
+      </div>
+      <div class="canvas-wrapper">
+        <canvas id="myChart"></canvas>
+      </div>
+    </div>
+  </div>
 </div>
