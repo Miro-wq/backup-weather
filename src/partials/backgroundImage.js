@@ -7,28 +7,34 @@ const fallbackImages = [
 ];
 
 export async function setBackgroundForCity(city) {
+  const backgroundImageElement = document.getElementById('background-image');
+  const backgroundVideoElement = document.getElementById('background-video');
+
+  // Ascunde videoclipul și afișează imaginea de fundal
+  if (backgroundVideoElement) backgroundVideoElement.style.display = 'none';
+  if (backgroundImageElement) backgroundImageElement.style.display = 'block';
+
   try {
     const imageData = await getRandomImages(city, 1, 3); // Cerem trei imagini pentru a evita erorile de validare
-    const backgroundElement = document.getElementById('background-image');
 
-    if (backgroundElement) {
+    if (backgroundImageElement) {
       if (imageData && imageData.hits && imageData.hits.length > 0) {
-        backgroundElement.style.backgroundImage = `url(${imageData.hits[0].webformatURL})`;
+        backgroundImageElement.style.backgroundImage = `url(${imageData.hits[0].webformatURL})`;
       } else {
         console.warn(
           'No images found for the specified city. Using fallback image.'
         );
         const randomFallbackImage =
           fallbackImages[Math.floor(Math.random() * fallbackImages.length)];
-        backgroundElement.style.backgroundImage = `url(${randomFallbackImage})`;
+        backgroundImageElement.style.backgroundImage = `url(${randomFallbackImage})`;
       }
 
-      backgroundElement.style.backgroundSize = 'cover';
-      backgroundElement.style.backgroundPosition = 'center';
-      backgroundElement.style.height = '100vh';
-      backgroundElement.style.width = '100vw';
-      backgroundElement.style.position = 'fixed';
-      backgroundElement.style.zIndex = '-1';
+      backgroundImageElement.style.backgroundSize = 'cover';
+      backgroundImageElement.style.backgroundPosition = 'center';
+      backgroundImageElement.style.height = '100vh';
+      backgroundImageElement.style.width = '100vw';
+      backgroundImageElement.style.position = 'fixed';
+      backgroundImageElement.style.zIndex = '-1';
     } else {
       console.error('Background element not found.');
     }
@@ -36,17 +42,41 @@ export async function setBackgroundForCity(city) {
     console.error('Error fetching image from Pixabay API:', error);
 
     // În cazul unei erori la fetch, folosim și fallback
-    const backgroundElement = document.getElementById('background-image');
-    if (backgroundElement) {
-      const randomFallbackImage =
-        fallbackImages[Math.floor(Math.random() * fallbackImages.length)];
-      backgroundElement.style.backgroundImage = `url(${randomFallbackImage})`;
-      backgroundElement.style.backgroundSize = 'cover';
-      backgroundElement.style.backgroundPosition = 'center';
-      backgroundElement.style.height = '100vh';
-      backgroundElement.style.width = '100vw';
-      backgroundElement.style.position = 'fixed';
-      backgroundElement.style.zIndex = '-1';
+    const randomFallbackImage =
+      fallbackImages[Math.floor(Math.random() * fallbackImages.length)];
+    if (backgroundImageElement) {
+      backgroundImageElement.style.backgroundImage = `url(${randomFallbackImage})`;
+      backgroundImageElement.style.backgroundSize = 'cover';
+      backgroundImageElement.style.backgroundPosition = 'center';
+      backgroundImageElement.style.height = '100vh';
+      backgroundImageElement.style.width = '100vw';
+      backgroundImageElement.style.position = 'fixed';
+      backgroundImageElement.style.zIndex = '-1';
     }
+  }
+}
+
+export function setDefaultBackgroundVideo() {
+  const backgroundImageElement = document.getElementById('background-image');
+  const backgroundVideoElement = document.getElementById('background-video');
+
+  // Ascunde imaginea și afișează videoclipul de fundal
+  if (backgroundImageElement) backgroundImageElement.style.display = 'none';
+  if (backgroundVideoElement) backgroundVideoElement.style.display = 'block';
+
+  if (backgroundVideoElement) {
+    backgroundVideoElement.style.objectFit = 'cover';
+    backgroundVideoElement.style.height = '100vh';
+    backgroundVideoElement.style.width = '100vw';
+    backgroundVideoElement.style.position = 'fixed';
+    backgroundVideoElement.style.zIndex = '-1';
+
+    // Adăugăm evenimentul pentru a face videoclipul să o ia de la capăt când se termină
+    backgroundVideoElement.addEventListener('ended', () => {
+      backgroundVideoElement.currentTime = 0;
+      backgroundVideoElement.play();
+    });
+  } else {
+    console.error('Background video element not found.');
   }
 }
