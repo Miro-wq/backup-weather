@@ -15,11 +15,15 @@ export async function setBackgroundForCity(city) {
   if (backgroundImageElement) backgroundImageElement.style.display = 'block';
 
   try {
-    const imageData = await getRandomImages(city, 1, 3); // Cerem trei imagini pentru a evita erorile de validare
+    const imageData = await getRandomImages(city, 1, 3); // Cerem trei imagini pentru a avea opțiuni
 
     if (backgroundImageElement) {
-      if (imageData && imageData.hits && imageData.hits.length > 0) {
-        backgroundImageElement.style.backgroundImage = `url(${imageData.hits[0].webformatURL})`;
+      if (imageData && imageData.length > 0) {
+        // Folosim URL-ul imaginii de calitate dorită
+        const imageUrl =
+          imageData[0].largeImageURL || imageData[0].webformatURL;
+
+        backgroundImageElement.style.backgroundImage = `url(${imageUrl})`;
       } else {
         console.warn(
           'No images found for the specified city. Using fallback image.'
@@ -29,6 +33,7 @@ export async function setBackgroundForCity(city) {
         backgroundImageElement.style.backgroundImage = `url(${randomFallbackImage})`;
       }
 
+      // Stiluri pentru fundal
       backgroundImageElement.style.backgroundSize = 'cover';
       backgroundImageElement.style.backgroundPosition = 'center';
       backgroundImageElement.style.height = '100vh';
@@ -41,7 +46,7 @@ export async function setBackgroundForCity(city) {
   } catch (error) {
     console.error('Error fetching image from Pixabay API:', error);
 
-    // În cazul unei erori la fetch, folosim și fallback
+    // În cazul unei erori la fetch, folosim fallback
     const randomFallbackImage =
       fallbackImages[Math.floor(Math.random() * fallbackImages.length)];
     if (backgroundImageElement) {

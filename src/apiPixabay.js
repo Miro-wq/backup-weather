@@ -23,7 +23,18 @@ async function searchImages(query, page = 1, perPage = 20) {
   try {
     const url = `${BASE_URL}/?key=${API_KEY}&q=${query}&image_type=photo&page=${page}&per_page=${perPage}`;
     console.log('Fetching images from URL:', url);
-    return await fetchFromAPI(url);
+    const data = await fetchFromAPI(url);
+
+    // Filtrare imagini de rezoluție superioară (mai mare decât HD)
+    const highResImages = data.hits.filter(
+      image => image.imageWidth >= 3840 && image.imageHeight >= 2160
+    );
+
+    if (highResImages.length === 0) {
+      console.warn(`No high-resolution images found for query "${query}".`);
+    }
+
+    return highResImages;
   } catch (error) {
     console.error(`Error searching images with query "${query}":`, error);
     throw error;
@@ -98,8 +109,23 @@ async function getPopularVideos(
 async function getRandomImages(query, page = 1, perPage = 3) {
   try {
     const url = `${BASE_URL}/?key=${API_KEY}&q=${query}&image_type=photo&per_page=${perPage}&page=${page}`;
+    const data = await fetchFromAPI(url);
 
-    return await fetchFromAPI(url);
+    // Verificăm dacă există imagini în răspuns
+    if (data.hits && data.hits.length > 0) {
+      // Sortăm imaginile în funcție de rezoluție (lățime * înălțime)
+      const sortedImages = data.hits.sort((a, b) => {
+        const resolutionA = a.imageWidth * a.imageHeight;
+        const resolutionB = b.imageWidth * b.imageHeight;
+        return resolutionB - resolutionA; // sortare descrescătoare
+      });
+
+      // Returnăm imagini sortate
+      return sortedImages;
+    } else {
+      console.warn(`No images found for query "${query}".`);
+      return [];
+    }
   } catch (error) {
     console.error(`Error fetching random images with query "${query}":`, error);
     throw error;
