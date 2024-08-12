@@ -1,6 +1,5 @@
 import moment from 'moment-timezone';
 import { getWeatherByCityName } from '../apiOpenWeather.js';
-// import { getAuthorByCity, getQuoteByAuthor } from '../quotesApi.js'; // Acestea nu mai sunt necesare
 import { getTimeZoneByCoordinates } from '../timezoneApi.js';
 import 'animate.css';
 

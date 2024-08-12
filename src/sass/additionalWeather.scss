@@ -1,14 +1,16 @@
 #additional-weather-card {
   box-sizing: border-box;
   background: rgba(16, 33, 54, 0.6);
-  border-radius: 0 34px 0 0;
+  border-radius: 0 2vw 0 0;
   flex-direction: column;
   justify-content: left;
   align-items: center;
-  padding: 60px 87px 90px 110px;
   position: absolute;
   bottom: 0;
-  width: 630px;
+  left: 0;
+  width: 40vw;
+  height: 25vh;
+  transition: all 0.5s ease-in-out;
 }
 
 sup {
@@ -19,23 +21,22 @@ sup {
 .current-date {
   font-family: var(--font-family);
   font-weight: 300;
-  font-size: 90px;
-  letter-spacing: 0.04em;
+  font-size: 4vw;
+  letter-spacing: 0.3vw;
   color: #fff;
   margin: 0;
+  margin-top: 3vh;
+  margin-left: 1vw;
 }
 
 .current-info {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  width: 100%;
-  font-size: 18px;
-  color: #fff;
 }
 
 .current-info span {
-  margin: 0 10px;
+  margin: 0 1vw;
   display: flex;
   align-items: center;
 }
@@ -46,30 +47,35 @@ sup {
 .current-info .sunset-time {
   font-family: var(--font-family);
   font-weight: 400;
-  font-size: 18px;
-  letter-spacing: 0.04em;
+  font-size: 1vw;
+  letter-spacing: 0.04vw;
   color: #fff;
+  margin-top: 1vh;
 }
 
-.current-info .current-month {
-  border-right: 1px solid white;
-  padding-right: 20px;
+.current-month {
+  border-right: 0.1vw solid white;
+  padding-right: 1.5vw;
 }
 
 .current-info .current-time {
-  margin-left: 20px;
-  margin-right: 40px;
+  margin-left: 0.5vw;
+  margin-right: 6vw;
 }
 
-.current-info .sunrise-time {
-  padding-right: 20px;
-  border-right: 1px solid white;
+.sunrise-time {
+  padding-right: 1vw;
+  border-right: 0.1vw solid white;
 }
 
-.current-info .sunset-time {
-  margin-left: 20px;
+.current-info,
+.sunset-time {
+  margin-left: 0.1vw;
 }
 
+.current-info img {
+  width: 1.5vw;
+}
 #quote-card {
   box-sizing: border-box;
   text-align: right;
@@ -77,12 +83,22 @@ sup {
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
-  padding: 20px;
+  padding: 1vw;
   display: flex;
   position: absolute;
-  bottom: 116px;
-  right: 110px;
+  bottom: 3vh;
+  right: 5vw;
 }
+
+// #quote-card.animate-from-right {
+//   transform: translateX(100%);
+//   opacity: 0;
+// }
+
+// #quote-card.show {
+//   transform: translateX(0);
+//   opacity: 1;
+// }
 
 .quote-text,
 .quote-author {
@@ -93,8 +109,8 @@ sup {
   font-family: var(--font-family);
   font-style: italic;
   font-weight: 400;
-  font-size: 22px;
-  letter-spacing: 0.04em;
+  font-weight: bold;
+  font-size: 1.5vw;
   text-align: right;
   color: #fff;
 }
@@ -102,8 +118,160 @@ sup {
 .quote-author {
   font-family: var(--font-family);
   font-weight: 400;
-  font-size: 18px;
-  letter-spacing: 0.04em;
+  font-size: 0.8vw;
   text-align: right;
   color: #fff;
 }
+
+@media screen and (max-width: 1025px) {
+  #additional-weather-card {
+    border-radius: 2vw;
+    bottom: 20vh;
+    left: 20vw;
+    width: 60vw;
+    height: 35vw;
+  }
+
+  .current-date {
+    font-size: 7vw;
+    margin-left: 6vw;
+  }
+
+  .current-info .current-month,
+  .current-info .current-time,
+  .current-info .sunrise-time,
+  .current-info .sunset-time {
+    font-size: 2.5vw;
+    margin-top: 4vw;
+  }
+
+  .sunrise-time {
+    padding-right: 4vw;
+  }
+
+  .current-info img {
+    width: 3vw;
+  }
+  #quote-card {
+    bottom: 10vh;
+    right: 15vw;
+  }
+
+  .quote-text {
+    font-size: 3.5vw;
+  }
+
+  .quote-author {
+    font-size: 2.8vw;
+  }
+}
+
+// #additional-weather-card {
+//   box-sizing: border-box;
+//   background: rgba(16, 33, 54, 0.6);
+//   border-radius: 0 34px 0 0;
+//   flex-direction: column;
+//   justify-content: left;
+//   align-items: center;
+//   padding: 60px 87px 90px 110px;
+//   position: absolute;
+//   bottom: 0;
+//   width: 630px;
+// }
+
+// sup {
+//   vertical-align: super;
+//   font-size: smaller;
+// }
+
+// .current-date {
+//   font-family: var(--font-family);
+//   font-weight: 300;
+//   font-size: 90px;
+//   letter-spacing: 0.04em;
+//   color: #fff;
+//   margin: 0;
+// }
+
+// .current-info {
+//   display: flex;
+//   align-items: center;
+//   justify-content: flex-start;
+//   width: 100%;
+//   font-size: 18px;
+//   color: #fff;
+// }
+
+// .current-info span {
+//   margin: 0 10px;
+//   display: flex;
+//   align-items: center;
+// }
+
+// .current-info .current-month,
+// .current-info .current-time,
+// .current-info .sunrise-time,
+// .current-info .sunset-time {
+//   font-family: var(--font-family);
+//   font-weight: 400;
+//   font-size: 18px;
+//   letter-spacing: 0.04em;
+//   color: #fff;
+// }
+
+// .current-info .current-month {
+//   border-right: 1px solid white;
+//   padding-right: 20px;
+// }
+
+// .current-info .current-time {
+//   margin-left: 20px;
+//   margin-right: 40px;
+// }
+
+// .current-info .sunrise-time {
+//   padding-right: 20px;
+//   border-right: 1px solid white;
+// }
+
+// .current-info .sunset-time {
+//   margin-left: 20px;
+// }
+
+// #quote-card {
+//   box-sizing: border-box;
+//   text-align: right;
+//   color: #fff;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: flex-end;
+//   padding: 20px;
+//   display: flex;
+//   position: absolute;
+//   bottom: 116px;
+//   right: 110px;
+// }
+
+// .quote-text,
+// .quote-author {
+//   font-weight: bold;
+// }
+
+// .quote-text {
+//   font-family: var(--font-family);
+//   font-style: italic;
+//   font-weight: 400;
+//   font-size: 22px;
+//   letter-spacing: 0.04em;
+//   text-align: right;
+//   color: #fff;
+// }
+
+// .quote-author {
+//   font-family: var(--font-family);
+//   font-weight: 400;
+//   font-size: 18px;
+//   letter-spacing: 0.04em;
+//   text-align: right;
+//   color: #fff;
+// }
