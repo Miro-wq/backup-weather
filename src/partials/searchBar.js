@@ -11,14 +11,15 @@ function capitalizeCityName(city) {
 }
 
 function addToFavorites(city) {
+  city = capitalizeCityName(city); // Capitalizează numele orașului
   let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
   if (!favorites.includes(city)) {
     favorites.push(city);
     localStorage.setItem('favorites', JSON.stringify(favorites));
     displayFavorites();
-    alert(`${city} has been added to your favorites.`);
+    alert(`${city} a fost adăugat la favorite.`);
   } else {
-    alert(`${city} is already in your favorites.`);
+    alert(`${city} este deja în lista de favorite.`);
   }
 }
 
