@@ -85,3 +85,6 @@ export function setDefaultBackgroundVideo() {
     console.error('Background video element not found.');
   }
 }
+document.getElementById('logo').addEventListener('click', function () {
+  location.reload(); // Aceasta va reîncărca pagina
+});

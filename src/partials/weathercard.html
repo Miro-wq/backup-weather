@@ -1,40 +1,52 @@
-<div class="master-weather-card" style="display: none">
+<div class="master-weather-card">
   <div class="weather-card" id="weather-card">
     <p id="description" class="description"></p>
     <h2 id="city-name" class="city-name"></h2>
     <p id="temperature" class="temperature-card"></p>
     <div class="temps-divide">
       <div class="min">
-        <span class="min-text"
-          >min
+        <span class="min-text">
+          min
           <p id="min-temp" class="min-temp"></p>
         </span>
       </div>
       <div class="max">
-        <span class="max-text"
-          >max
+        <span class="max-text">
+          max
           <p id="max-temp" class="max-temp"></p>
         </span>
       </div>
     </div>
+    <div class="button-container">
+      <button id="today-weather" class="weather-button today-button">
+        today
+      </button>
+      <button id="five-day-forecast" class="weather-button five-day-button">
+        5 days
+      </button>
+    </div>
   </div>
 </div>
-<div class="button-container">
-  <button id="today-weather" class="weather-button today-button">
-    today
-  </button>
-  <button id="five-day-forecast" class="weather-button five-day-button">
-    5 days
-  </button>
-</div>
+
 <div class="five-days-container">
+  <div class="button-container button-container-hidden buttons-five">
+    <button id="today-weather-forecast" class="weather-button today-button">
+      today
+    </button>
+    <button
+      id="five-day-forecast-weather"
+      class="weather-button five-day-button"
+    >
+      5 days
+    </button>
+  </div>
   <h2 id="forecast-location"></h2>
   <div id="forecast-container"></div>
-  <div id="chart-container" style="display: none">
-    <div class="chart-show-button-container is-closed" style="display: none">
+  <div id="chart-container">
+    <div class="chart-show-button-container is-closed">
       <button type="button" class="chart-show-link">Show Chart</button>
     </div>
-    <div class="chart-main-container is-closed" style="display: none">
+    <div class="chart-main-container is-closed">
       <div class="chart-hide-button-container">
         <button type="button" class="chart-hide-link">Hide Chart</button>
       </div>
