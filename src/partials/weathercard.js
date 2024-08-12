@@ -5,7 +5,10 @@ import {
   getWeatherForecastByCityName,
 } from '../apiOpenWeather.js';
 import { setBackgroundForCity } from './backgroundImage.js';
-import { fetchAdditionalWeatherData } from './additionalWeather.js';
+import {
+  fetchAdditionalWeatherData,
+  hideAdditionalWeatherCard,
+} from './additionalWeather.js';
 import { loadAndRenderChart } from './grafic.js';
 
 // Ascundem elementele inițial
@@ -122,6 +125,8 @@ export function displayFiveDayForecast(data) {
       forecastContainer.appendChild(forecastElement);
     }
   });
+
+  hideAdditionalWeatherCard();
 
   // Asigură-te că doar cardul "five days" este vizibil
   fiveDaysContainer.style.display = 'flex';
