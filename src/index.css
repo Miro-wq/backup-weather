@@ -1,7 +1,4 @@
-@import './sass/searchBar.scss';
-/* @import './sass/weatherCard.scss';
-@import './sass/backgroundImage.scss'; */
-/* Alte importuri SCSS dacă sunt necesare */
+@import url(./sass/searchBar.scss);
 @import url(./sass/weathercard.scss);
 @import url(./sass/grafic.scss);
 @import url(./sass/backgroundImage.scss);
