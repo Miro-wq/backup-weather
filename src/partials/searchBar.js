@@ -6,6 +6,10 @@ import { loadAndRenderChart } from './grafic.js'; // Importă funcția loadAndRe
 
 let favoritesList;
 
+function capitalizeCityName(city) {
+  return city.charAt(0).toUpperCase() + city.slice(1).toLowerCase();
+}
+
 function addToFavorites(city) {
   let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
   if (!favorites.includes(city)) {
