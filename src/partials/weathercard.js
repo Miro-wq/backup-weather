@@ -162,11 +162,11 @@ forecastElements.forEach(element => element.classList.remove('expanded'));
 
 const detailedContainer = document.createElement('div');
 detailedContainer.classList.add('detailed-forecast');
-detailedContainer.style.display = 'flex';
-detailedContainer.style.flexWrap = 'wrap';
-detailedContainer.style.justifyContent = 'space-around';
-detailedContainer.style.width = '100%';
-detailedContainer.style.marginTop = '20px';
+// detailedContainer.style.display = 'flex';
+// detailedContainer.style.flexWrap = 'wrap';
+// detailedContainer.style.justifyContent = 'space-around';
+// detailedContainer.style.width = '100%';
+// detailedContainer.style.marginTop = '20px';
 
 for (let i = 1; i <= 7; i++) {
   const hourlyForecast = forecasts[index + i];

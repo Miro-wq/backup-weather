@@ -314,6 +314,31 @@ color: #fff;
 opacity: 0.54;
 }
 
+//daor daca vrem la stanga========================================
+.hourly-humidity {
+padding-right: 28px;
+}
+//==============================================================
+
+.hourly-pressure {
+  background-image: url(../images/005-barometer.png);
+  background-repeat: no-repeat;
+  background-position: 5px 0;
+}
+
+.hourly-humidity {
+  background-image: url(../images/004-humidity.png);
+  background-repeat: no-repeat;
+  background-position: 5px 0;
+}
+
+.hourly-wind {
+  background-image: url(../images/003-wind.png);
+  background-repeat: no-repeat;
+  background-position: 5px 0;
+}
+
+
 
 .hourly-forecast-card {
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -328,6 +353,15 @@ opacity: 0.54;
 .hourly-forecast-card:hover {
   background: rgba(255, 255, 255, 0.1);
 }
+
+.detailed-forecast {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 100%;
+  margin-top: 20px;
+}
+
 @media screen and (max-width: 1025px) {
   .master-weather-card {
     right: 30vw;
@@ -397,12 +431,11 @@ opacity: 0.54;
     font-size: 2vw;
   }
 
-  // mai e odata stilizarea la linia 157
-  // #forecast-container {
-  //   padding: 1vw;
-  //   width: 90vw;
-  //   height: 20vw;
-  // }
+  #forecast-container {
+    padding: 1vw;
+    width: 90vw;
+    height: 20vw;
+  }
 
   .five-days-container {
     bottom: 10vw;
