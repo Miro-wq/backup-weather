@@ -2,6 +2,7 @@ import {
   fetchAndDisplayWeatherForCity,
   fetchAndDisplayWeatherForLocation,
 } from './weathercard.js';
+import { loadAndRenderChart } from './grafic.js'; // Importă funcția loadAndRenderChart
 
 let favoritesList;
 
@@ -33,7 +34,7 @@ function displayFavorites() {
       const removeBtn = document.createElement('span');
       removeBtn.textContent = '×';
       removeBtn.classList.add('remove-favorite');
-      removeBtn.addEventListener('click', (event) => {
+      removeBtn.addEventListener('click', event => {
         event.stopPropagation(); // Optează evenimentul de click pe listă
         removeFromFavorites(city);
       });
