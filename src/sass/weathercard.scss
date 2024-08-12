@@ -58,7 +58,6 @@
 
 .description img {
   width: 2vw;
-  height: auto;
 }
 
 .min-temp,
@@ -265,4 +264,111 @@
 .buttons-five {
   top: 0;
   left: 70vw;
+}
+
+@media screen and (max-width: 1025px) {
+  .master-weather-card {
+    right: 30vw;
+    width: 32vw;
+    height: 32vw;
+  }
+  .weather-card {
+    width: 30vw;
+    height: 25vw;
+    border-radius: 3vw;
+  }
+  h2 {
+    margin: 0;
+  }
+
+  .city-name {
+    font-size: 2vw;
+  }
+
+  .temperature-card {
+    font-size: 4vw;
+  }
+
+  .description {
+    margin-top: 0;
+  }
+
+  .description img {
+    width: 5vw;
+    margin: 0;
+  }
+
+  .min-temp,
+  .max-temp {
+    font-size: 1.7vw;
+  }
+
+  .min-text,
+  .max-text {
+    font-size: 1.5vw;
+  }
+
+  .min-max-container {
+    gap: 1vw;
+  }
+
+  .divide-line {
+    height: 2vh;
+  }
+
+  .button-container {
+    top: 27vw;
+    right: 0;
+  }
+
+  .five-day-button {
+    margin-right: 1vw;
+  }
+
+  .weather-button {
+    width: 13vw;
+    height: 3vw;
+    font-size: 1.8vw;
+  }
+
+  #forecast-location {
+    font-size: 2vw;
+  }
+
+  #forecast-container {
+    padding: 1vw;
+    width: 90vw;
+    height: 20vw;
+  }
+
+  .five-days-container {
+    bottom: 10vw;
+  }
+
+  .forecast-day .date {
+    font-size: 2.5vw;
+  }
+
+  .forecast-day p.date {
+    font-size: 1.8vw !important;
+  }
+
+  .forecast-day .temp-min,
+  .forecast-day .temp-max {
+    color: #ff6b09;
+    font-size: 1.9vw;
+  }
+
+  .forecast-day img {
+    width: 4vw;
+  }
+
+  .forecast-day .more-info {
+    font-size: 1vw;
+  }
+
+  .buttons-five {
+    top: -2vw;
+    left: 70vw;
+  }
 }
