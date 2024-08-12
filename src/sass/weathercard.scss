@@ -165,6 +165,9 @@
   background: rgba(16, 33, 54, 0.8);
   align-items: center;
   flex-wrap: wrap;
+  padding: 1vw;
+  height: 20vw;
+  justify-content: center;
 }
 
 .five-days-container {
@@ -221,8 +224,12 @@
 }
 
 .forecast-day .temp-min {
-  border-right: 0.1vw solid #fff;
-  border-color: hsla(0, 0%, 100%, 0.302);
+  border-right: 0.1vw solid hsla(0, 0%, 100%, 0.302);
+  padding-right: 10px;
+}
+
+.forecast-day .temp-max {
+  padding-left: 10px;
 }
 
 .forecast-day .temp-min,
@@ -240,6 +247,11 @@
   width: 2vw;
 }
 
+.five-days-forecast {
+  display: flex;
+  justify-content: center;
+}
+
 .five-days-min,
 .five-days-max {
   font-family: var(--font-family);
@@ -255,7 +267,6 @@
   font-weight: 700;
   font-size: 0.6vw;
   text-decoration: underline;
-  // text-decoration-skip-ink: none;
   text-align: center;
   color: #fff;
   opacity: 0.3;
@@ -266,6 +277,57 @@
   left: 70vw;
 }
 
+.hourly {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 14px;
+  text-align: center;
+  color: #fff;
+  opacity: 0.54;
+  margin-bottom: 0;
+}
+
+.hourly-temp {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 25px;
+  text-align: center;
+  color: #ff6b09;
+  margin: 0;
+}
+
+.hourly-icon img {
+  width: 2vw;
+}
+
+.hourly-icon {
+  margin: 0;
+}
+
+.hourly-pressure,
+.hourly-humidity,
+.hourly-wind {
+  font-family: var(--font-family);
+font-weight: 400;
+font-size: 14px;
+color: #fff;
+opacity: 0.54;
+}
+
+
+.hourly-forecast-card {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 25px;
+  width: 120px;
+  height: 218px;
+  margin: 5px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.hourly-forecast-card:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
 @media screen and (max-width: 1025px) {
   .master-weather-card {
     right: 30vw;
@@ -335,11 +397,12 @@
     font-size: 2vw;
   }
 
-  #forecast-container {
-    padding: 1vw;
-    width: 90vw;
-    height: 20vw;
-  }
+  // mai e odata stilizarea la linia 157
+  // #forecast-container {
+  //   padding: 1vw;
+  //   width: 90vw;
+  //   height: 20vw;
+  // }
 
   .five-days-container {
     bottom: 10vw;

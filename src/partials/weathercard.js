@@ -105,17 +105,20 @@ export function displayFiveDayForecast(data) {
         month: 'short',
       });
 
+      //ATENTIE CONTINE STILIZARI!!! A NU SE MODIFICA ===========================
       forecastElement.innerHTML = `
         <h3 class="date">${dayName}</h3>
         <p class="date">${dateString}</p>
         <img src="${getWeatherIconUrl(forecast.weather[0].icon)}" alt="${
         forecast.weather[0].description
       }">
-        <p class="temp temp-min">${Math.round(forecast.main.temp_min)}°C</p>
-        <p class="temp temp-max">${Math.round(forecast.main.temp_max)}°C</p>
+      <div class="five-days-forecast">
+        <p class="temp temp-min">${Math.round(forecast.main.temp_min)}°</p>
+        <p class="temp temp-max">${Math.round(forecast.main.temp_max)}°</p>
+        </div>
         <p class="more-info">more info</p>
       `;
-
+//PANA AICI===========================================================================
       forecastElement
         .querySelector('.more-info')
         .addEventListener('click', () => {
@@ -151,41 +154,52 @@ function handleMoreInfoClick(forecastElement, forecasts, index) {
     return;
   }
 
-  const detailedElements =
-    forecastContainer.querySelectorAll('.detailed-forecast');
-  detailedElements.forEach(element => element.remove());
-  const forecastElements = forecastContainer.querySelectorAll('.forecast-day');
-  forecastElements.forEach(element => element.classList.remove('expanded'));
+  const detailedElements = forecastContainer.querySelectorAll('.detailed-forecast');
+detailedElements.forEach(element => element.remove());
 
-  const detailedContainer = document.createElement('div');
-  detailedContainer.classList.add('detailed-forecast');
-  detailedContainer.style.display = 'flex';
-  detailedContainer.style.flexWrap = 'nowrap';
-  detailedContainer.style.justifyContent = 'space-between';
-  detailedContainer.style.width = '100%';
-  detailedContainer.style.marginTop = '20px';
+const forecastElements = forecastContainer.querySelectorAll('.forecast-day');
+forecastElements.forEach(element => element.classList.remove('expanded'));
 
-  for (let i = 1; i <= 7; i++) {
-    const hourlyForecast = forecasts[index + i];
-    if (hourlyForecast) {
-      const hour = new Date(hourlyForecast.dt * 1000).getHours();
-      const hourString = hour < 10 ? `0${hour}:00` : `${hour}:00`;
+const detailedContainer = document.createElement('div');
+detailedContainer.classList.add('detailed-forecast');
+detailedContainer.style.display = 'flex';
+detailedContainer.style.flexWrap = 'wrap';
+detailedContainer.style.justifyContent = 'space-around';
+detailedContainer.style.width = '100%';
+detailedContainer.style.marginTop = '20px';
 
-      const hourlyCard = document.createElement('div');
-      hourlyCard.classList.add('hourly-forecast-card');
-      hourlyCard.style.flex = '1';
-      hourlyCard.style.margin = '5px';
-      hourlyCard.style.textAlign = 'center';
-      hourlyCard.innerHTML = `
-        <h4>${hourString}</h4>
-        <p>${Math.round(hourlyForecast.main.temp)}°C</p>
-        <p>${hourlyForecast.main.pressure} hPa</p>
-        <p>${hourlyForecast.main.humidity}%</p>
-        <p>${hourlyForecast.wind.speed} m/s</p>
-      `;
-      detailedContainer.appendChild(hourlyCard);
-    }
+for (let i = 1; i <= 7; i++) {
+  const hourlyForecast = forecasts[index + i];
+  if (hourlyForecast) {
+    const hour = new Date(hourlyForecast.dt * 1000).getHours();
+    const hourString = hour < 10 ? `0${hour}:00` : `${hour}:00`;
+    const weatherIconUrl = getWeatherIconUrl(hourlyForecast.weather[0].icon);
+
+    const hourlyCard = document.createElement('div');
+    hourlyCard.classList.add('hourly-forecast-card');
+    // hourlyCard.style.border = '1px solid rgba(255, 255, 255, 0.2)';
+    // hourlyCard.style.borderRadius = '25px';
+    // hourlyCard.style.width = '120px';
+    // hourlyCard.style.height = '218px';
+    // hourlyCard.style.margin = '5px';
+    // hourlyCard.style.textAlign = 'center';
+    // hourlyCard.style.boxSizing = 'border-box';
+
+    hourlyCard.innerHTML = `
+      <h4 class="hourly">${hourString}</h4>
+      <p class="hourly-icon"><img src="${weatherIconUrl}" alt="Weather Icon" /></p>
+      <p class="hourly-temp">${Math.round(hourlyForecast.main.temp)}°</p>
+      <p class="hourly-pressure">${hourlyForecast.main.pressure} mm</p>
+      <p class="hourly-humidity">${hourlyForecast.main.humidity}%</p>
+      <p class="hourly-wind">${hourlyForecast.wind.speed} m/s</p>
+    `;
+
+    detailedContainer.appendChild(hourlyCard);
   }
+}
+
+forecastContainer.appendChild(detailedContainer);
+
 
   forecastContainer.appendChild(detailedContainer);
   fiveDaysContainer.classList.add('expanded');
