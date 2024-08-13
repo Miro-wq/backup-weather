@@ -1,218 +1,204 @@
 #additional-weather-card {
+  display: flex;
   box-sizing: border-box;
   background: rgba(16, 33, 54, 0.8);
-  border-radius: 0 2vw 0 0;
-  flex-direction: column;
-  justify-content: left;
+  border-radius: 0 34px 0 0;
+  justify-content: flex-start;
   align-items: center;
+  width: 624px;
+  height: 264px;
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 40vw;
-  height: 15vw;
-  transition: all 0.5s ease-in-out;
+  bottom: 0px;
+  left: 0%;
 }
 
-sup {
-  vertical-align: super;
-  font-size: smaller;
+.additional-card {
+  align-items: center;
+  width: 100%;
+  height: auto;
 }
 
 .current-date {
   font-family: var(--font-family);
+  font-size: 90px;
   font-weight: 300;
-  font-size: 4vw;
-  letter-spacing: 0.3vw;
-  color: #fff;
-  margin: 0;
-  margin-top: 2vw;
-  margin-left: 1vw;
+  line-height: 54px;
+  letter-spacing: 0.04em;
+  text-align: center;
+  color: rgba(255, 255, 255, 1);
+  text-align: left;
+  margin: 50px 200px 32px 16px;
 }
 
 .current-info {
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  justify-content: flex-start;
+  width: 80%;
+  height: auto;
 }
 
 .current-info span {
-  margin: 0 1vw;
   display: flex;
   align-items: center;
+  margin: 0 10px;
 }
 
-.current-info .current-month,
-.current-info .current-time,
-.current-info .sunrise-time,
-.current-info .sunset-time {
+.current-month,
+.current-time,
+.sunrise-time,
+.sunset-time {
   font-family: var(--font-family);
+  font-size: 18px;
   font-weight: 400;
-  font-size: 1vw;
-  letter-spacing: 0.04vw;
-  color: #fff;
-  margin-top: 3vw;
+  line-height: 21.6px;
+  letter-spacing: 0.04em;
+  text-align: left;
+  color: rgba(255, 255, 255, 1);
 }
 
 .current-month {
-  border-right: 0.1vw solid white;
-  padding-right: 1.5vw;
-}
-
-.current-info .current-time {
-  margin-left: 0.5vw;
-  margin-right: 6vw;
+  border-right: 1px solid rgba(255, 255, 255, 1);
+  padding-right: 5px;
+  padding-right: 18px;
 }
 
 .sunrise-time {
-  padding-right: 1vw;
-  border-right: 0.1vw solid white;
+  border-right: 1px solid rgba(255, 255, 255, 1);
+  padding-right: 5px;
 }
 
-.current-info,
-.sunset-time {
-  margin-left: 0.1vw;
-}
-
-.current-info img {
-  width: 1.5vw;
-}
 #quote-card {
-  box-sizing: border-box;
-  text-align: right;
-  color: #fff;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-end;
-  padding: 1vw;
-  display: flex;
+  width: 395px;
+  height: 132px;
   position: absolute;
-  bottom: 3vw;
-  right: 0;
-  width: 40vw;
-}
-
-.quote-text,
-.quote-author {
-  font-weight: bold;
+  bottom: 20px;
+  right: 16px;
+  padding: 10px;
 }
 
 .quote-text {
   font-family: var(--font-family);
+  font-size: 22px;
   font-style: italic;
   font-weight: 400;
-  font-weight: bold;
-  font-size: 1.5vw;
+  letter-spacing: 0.04em;
   text-align: right;
-  color: #fff;
+  color: rgba(255, 255, 255, 1);
+  font-weight: bold;
 }
 
 .quote-author {
   font-family: var(--font-family);
+  font-size: 18px;
   font-weight: 400;
-  font-size: 0.8vw;
+  letter-spacing: 0.04em;
   text-align: right;
-  color: #fff;
+  color: rgba(255, 255, 255, 1);
+  font-weight: bold;
+  font-style: italic;
 }
 
-@media screen and (max-width: 1224px) {
+@media screen and (max-width: 1024px) {
   #additional-weather-card {
-    border-radius: 2vw;
-    top: 70vw;
-    left: 15vw;
-    width: 70vw;
-    height: 22vw;
+    // width: 44vw;
+    height: auto;
+    border-radius: 34px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    padding: 32px 207px 32px 207px;
   }
 
   .current-date {
-    font-size: 7vw;
-    margin-left: 6vw;
+    font-size: 5.6vw;
+    margin: 0;
+    width: 290px;
+    height: 96px;
   }
 
-  .current-info .current-month,
-  .current-info .current-time,
-  .current-info .sunrise-time,
-  .current-info .sunset-time {
-    font-size: 2.5vw;
-    margin-top: 4vw;
+  .current-info {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
-  .sunrise-time {
-    padding-right: 4vw;
+  .current-info .first-row {
+    margin-bottom: 16px;
   }
 
-  .current-info img {
-    width: 3vw;
-  }
   #quote-card {
-    width: 60vw;
-    top: 100vw;
-    right: 15vw;
+    width: 380px;
+    height: 145px;
+    margin: 0 auto;
+    bottom: 20px;
   }
 
   .quote-text {
-    font-size: 2.5vw;
+    font-size: 22px;
+    line-height: 26.4px;
   }
 
   .quote-author {
-    font-size: 2vw;
+    font-size: 18px;
+    line-height: 21.6px;
   }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 767px) {
   #additional-weather-card {
-    border-radius: 2vw;
-    top: 100vw;
-    left: 15vw;
-    width: 70vw;
-    height: 42vw;
+    width: 276px;
+    height: 184px;
+    margin: 0 auto 80px;
+    padding: 32px 61px 32px 61px;
+  }
+
+  .additional-card {
+    position: absolute;
   }
 
   .current-date {
-    font-size: 7vw;
-    margin-left: 6vw;
+    font-size: 45px;
   }
 
-  .current-info .current-month,
-  .current-info .current-time,
-  .current-info .sunrise-time,
-  .current-info .sunset-time {
-    font-size: 2.5vw;
-    margin-top: 4vw;
+  .current-info {
+    width: 154px;
+    height: 22px;
   }
 
-  .sunrise-time {
-    padding-right: 4vw;
+  .current-month,
+  .current-time,
+  .sunrise-time,
+  .sunset-time {
+    font-size: 14px;
+    line-height: 16.8px;
   }
 
-  .current-info img {
-    width: 3vw;
-  }
   #quote-card {
-    width: 60vw;
-    top: 160vw;
-    right: 15vw;
+    width: 280px;
+    height: 81px;
   }
 
   .quote-text {
-    font-size: 3.5vw;
-  }
-
-  .quote-author {
-    font-size: 2vw;
+    font-size: 14px;
+    line-height: 16.8px;
   }
 }
 
 // #additional-weather-card {
 //   box-sizing: border-box;
-//   background: rgba(16, 33, 54, 0.6);
-//   border-radius: 0 34px 0 0;
+//   background: rgba(16, 33, 54, 0.8);
+//   border-radius: 0 2vw 0 0;
 //   flex-direction: column;
 //   justify-content: left;
 //   align-items: center;
-//   padding: 60px 87px 90px 110px;
 //   position: absolute;
 //   bottom: 0;
-//   width: 630px;
+//   left: 0;
+//   width: 40vw;
+//   height: 15vw;
+//   transition: all 0.5s ease-in-out;
 // }
 
 // sup {
@@ -223,23 +209,22 @@ sup {
 // .current-date {
 //   font-family: var(--font-family);
 //   font-weight: 300;
-//   font-size: 90px;
-//   letter-spacing: 0.04em;
+//   font-size: 4vw;
+//   letter-spacing: 0.3vw;
 //   color: #fff;
 //   margin: 0;
+//   margin-top: 2vw;
+//   margin-left: 1vw;
 // }
 
 // .current-info {
 //   display: flex;
 //   align-items: center;
 //   justify-content: flex-start;
-//   width: 100%;
-//   font-size: 18px;
-//   color: #fff;
 // }
 
 // .current-info span {
-//   margin: 0 10px;
+//   margin: 0 1vw;
 //   display: flex;
 //   align-items: center;
 // }
@@ -250,30 +235,35 @@ sup {
 // .current-info .sunset-time {
 //   font-family: var(--font-family);
 //   font-weight: 400;
-//   font-size: 18px;
-//   letter-spacing: 0.04em;
+//   font-size: 1vw;
+//   letter-spacing: 0.04vw;
 //   color: #fff;
+//   margin-top: 3vw;
 // }
 
-// .current-info .current-month {
-//   border-right: 1px solid white;
-//   padding-right: 20px;
+// .current-month {
+//   border-right: 0.1vw solid white;
+//   padding-right: 1.5vw;
 // }
 
 // .current-info .current-time {
-//   margin-left: 20px;
-//   margin-right: 40px;
+//   margin-left: 0.5vw;
+//   margin-right: 6vw;
 // }
 
-// .current-info .sunrise-time {
-//   padding-right: 20px;
-//   border-right: 1px solid white;
+// .sunrise-time {
+//   padding-right: 1vw;
+//   border-right: 0.1vw solid white;
 // }
 
-// .current-info .sunset-time {
-//   margin-left: 20px;
+// .current-info,
+// .sunset-time {
+//   margin-left: 0.1vw;
 // }
 
+// .current-info img {
+//   width: 1.5vw;
+// }
 // #quote-card {
 //   box-sizing: border-box;
 //   text-align: right;
@@ -281,11 +271,12 @@ sup {
 //   flex-direction: column;
 //   justify-content: center;
 //   align-items: flex-end;
-//   padding: 20px;
+//   padding: 1vw;
 //   display: flex;
 //   position: absolute;
-//   bottom: 116px;
-//   right: 110px;
+//   bottom: 3vw;
+//   right: 0;
+//   width: 40vw;
 // }
 
 // .quote-text,
@@ -297,8 +288,7 @@ sup {
 //   font-family: var(--font-family);
 //   font-style: italic;
 //   font-weight: 400;
-//   font-size: 22px;
-//   letter-spacing: 0.04em;
+//   font-size: 1.5vw;
 //   text-align: right;
 //   color: #fff;
 // }
@@ -306,8 +296,95 @@ sup {
 // .quote-author {
 //   font-family: var(--font-family);
 //   font-weight: 400;
-//   font-size: 18px;
-//   letter-spacing: 0.04em;
+//   font-size: 0.8vw;
 //   text-align: right;
 //   color: #fff;
+// }
+
+// @media screen and (max-width: 1224px) {
+//   #additional-weather-card {
+//     border-radius: 2vw;
+//     top: 70vw;
+//     left: 15vw;
+//     width: 70vw;
+//     height: 22vw;
+//   }
+
+//   .current-date {
+//     font-size: 7vw;
+//     margin-left: 6vw;
+//   }
+
+//   .current-info .current-month,
+//   .current-info .current-time,
+//   .current-info .sunrise-time,
+//   .current-info .sunset-time {
+//     font-size: 2.5vw;
+//     margin-top: 4vw;
+//   }
+
+//   .sunrise-time {
+//     padding-right: 4vw;
+//   }
+
+//   .current-info img {
+//     width: 3vw;
+//   }
+//   #quote-card {
+//     width: 60vw;
+//     top: 100vw;
+//     right: 15vw;
+//   }
+
+//   .quote-text {
+//     font-size: 2.5vw;
+//   }
+
+//   .quote-author {
+//     font-size: 2vw;
+//   }
+// }
+
+// @media screen and (max-width: 500px) {
+//   #additional-weather-card {
+//     border-radius: 2vw;
+//     top: 100vw;
+//     left: 15vw;
+//     width: 70vw;
+//     height: 42vw;
+//   }
+
+//   .current-date {
+//     font-size: 7vw;
+//     margin-left: 6vw;
+//   }
+
+//   .current-info .current-month,
+//   .current-info .current-time,
+//   .current-info .sunrise-time,
+//   .current-info .sunset-time {
+//     font-size: 2.5vw;
+//     margin-top: 4vw;
+//   }
+
+//   .sunrise-time {
+//     padding-right: 4vw;
+//   }
+
+//   .current-info img {
+//     width: 3vw;
+//   }
+//   #quote-card {
+//     width: 60vw;
+//     top: 160vw;
+//     right: 15vw;
+//   }
+
+//   .quote-text {
+//     font-size: 3.5vw;
+//   }
+
+//   .quote-author {
+//     font-size: 2vw;
+//   }
 // }
