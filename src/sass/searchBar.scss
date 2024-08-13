@@ -1,20 +1,12 @@
 .search-bar {
   height: auto;
-  width: 30vw;
+  width: 75vw;
   flex-direction: column;
   align-items: center;
   display: flex;
   position: absolute;
-  top: 10vh;
-  right: 35vw;
-}
-
-#search-input {
-  padding: 0.5vw;
-  font-size: 1.8vw;
-  width: 3vh;
-  border: 1px solid #ccc;
-  border-radius: 1vw;
+  top: 6vw;
+  right: 5vw;
 }
 
 #search-form {
@@ -23,24 +15,25 @@
   background-color: #fff;
   border-radius: 3vw;
   padding: 0.5vw;
-  width: 28vw;
-  height: 2vh;
+  width: 60vw;
+  height: 1.8vw;
 }
 
 #city-input {
+  border-radius: 3vw;
   flex: 1;
   width: 1vw;
-  height: 1.5vh;
+  height: 1.5vw;
   border: none;
   padding: 0.5em;
-  font-size: 0.5vw;
+  font-size: 1.2vw;
   outline: none;
 }
 
 #location-icon,
 #star-icon {
-  font-size: 0.5vw;
-  width: 1vw;
+  font-size: 1.5vw;
+  width: 2vw;
   fill: #999;
   cursor: pointer;
 }
@@ -52,6 +45,7 @@
 
 .position-favorite-elemet {
   display: flex;
+  margin-top: 1vw;
 }
 
 #favorites-list {
@@ -66,20 +60,20 @@
   display: inline-block;
   background-color: rgba(16, 33, 54, 0.5);
   color: #ffffff;
-  padding: 0.5vw 0.5vw;
-  font-size: 0.7vw;
-  margin: 0 0.5vw 0.5vw 0;
-  border-radius: 3vw;
+  padding: 0.5vw;
+  text-align: center;
+  font-size: 1.5vw;
+  margin: 0 0.5vw 0 0;
+  border-radius: 1.2vw;
   cursor: pointer;
   white-space: nowrap;
-  margin-top: 1.3vh;
 }
 
 .remove-favorite {
   cursor: pointer;
   color: rgba(255, 255, 255, 0.5);
-  font-size: 0.6vw;
-  padding-left: 0.3vw;
+  font-size: 1.6vw;
+  margin-left: 0.3vw;
   transition: color 0.3s ease;
 }
 
@@ -91,12 +85,12 @@
 #show-less-btn {
   text-align: center;
   width: 2vw;
-  height: 3vh;
+  height: 3vw;
   padding: 0;
   font-size: 0.7vw;
-  margin-top: 1.3vh;
+  margin-top: 1.3w;
   color: #fff;
-  background-color: rgba(84, 85, 86, 0.5);
+  background-color: rgba(16, 33, 54, 0.5);
   border: none;
   border-radius: 8vw;
   cursor: pointer;
@@ -116,4 +110,109 @@
 .show-less-icon::before {
   content: '\f077'; /* Font Awesome chevron-up */
   font-family: FontAwesome;
+}
+
+@media screen and (max-width: 500px) {
+  .search-bar {
+    width: 90vw;
+  }
+  #search-form {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 3vw;
+    padding: 0.5vw;
+    width: 70vw;
+    height: auto;
+  }
+
+  #city-input {
+    width: 1vw;
+    height: 2.5vw;
+    font-size: 1.8vw;
+  }
+
+  #location-icon,
+  #star-icon {
+    font-size: 2.5vw;
+    width: 4vw;
+  }
+
+  #favorites-list {
+    margin-top: 3vw;
+  }
+
+  #favorites-list li {
+    display: inline-block;
+    background-color: rgba(16, 33, 54, 0.5);
+    color: #ffffff;
+    padding: 0.5vw 0.5vw;
+    font-size: 3.2vw;
+    margin: 0 1.5vw 0.5vw 0;
+    border-radius: 1.5vw;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .remove-favorite {
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 2.6vw;
+    padding-left: 1.3vw;
+    transition: color 0.3s ease;
+  }
+  #show-more-btn,
+  #show-less-btn {
+    text-align: center;
+    width: 5vw;
+    height: 5vw;
+    padding: 0;
+    font-size: 2vw;
+    margin-left: 5vw;
+    margin-top: 3vw;
+    color: #fff;
+    background-color: rgba(84, 85, 86, 0.5);
+    border: none;
+    border-radius: 8vw;
+    cursor: pointer;
+  }
+}
+
+/* Animația pentru bara de căutare */
+@keyframes slideOpen {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+#search-form {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 3vw;
+  padding: 0.5vw;
+  width: 60vw; /* Inițial, bara este complet deschisă */
+  height: 1.8vw;
+  overflow: hidden;
+}
+
+#search-form.slide-open {
+  animation: slideOpen 1s forwards; /* Aplica animația */
+  width: 0; /* Bara începe închisă */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#city-input {
+  border-radius: 3vw;
+  flex: 1;
+  width: 100%;
+  height: 1.5vw;
+  border: none;
+  padding: 0.5em;
+  font-size: 1.2vw;
+  outline: none;
 }

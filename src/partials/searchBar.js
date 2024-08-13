@@ -68,6 +68,17 @@ export function initializeSearch() {
   const locationIcon = document.getElementById('location-icon');
   const showMoreBtn = document.getElementById('show-more-btn');
   const showLessBtn = document.getElementById('show-less-btn');
+  const searchForm = document.getElementById('search-form');
+
+  // Animatia de deschidere a search bar-ului
+  if (searchForm) {
+    searchForm.style.width = '0';
+    searchForm.style.overflow = 'hidden';
+    setTimeout(() => {
+      searchForm.style.transition = 'width 1s ease-in-out';
+      searchForm.style.width = '100%';
+    }, 100);
+  }
 
   if (cityInput) {
     cityInput.addEventListener('keydown', function (event) {
@@ -129,6 +140,12 @@ export function initializeSearch() {
   }
 
   if (showMoreBtn) {
+    showMoreBtn.innerHTML = `
+      <svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 2L8 6L4 10" stroke="white" stroke-width="2"/>
+      </svg>
+    `;
+
     showMoreBtn.addEventListener('click', () => {
       const favoriteItems = favoritesList.querySelectorAll('li');
       favoriteItems.forEach(item => {
@@ -140,6 +157,12 @@ export function initializeSearch() {
   }
 
   if (showLessBtn) {
+    showLessBtn.innerHTML = `
+      <svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 2L4 6L8 10" stroke="white" stroke-width="2"/>
+      </svg>
+    `;
+
     showLessBtn.addEventListener('click', () => {
       const favoriteItems = favoritesList.querySelectorAll('li');
       favoriteItems.forEach((item, index) => {
@@ -149,6 +172,7 @@ export function initializeSearch() {
       showLessBtn.style.display = 'none';
     });
   }
+
 
   displayFavorites(); // Display favorites when the page loads
 }
