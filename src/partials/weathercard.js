@@ -131,7 +131,6 @@ export function displayFiveDayForecast(data) {
 
   hideAdditionalWeatherCard();
 
-  // Asigură-te că doar cardul "five days" este vizibil
   fiveDaysContainer.style.display = 'flex';
   forecastContainer.style.display = 'flex';
   hiddenButtonContainer.style.display = 'block';
@@ -143,11 +142,12 @@ export function displayFiveDayForecast(data) {
 }
 
 function handleMoreInfoClick(forecastElement, forecasts, index) {
-  const existingDetailedContainer =
-    forecastContainer.querySelector('.detailed-forecast');
+  const existingCarouselContainer = forecastContainer.querySelector(
+    '.detailed-forecast-carousel'
+  );
 
-  if (existingDetailedContainer) {
-    existingDetailedContainer.remove();
+  if (existingCarouselContainer) {
+    existingCarouselContainer.remove();
     forecastContainer.style.height = '';
     fiveDaysContainer.classList.remove('expanded');
     forecastElement.classList.remove('expanded');
@@ -159,6 +159,33 @@ detailedElements.forEach(element => element.remove());
 
 const forecastElements = forecastContainer.querySelectorAll('.forecast-day');
 forecastElements.forEach(element => element.classList.remove('expanded'));
+
+
+//========================================================================
+const carouselContainer = document.createElement('div');
+carouselContainer.classList.add('detailed-forecast-carousel');
+
+// Săgeata stângă
+const leftArrow = document.createElement('button');
+leftArrow.classList.add('carousel-arrow', 'left-arrow');
+leftArrow.innerHTML = '&lt;';
+leftArrow.addEventListener('click', () => {
+  scrollCarousel(-1);
+});
+
+// Săgeata dreaptă
+const rightArrow = document.createElement('button');
+rightArrow.classList.add('carousel-arrow', 'right-arrow');
+rightArrow.innerHTML = '&gt;';
+rightArrow.addEventListener('click', () => {
+  scrollCarousel(1);
+});
+
+const carouselItems = document.createElement('div');
+carouselItems.classList.add('carousel-items');
+//=========================================================
+
+
 
 const detailedContainer = document.createElement('div');
 detailedContainer.classList.add('detailed-forecast');
@@ -198,14 +225,34 @@ for (let i = 1; i <= 7; i++) {
   }
 }
 
-forecastContainer.appendChild(detailedContainer);
 
 
+carouselContainer.appendChild(leftArrow);
+
+//=================================modiff=============================================
+const carouselWrapper = document.createElement('div');
+carouselWrapper.classList.add('carousel-container');
+carouselWrapper.appendChild(carouselItems);
+carouselContainer.appendChild(carouselWrapper);
+carouselContainer.appendChild(rightArrow);
+forecastContainer.appendChild(carouselContainer);
+//================================end==============================================
+
+
+  forecastContainer.appendChild(carouselContainer);
   forecastContainer.appendChild(detailedContainer);
   fiveDaysContainer.classList.add('expanded');
   forecastElement.classList.add('expanded');
 
   forecastContainer.style.height = `${forecastContainer.scrollHeight}px`;
+//================================modiff=================================================
+  let currentIndex = 0;
+  function scrollCarousel(direction) {
+    const maxIndex = Math.ceil(carouselItems.children.length / 5) - 1;
+    currentIndex = Math.max(0, Math.min(currentIndex + direction, maxIndex));
+    carouselItems.style.transform = `translateX(-${currentIndex * 100}%)`;
+  }
+  //================================end===============================================
 }
 
 function getWeatherIconUrl(iconCode) {
