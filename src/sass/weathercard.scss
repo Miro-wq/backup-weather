@@ -110,7 +110,7 @@
 }
 
 .button-container {
-  right: 0;
+  // right: 0;
   position: absolute;
   top: 21vw;
   display: flex !important;
@@ -127,7 +127,7 @@
 .weather-button {
   text-transform: uppercase;
   width: 15vw;
-  height: 3.5vw;
+  height: 2vw;
   border-radius: 3vw;
   border: none;
   margin-top: 0;
@@ -273,7 +273,7 @@
 }
 
 .buttons-five {
-  top: 0;
+  top: 37px; //modif de la 0 ===========================modif
   left: 60vw;
 }
 
@@ -348,6 +348,10 @@ padding-right: 28px;
   margin: 5px;
   text-align: center;
   box-sizing: border-box;
+  display: inline-block;
+  width: 120px; 
+  height: 218px;
+  margin: 5px;
 }
 
 .hourly-forecast-card:hover {
@@ -360,6 +364,9 @@ padding-right: 28px;
   justify-content: space-evenly;
   width: 100%;
   margin-top: 20px;
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
 }
 
 /* CSS adițional pentru carusel */
@@ -383,22 +390,32 @@ padding-right: 28px;
 }
 
 .carousel-arrow {
-  background-color: #36454f;
-  border: none;
-  color: white;
-  font-size: 2vw;
-  cursor: pointer;
-  z-index: 2;
+  display: none;
 }
+
+// .carousel-arrow {
+//   background-color: #36454f;
+//   border: none;
+//   color: white;
+//   font-size: 2vw;
+//   cursor: pointer;
+//   z-index: 2;
+// }
 
 .left-arrow {
   position: absolute;
-  left: -2vw;
+  right: 84vw;
+  bottom: 50px;
+  border-radius: 50%;
+  background-color: #ffffff30;
 }
 
 .right-arrow {
   position: absolute;
-  right: -2vw;
+  right: 4vw;
+  bottom: 50px;
+  border-radius: 50%;
+  background-color: #ffffff30;
 }
 
 @media screen and (min-width: 2600px) {
@@ -594,18 +611,56 @@ padding-right: 28px;
   }
 }
 
-@media screen and (max-width: 1224px) {
+@media (max-width: 1012px) {
+  .carousel-arrow {
+    display: block;
+    background-color: #36454f;
+    border: none;
+    color: white;
+    font-size: 2vw;
+    cursor: pointer;
+    z-index: 2;
+  }
+
+  .carousel-arrow:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// @media (max-width: 580px) {
+
+//   .carousel-arrow {
+//     display: none;
+//   }
+  
+//   .detailed-forecast {
+//     width: 100%;
+//     white-space: nowrap;
+//     flex-wrap: wrap;
+//     justify-content: space-evenly;
+//     margin-top: 20px;
+//     display: flex;
+//     overflow-x: auto;
+//   }
+// }
+
+@media only screen and (min-width: 320px) and (max-width: 768px){
   .master-weather-card {
     top: 15vw;
     right: 10vw;
     width: 90vw;
-    height: 50vw;
+    height: 52vw;
+    z-index: -1;
   }
+
+
   .weather-card {
     width: 80vw;
     height: 40vw;
     border-radius: 3vw;
   }
+
   h2 {
     margin: 0;
   }
@@ -648,6 +703,8 @@ padding-right: 28px;
   .button-container {
     top: 42vw;
     right: -1vw;
+    position: static;
+    margin-top: 12vw;
   }
 
   .five-day-button {
@@ -655,9 +712,10 @@ padding-right: 28px;
   }
 
   .weather-button {
-    width: 40vw;
-    height: 5vw;
-    font-size: 2.5vw;
+    width: 39.5vw;
+    height: 4vw;
+    font-size: 2vw;
+    margin-bottom: 4vw;
   }
 
   #forecast-location {
@@ -665,7 +723,7 @@ padding-right: 28px;
   }
 
   #forecast-container {
-    padding: 1vw;
+    padding: 1vw 1vw 5vw 1vw;
     width: 90vw;
     height: 20vw;
   }
@@ -699,6 +757,150 @@ padding-right: 28px;
   .buttons-five {
     top: -2vw;
     left: 70vw;
+  }
+
+  .detailed-forecast {
+    overflow-x: hidden;
+  }
+}
+
+
+@media only screen and (min-width: 580px) and (max-width: 768px) {
+  .carousel-arrow {
+    display: none;
+  }
+
+  .detailed-forecast {
+    width: 100%;
+    white-space: nowrap;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-top: 20px;
+    display: flex;
+    overflow-x: auto;
+  }
+
+  .custom-scrollbar {
+    overflow-x: scroll;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1280px) {
+  .master-weather-card {
+    top: 15vw;
+    right: 10vw;
+    width: 90vw;
+    height: 52vw;
+    z-index: -1;
+  }
+
+
+  .weather-card {
+    width: 80vw;
+    height: 40vw;
+    border-radius: 3vw;
+  }
+
+  h2 {
+    margin: 0;
+  }
+
+  .city-name {
+    font-size: 3vw;
+  }
+
+  .temperature-card {
+    font-size: 9vw;
+  }
+
+  .description {
+    margin-top: 2vw;
+  }
+
+  .description img {
+    width: 5vw;
+    margin: 0;
+  }
+
+  .min-temp,
+  .max-temp {
+    font-size: 2.7vw;
+  }
+
+  .min-text,
+  .max-text {
+    font-size: 2.5vw;
+  }
+
+  .min-max-container {
+    gap: 1vw;
+  }
+
+  .divide-line {
+    height: 2vw;
+  }
+
+  .button-container {
+    top: 42vw;
+    right: -1vw;
+    position: static;
+    margin-top: 12vw;
+  }
+
+  .five-day-button {
+    margin-right: 1vw;
+  }
+
+  .weather-button {
+    width: 39.5vw;
+    height: 4vw;
+    font-size: 2vw;
+    margin-bottom: 4vw;
+  }
+
+  #forecast-location {
+    font-size: 2vw;
+  }
+
+  #forecast-container {
+    padding: 1vw 1vw 5vw 1vw;
+    width: 90vw;
+    height: 20vw;
+  }
+
+  .five-days-container {
+    bottom: 10vw;
+  }
+
+  .forecast-day .date {
+    font-size: 2.5vw;
+  }
+
+  .forecast-day p.date {
+    font-size: 1.8vw !important;
+  }
+
+  .forecast-day .temp-min,
+  .forecast-day .temp-max {
+    color: #ff6b09;
+    font-size: 1.9vw;
+  }
+
+  .forecast-day img {
+    width: 4vw;
+  }
+
+  .forecast-day .more-info {
+    font-size: 1vw;
+  }
+
+  .buttons-five {
+    top: -2vw;
+    left: 70vw;
+  }
+
+  .detailed-forecast {
+    overflow-x: hidden;
   }
 }
 

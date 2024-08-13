@@ -11,7 +11,7 @@ import {
 } from './additionalWeather.js';
 import { loadAndRenderChart } from './grafic.js';
 
-// Ascundem elementele inițial
+
 const forecastContainer = document.getElementById('forecast-container');
 const masterWeatherCard = document.querySelector('.weather-card');
 const buttonContainer = document.querySelector('.button-container');
@@ -64,7 +64,7 @@ export function displayWeatherDataOnCard(data) {
 
     setBackgroundForCity(data.name);
 
-    // Asigură-te că doar cardul de "today" este vizibil
+
     masterWeatherCard.style.display = 'block';
     buttonContainer.style.display = 'block';
     hiddenButtonContainer.style.display = 'none';
@@ -131,6 +131,7 @@ export function displayFiveDayForecast(data) {
 
   hideAdditionalWeatherCard();
 
+
   fiveDaysContainer.style.display = 'flex';
   forecastContainer.style.display = 'flex';
   hiddenButtonContainer.style.display = 'block';
@@ -142,12 +143,10 @@ export function displayFiveDayForecast(data) {
 }
 
 function handleMoreInfoClick(forecastElement, forecasts, index) {
-  const existingCarouselContainer = forecastContainer.querySelector(
-    '.detailed-forecast-carousel'
-  );
+  const existingDetailedContainer = forecastContainer.querySelector('.detailed-forecast');
 
-  if (existingCarouselContainer) {
-    existingCarouselContainer.remove();
+  if (existingDetailedContainer) {
+    existingDetailedContainer.remove();
     forecastContainer.style.height = '';
     fiveDaysContainer.classList.remove('expanded');
     forecastElement.classList.remove('expanded');
@@ -155,105 +154,71 @@ function handleMoreInfoClick(forecastElement, forecasts, index) {
   }
 
   const detailedElements = forecastContainer.querySelectorAll('.detailed-forecast');
-detailedElements.forEach(element => element.remove());
+  detailedElements.forEach(element => element.remove());
 
-const forecastElements = forecastContainer.querySelectorAll('.forecast-day');
-forecastElements.forEach(element => element.classList.remove('expanded'));
+  const forecastElements = forecastContainer.querySelectorAll('.forecast-day');
+  forecastElements.forEach(element => element.classList.remove('expanded'));
 
+  const detailedContainer = document.createElement('div');
+  detailedContainer.classList.add('detailed-forecast');
 
-//========================================================================
-const carouselContainer = document.createElement('div');
-carouselContainer.classList.add('detailed-forecast-carousel');
+  const carouselItems = document.createElement('div');
+  carouselItems.classList.add('carousel-items');
 
-// Săgeata stângă
-const leftArrow = document.createElement('button');
-leftArrow.classList.add('carousel-arrow', 'left-arrow');
-leftArrow.innerHTML = '&lt;';
-leftArrow.addEventListener('click', () => {
-  scrollCarousel(-1);
-});
+  for (let i = 1; i <= 7; i++) {
+    const hourlyForecast = forecasts[index + i];
+    if (hourlyForecast) {
+      const hour = new Date(hourlyForecast.dt * 1000).getHours();
+      const hourString = hour < 10 ? `0${hour}:00` : `${hour}:00`;
+      const weatherIconUrl = getWeatherIconUrl(hourlyForecast.weather[0].icon);
 
-// Săgeata dreaptă
-const rightArrow = document.createElement('button');
-rightArrow.classList.add('carousel-arrow', 'right-arrow');
-rightArrow.innerHTML = '&gt;';
-rightArrow.addEventListener('click', () => {
-  scrollCarousel(1);
-});
+      const hourlyCard = document.createElement('div');
+      hourlyCard.classList.add('hourly-forecast-card');
 
-const carouselItems = document.createElement('div');
-carouselItems.classList.add('carousel-items');
-//=========================================================
+      hourlyCard.innerHTML = `
+        <h4 class="hourly">${hourString}</h4>
+        <p class="hourly-icon"><img src="${weatherIconUrl}" alt="Weather Icon" /></p>
+        <p class="hourly-temp">${Math.round(hourlyForecast.main.temp)}°</p>
+        <p class="hourly-pressure">${hourlyForecast.main.pressure} mm</p>
+        <p class="hourly-humidity">${hourlyForecast.main.humidity}%</p>
+        <p class="hourly-wind">${hourlyForecast.wind.speed} m/s</p>
+      `;
 
-
-
-const detailedContainer = document.createElement('div');
-detailedContainer.classList.add('detailed-forecast');
-// detailedContainer.style.display = 'flex';
-// detailedContainer.style.flexWrap = 'wrap';
-// detailedContainer.style.justifyContent = 'space-around';
-// detailedContainer.style.width = '100%';
-// detailedContainer.style.marginTop = '20px';
-
-for (let i = 1; i <= 7; i++) {
-  const hourlyForecast = forecasts[index + i];
-  if (hourlyForecast) {
-    const hour = new Date(hourlyForecast.dt * 1000).getHours();
-    const hourString = hour < 10 ? `0${hour}:00` : `${hour}:00`;
-    const weatherIconUrl = getWeatherIconUrl(hourlyForecast.weather[0].icon);
-
-    const hourlyCard = document.createElement('div');
-    hourlyCard.classList.add('hourly-forecast-card');
-    // hourlyCard.style.border = '1px solid rgba(255, 255, 255, 0.2)';
-    // hourlyCard.style.borderRadius = '25px';
-    // hourlyCard.style.width = '120px';
-    // hourlyCard.style.height = '218px';
-    // hourlyCard.style.margin = '5px';
-    // hourlyCard.style.textAlign = 'center';
-    // hourlyCard.style.boxSizing = 'border-box';
-
-    hourlyCard.innerHTML = `
-      <h4 class="hourly">${hourString}</h4>
-      <p class="hourly-icon"><img src="${weatherIconUrl}" alt="Weather Icon" /></p>
-      <p class="hourly-temp">${Math.round(hourlyForecast.main.temp)}°</p>
-      <p class="hourly-pressure">${hourlyForecast.main.pressure} mm</p>
-      <p class="hourly-humidity">${hourlyForecast.main.humidity}%</p>
-      <p class="hourly-wind">${hourlyForecast.wind.speed} m/s</p>
-    `;
-
-    detailedContainer.appendChild(hourlyCard);
+      carouselItems.appendChild(hourlyCard);
+    }
   }
-}
 
+  const leftArrow = document.createElement('button');
+  leftArrow.classList.add('carousel-arrow', 'left-arrow');
+  leftArrow.innerHTML = '&lt;';
+  leftArrow.addEventListener('click', () => scrollCarousel(-1));
 
+  const rightArrow = document.createElement('button');
+  rightArrow.classList.add('carousel-arrow', 'right-arrow');
+  rightArrow.innerHTML = '&gt;';
+  rightArrow.addEventListener('click', () => scrollCarousel(1));
 
-carouselContainer.appendChild(leftArrow);
+  detailedContainer.appendChild(leftArrow);
+  detailedContainer.appendChild(carouselItems);
+  detailedContainer.appendChild(rightArrow);
 
-//=================================modiff=============================================
-const carouselWrapper = document.createElement('div');
-carouselWrapper.classList.add('carousel-container');
-carouselWrapper.appendChild(carouselItems);
-carouselContainer.appendChild(carouselWrapper);
-carouselContainer.appendChild(rightArrow);
-forecastContainer.appendChild(carouselContainer);
-//================================end==============================================
-
-
-  forecastContainer.appendChild(carouselContainer);
   forecastContainer.appendChild(detailedContainer);
+
   fiveDaysContainer.classList.add('expanded');
   forecastElement.classList.add('expanded');
 
+  // Ajustează înălțimea containerului
   forecastContainer.style.height = `${forecastContainer.scrollHeight}px`;
-//================================modiff=================================================
+
   let currentIndex = 0;
+
   function scrollCarousel(direction) {
-    const maxIndex = Math.ceil(carouselItems.children.length / 5) - 1;
+    const maxIndex = Math.ceil(carouselItems.children.length / 3) - 1;
     currentIndex = Math.max(0, Math.min(currentIndex + direction, maxIndex));
-    carouselItems.style.transform = `translateX(-${currentIndex * 100}%)`;
+    carouselItems.style.transform = `translateX(-${currentIndex * 70}%)`;
   }
-  //================================end===============================================
 }
+
 
 function getWeatherIconUrl(iconCode) {
   return `https://openweathermap.org/img/wn/${iconCode}.png`;
@@ -261,7 +226,7 @@ function getWeatherIconUrl(iconCode) {
 
 export async function fetchAndDisplayWeatherForCity(city) {
   try {
-    // Resetează la "today" când se schimbă orașul
+
     resetToTodayView();
 
     const data = await getWeatherByCityName(city);
@@ -275,7 +240,7 @@ export async function fetchAndDisplayWeatherForCity(city) {
 
 export async function fetchAndDisplayWeatherForLocation(lat, lon) {
   try {
-    // Resetează la "today" când se schimbă locația
+
     resetToTodayView();
 
     const data = await getWeatherByCoordinates(lat, lon);
@@ -290,7 +255,7 @@ export async function fetchAndDisplayWeatherForLocation(lat, lon) {
 }
 
 function resetToTodayView() {
-  // Afișează vizualizarea "today"
+
   const todayButton = document.getElementById('today-weather');
   const fiveDayButton = document.getElementById('five-day-forecast');
   const weatherCardElement = document.getElementById('weather-card');
@@ -393,7 +358,7 @@ export async function initializeWeatherCard() {
         loadAndRenderChart(cityName);
       }
 
-      // Ascunde butoanele din five-days-container și arată butoanele din master-weather-card
+      
       hiddenButtonContainer.style.display = 'none';
       buttonContainer.style.display = 'block';
     });
@@ -441,7 +406,7 @@ export async function initializeWeatherCard() {
         );
       }
 
-      // Arată butoanele din five-days-container și ascunde butoanele din master-weather-card
+      
       hiddenButtonContainer.style.display = 'block';
       buttonContainer.style.display = 'none';
     });
@@ -474,3 +439,48 @@ export async function getWeatherDataForChart(city) {
     console.error('Eroare la preluarea datelor pentru grafic:', error);
   }
 }
+
+
+//modiff Alex =========================================================================
+export function switchToFiveDays() {
+  const masterWeatherCard = document.querySelector('.master-weather-card');
+  const fiveDaysContainer = document.querySelector('.five-days-container');
+
+  // Eliminăm animațiile anterioare și aplicăm animația de ieșire pentru master-weather-card
+  masterWeatherCard.classList.remove('slide-in');
+  masterWeatherCard.classList.add('slide-out');
+
+  // Așteptăm ca animația de ieșire să se termine
+  setTimeout(() => {
+    masterWeatherCard.style.display = 'none'; // Ascundem master-weather-card
+
+    // Asigurăm că fiveDaysContainer nu este vizibil înainte de animație
+    fiveDaysContainer.classList.remove('slide-in', 'slide-out');
+    fiveDaysContainer.style.display = 'block'; // Afișăm five-days-container
+
+    // Aplicăm animația de intrare pentru five-days-container
+    fiveDaysContainer.classList.add('slide-in');
+  }, 500); // Durata animației
+}
+
+export function switchToToday() {
+  const masterWeatherCard = document.querySelector('.master-weather-card');
+  const fiveDaysContainer = document.querySelector('.five-days-container');
+
+  // Aplicăm animația de ieșire pentru five-days-container
+  fiveDaysContainer.classList.remove('slide-in');
+  fiveDaysContainer.classList.add('slide-out');
+
+  // Așteptăm ca animația de ieșire să se termine
+  setTimeout(() => {
+    fiveDaysContainer.style.display = 'none'; // Ascundem five-days-container
+
+    // Pregătim master-weather-card pentru intrare
+    masterWeatherCard.classList.remove('slide-in', 'slide-out');
+    masterWeatherCard.style.display = 'block'; // Afișăm master-weather-card
+
+    // Aplicăm animația de intrare pentru master-weather-card
+    masterWeatherCard.classList.add('slide-in');
+  }, 500); // Durata animației
+}
+//=================================END=================================================

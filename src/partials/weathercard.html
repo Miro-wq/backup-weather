@@ -1,3 +1,4 @@
+<!-- HTML fără script inline -->
 <div class="master-weather-card">
   <div class="weather-card" id="weather-card">
     <p id="description" class="description"></p>
@@ -28,7 +29,7 @@
   </div>
 </div>
 
-<div class="five-days-container">
+<div class="five-days-container" style="display: none">
   <div class="button-container button-container-hidden buttons-five">
     <button id="today-weather-forecast" class="weather-button today-button">
       today
@@ -42,11 +43,10 @@
   </div>
   <h2 id="forecast-location"></h2>
   <div id="forecast-container"></div>
-  <!-- Carusel pentru more-info -->
+
   <div class="detailed-forecast-carousel">
-    <div class="carousel-container">
+    <div class="carousel-container custom-scrollbar">
       <div class="carousel-items">
-        <!-- Cardurile detaliate vor fi generate și adăugate dinamic aici -->
       </div>
     </div>
   </div>
