@@ -124,15 +124,15 @@ export function showAdditionalWeatherCard() {
     // Eliminăm clasele de animație pentru a reseta starea inițială
     additionalWeatherCard.classList.remove(
       'animate__animated',
-      'animate__fadeInLeft'
+      'animate__fadeOutLeft'
     );
-    quoteCard.classList.remove('animate__animated', 'animate__fadeInRight');
+    quoteCard.classList.remove('animate__animated', 'animate__fadeOutRight');
 
     // Forțăm reflow pentru a reseta animațiile
     void additionalWeatherCard.offsetWidth;
     void quoteCard.offsetWidth;
 
-    // Adăugăm clasele pentru animații
+    // Adăugăm clasele pentru animații de intrare
     additionalWeatherCard.classList.add(
       'animate__animated',
       'animate__fadeInLeft'
@@ -148,15 +148,28 @@ export function hideAdditionalWeatherCard() {
   const quoteCard = document.getElementById('quote-card');
 
   if (additionalWeatherCard && quoteCard) {
-    additionalWeatherCard.style.display = 'none';
-    quoteCard.style.display = 'none';
-
-    // Eliminăm clasele de animație pentru a reseta starea inițială
-    additionalWeatherCard.classList.remove(
+    // Adăugăm clasele pentru animațiile de ieșire
+    additionalWeatherCard.classList.add(
       'animate__animated',
-      'animate__fadeInLeft'
+      'animate__fadeOutLeft'
     );
-    quoteCard.classList.remove('animate__animated', 'animate__fadeInRight');
+    quoteCard.classList.add('animate__animated', 'animate__fadeOutRight');
+
+    // Ascundem cardurile după animație
+    additionalWeatherCard.addEventListener(
+      'animationend',
+      () => {
+        additionalWeatherCard.style.display = 'none';
+      },
+      { once: true }
+    );
+    quoteCard.addEventListener(
+      'animationend',
+      () => {
+        quoteCard.style.display = 'none';
+      },
+      { once: true }
+    );
   }
 }
 
