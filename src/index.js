@@ -6,7 +6,7 @@ import {
 import { loadAndRenderChart } from './partials/grafic.js';
 
 // Importăm funcțiile de animație
-import { switchToFiveDays, switchToToday } from './partials/animations.js';
+//import { switchToFiveDays, switchToToday } from './partials/animations.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
   initializeSearch();

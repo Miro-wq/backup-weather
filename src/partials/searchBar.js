@@ -68,6 +68,17 @@ export function initializeSearch() {
   const locationIcon = document.getElementById('location-icon');
   const showMoreBtn = document.getElementById('show-more-btn');
   const showLessBtn = document.getElementById('show-less-btn');
+  const searchForm = document.getElementById('search-form');
+
+  // Animatia de deschidere a search bar-ului
+  if (searchForm) {
+    searchForm.style.width = '0';
+    searchForm.style.overflow = 'hidden';
+    setTimeout(() => {
+      searchForm.style.transition = 'width 1s ease-in-out';
+      searchForm.style.width = '100%';
+    }, 100);
+  }
 
   if (cityInput) {
     cityInput.addEventListener('keydown', function (event) {
