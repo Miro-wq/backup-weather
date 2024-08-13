@@ -31,17 +31,35 @@
 
 .logo-container {
   position: absolute;
-  top: -6vh;
-  left: 38vw;
+  top: -6vw;
+  left: -3vw;
   overflow: hidden;
-  width: 18vw;
-  height: 16vh;
+  width: 20vw;
+  height: 16vw;
 }
 
 .logo-container img {
   width: 23vw;
-  height: 23vh;
+  height: 23vw;
   opacity: 0;
   animation: fadeIn 2s forwards;
   z-index: -1;
+}
+@media screen and (max-width: 500px) {
+  .logo-container {
+    position: absolute;
+    top: 13vw;
+    left: 38vw;
+    overflow: hidden;
+    width: 27vw;
+    height: 20vw;
+  }
+
+  .logo-container img {
+    width: 27vw;
+    height: 27vw;
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+    z-index: -1;
+  }
 }
