@@ -1,4 +1,4 @@
-import moment from 'moment-timezone';
+import moment from 'moment-timezone'; // Biblioteca pt manipularea timpului.
 import { getWeatherByCityName } from '../apiOpenWeather.js';
 import { getTimeZoneByCoordinates } from '../timezoneApi.js';
 import 'animate.css';
@@ -10,37 +10,36 @@ export async function fetchAdditionalWeatherData(city) {
   }
 
   try {
-    const weatherData = await getWeatherByCityName(city);
+    const weatherData = await getWeatherByCityName(city); // Obținem datele meteo pentru orașul dat.
     if (!weatherData || !weatherData.coord) {
-      console.error('Invalid weather data received');
+      console.error('Invalid weather data received'); // Afișăm eroare dacă datele meteo sunt invalide.
       return;
     }
 
     const timeZoneData = await getTimeZoneByCoordinates(
       weatherData.coord.lat,
       weatherData.coord.lon
-    );
-    updateAdditionalWeatherCard(weatherData, timeZoneData.zoneName);
+    ); // Obținere fus orar pe baza coordonatelor.
+    updateAdditionalWeatherCard(weatherData, timeZoneData.zoneName); // Actualizare card meteo suplimentar cu datele meteo și fusul orar.
 
-    // Quotes API pentru citate aleatorii la fiecare search
-    const quoteData = await fetchRandomQuote();
+    const quoteData = await fetchRandomQuote(); // Obținere citat aleatoriu.
     if (!quoteData) {
-      updateQuote('Quote not found', 'Author not found');
-      showAdditionalWeatherCard(); // Afișează cardul suplimentar
+      updateQuote('Quote not found', 'Author not found'); // Actualizare card de citate dacă nu a fost găsit un citat.
+      showAdditionalWeatherCard();
       return;
     }
-    updateQuote(quoteData.content, quoteData.author);
-    showAdditionalWeatherCard(); // Afișează cardul suplimentar
+    updateQuote(quoteData.content, quoteData.author); // Actualizare card de citate.
+    showAdditionalWeatherCard();
   } catch (error) {
     console.error('Error fetching additional weather data:', error);
     updateQuote('Quote not found', 'Author not found');
-    showAdditionalWeatherCard(); // Afișează cardul suplimentar chiar și în caz de eroare
+    showAdditionalWeatherCard(); // Afișare card suplimentar chiar și în caz de eroare.
   }
 }
 
 async function fetchRandomQuote() {
   try {
-    const response = await fetch('https://api.quotable.io/random');
+    const response = await fetch('https://api.quotable.io/random'); // Cerere pentru a obține un citat aleatoriu.
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
@@ -56,8 +55,9 @@ function updateAdditionalWeatherCard(weatherData, timeZoneId) {
   const weatherCard = document.getElementById('additional-weather-card');
 
   if (weatherCard) {
-    const currentDate = moment().tz(timeZoneId);
+    const currentDate = moment().tz(timeZoneId); // Obținem data și ora curentă în fusul orar specificat.
 
+    // Funcție pentru a obține sufixul ordinal al zilei.
     function getOrdinalSuffix(day) {
       if (day > 3 && day < 21) return 'th';
       switch (day % 10) {
@@ -79,11 +79,13 @@ function updateAdditionalWeatherCard(weatherData, timeZoneId) {
       day
     )}</sup> ${dayOfWeek}`;
 
+    // Actualizare elementele card meteo cu datele obținute.
     weatherCard.querySelector('.current-date').innerHTML = formattedDate;
     weatherCard.querySelector('.current-month').textContent = month;
     weatherCard.querySelector('.current-time').textContent =
       currentDate.format('HH:mm:ss');
 
+    // Obținere și actualizare ore de răsărit și apus.
     const sunriseTime = moment
       .unix(weatherData.sys.sunrise)
       .tz(timeZoneId)
@@ -121,18 +123,18 @@ export function showAdditionalWeatherCard() {
     additionalWeatherCard.style.display = 'block';
     quoteCard.style.display = 'block';
 
-    // Eliminăm clasele de animație pentru a reseta starea inițială
+    // Eliminare clase de animație pentru a reseta starea inițială.
     additionalWeatherCard.classList.remove(
       'animate__animated',
       'animate__fadeOutLeft'
     );
     quoteCard.classList.remove('animate__animated', 'animate__fadeOutRight');
 
-    // Forțăm reflow pentru a reseta animațiile
+    // Forțare reflow pentru a reseta animațiile.
     void additionalWeatherCard.offsetWidth;
     void quoteCard.offsetWidth;
 
-    // Adăugăm clasele pentru animații de intrare
+    // Adăugare clase pentru animații.
     additionalWeatherCard.classList.add(
       'animate__animated',
       'animate__fadeInLeft'
@@ -148,30 +150,17 @@ export function hideAdditionalWeatherCard() {
   const quoteCard = document.getElementById('quote-card');
 
   if (additionalWeatherCard && quoteCard) {
-    // Adăugăm clasele pentru animațiile de ieșire
-    additionalWeatherCard.classList.add(
-      'animate__animated',
-      'animate__fadeOutLeft'
-    );
-    quoteCard.classList.add('animate__animated', 'animate__fadeOutRight');
+    additionalWeatherCard.style.display = 'none';
+    quoteCard.style.display = 'none';
 
-    // Ascundem cardurile după animație
-    additionalWeatherCard.addEventListener(
-      'animationend',
-      () => {
-        additionalWeatherCard.style.display = 'none';
-      },
-      { once: true }
+    // Eliminare clase de animație pentru a reseta starea inițială.
+    additionalWeatherCard.classList.remove(
+      'animate__animated',
+      'animate__fadeInLeft'
     );
-    quoteCard.addEventListener(
-      'animationend',
-      () => {
-        quoteCard.style.display = 'none';
-      },
-      { once: true }
-    );
+    quoteCard.classList.remove('animate__animated', 'animate__fadeInRight');
   }
 }
 
-// Ascundem inițial cardul suplimentar
+// Ascundem inițial cardul suplimentar.
 hideAdditionalWeatherCard();
