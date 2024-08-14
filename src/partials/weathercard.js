@@ -11,7 +11,7 @@ import {
 } from './additionalWeather.js';
 import { loadAndRenderChart } from './grafic.js';
 
-
+// Elemente globale reutilizabile
 const forecastContainer = document.getElementById('forecast-container');
 const masterWeatherCard = document.querySelector('.weather-card');
 const buttonContainer = document.querySelector('.button-container');
@@ -20,22 +20,31 @@ const hiddenButtonContainer = document.querySelector(
   '.button-container-hidden'
 );
 
-if (forecastContainer) {
-  forecastContainer.style.display = 'none';
-}
-if (masterWeatherCard) {
-  masterWeatherCard.style.display = 'none';
-}
-if (buttonContainer) {
-  buttonContainer.style.display = 'none';
-}
-if (fiveDaysContainer) {
-  fiveDaysContainer.style.display = 'none';
-}
-if (hiddenButtonContainer) {
-  hiddenButtonContainer.style.display = 'none';
+// Ascunde toate elementele la inițializarea paginii
+function hideInitialElements() {
+  toggleElementDisplay(forecastContainer, 'none');
+  toggleElementDisplay(masterWeatherCard, 'none');
+  toggleElementDisplay(buttonContainer, 'none');
+  toggleElementDisplay(fiveDaysContainer, 'none');
+  toggleElementDisplay(hiddenButtonContainer, 'none');
 }
 
+// Funcție de utilitate pentru a schimba vizibilitatea elementelor
+function toggleElementDisplay(element, displayStyle) {
+  if (element) {
+    element.style.display = displayStyle;
+  }
+}
+
+// Funcție de utilitate pentru a adăuga animații la afișarea elementelor
+function addAnimation(element, animationName) {
+  element.classList.add('animate__animated', animationName);
+  element.addEventListener('animationend', () => {
+    element.classList.remove('animate__animated', animationName);
+  });
+}
+
+// Funcție pentru a afișa datele meteo curente pe card
 export function displayWeatherDataOnCard(data) {
   const cityNameElement = document.getElementById('city-name');
   const temperatureElement = document.getElementById('temperature');
@@ -64,34 +73,33 @@ export function displayWeatherDataOnCard(data) {
 
     setBackgroundForCity(data.name);
 
+    // Afișează elementele relevante cu animații
+    toggleElementDisplay(masterWeatherCard, 'block');
+    addAnimation(masterWeatherCard, 'animate__fadeInUp');
 
-    masterWeatherCard.style.display = 'block';
-    buttonContainer.style.display = 'block';
-    hiddenButtonContainer.style.display = 'none';
-    forecastContainer.style.display = 'none';
-    fiveDaysContainer.style.display = 'none';
-    if (chartContainer) {
-      chartContainer.style.display = 'none';
-    }
+    toggleElementDisplay(buttonContainer, 'block');
+    addAnimation(buttonContainer, 'animate__fadeInUp');
 
-    if (data.name) {
-      fetchAdditionalWeatherData(data.name);
-    } else {
-      console.error('City name is undefined');
-    }
+    toggleElementDisplay(hiddenButtonContainer, 'none');
+    toggleElementDisplay(forecastContainer, 'none');
+    toggleElementDisplay(fiveDaysContainer, 'none');
+    toggleElementDisplay(chartContainer, 'none');
+
+    fetchAdditionalWeatherData(data.name);
   } else {
     console.error('Unul sau mai multe elemente nu au fost găsite în DOM');
   }
 }
 
+// ------ Codul vechi pentru funcția displayFiveDayForecast începe aici ------
 export function displayFiveDayForecast(data) {
   const chartContainer = document.getElementById('chart-container');
   const forecastLocationElement = document.getElementById('forecast-location');
 
-  forecastContainer.innerHTML = '';
+  forecastContainer.innerHTML = ''; // Resetează conținutul containerului
 
   forecastLocationElement.textContent = data.city.name;
-  forecastLocationElement.style.display = 'block';
+  toggleElementDisplay(forecastLocationElement, 'block');
 
   data.list.forEach((forecast, index) => {
     if (index % 8 === 0) {
@@ -105,7 +113,7 @@ export function displayFiveDayForecast(data) {
         month: 'short',
       });
 
-      //ATENTIE CONTINE STILIZARI!!! A NU SE MODIFICA ===========================
+      // ATENȚIE: Conține stilizări!!! A nu se modifica ===========================
       forecastElement.innerHTML = `
         <h3 class="date">${dayName}</h3>
         <p class="date">${dateString}</p>
@@ -118,7 +126,7 @@ export function displayFiveDayForecast(data) {
         </div>
         <p class="more-info">more info</p>
       `;
-//PANA AICI===========================================================================
+      // Până aici ==================================================================
       forecastElement
         .querySelector('.more-info')
         .addEventListener('click', () => {
@@ -131,29 +139,40 @@ export function displayFiveDayForecast(data) {
 
   hideAdditionalWeatherCard();
 
+  // Afișează elementele relevante cu animații
+  toggleElementDisplay(fiveDaysContainer, 'flex');
+  addAnimation(fiveDaysContainer, 'animate__fadeInUp');
 
-  fiveDaysContainer.style.display = 'flex';
-  forecastContainer.style.display = 'flex';
-  hiddenButtonContainer.style.display = 'block';
-  buttonContainer.style.display = 'none';
-  masterWeatherCard.style.display = 'none';
+  toggleElementDisplay(forecastContainer, 'flex');
+  addAnimation(forecastContainer, 'animate__fadeInUp');
+
+  toggleElementDisplay(hiddenButtonContainer, 'block');
+  addAnimation(hiddenButtonContainer, 'animate__fadeInUp');
+
+  toggleElementDisplay(buttonContainer, 'none');
+  toggleElementDisplay(masterWeatherCard, 'none');
   if (chartContainer) {
-    chartContainer.style.display = 'block';
+    toggleElementDisplay(chartContainer, 'block');
+    addAnimation(chartContainer, 'animate__fadeInUp');
   }
 }
+// ------ Codul vechi pentru funcția displayFiveDayForecast se termină aici ------
 
+// ------ Codul vechi pentru funcția handleMoreInfoClick începe aici ------
 function handleMoreInfoClick(forecastElement, forecasts, index) {
-  const existingDetailedContainer = forecastContainer.querySelector('.detailed-forecast');
+  const existingDetailedContainer =
+    forecastContainer.querySelector('.detailed-forecast');
 
   if (existingDetailedContainer) {
     existingDetailedContainer.remove();
-    forecastContainer.style.height = '';
+    forecastContainer.style.height = 'auto';
     fiveDaysContainer.classList.remove('expanded');
     forecastElement.classList.remove('expanded');
     return;
   }
 
-  const detailedElements = forecastContainer.querySelectorAll('.detailed-forecast');
+  const detailedElements =
+    forecastContainer.querySelectorAll('.detailed-forecast');
   detailedElements.forEach(element => element.remove());
 
   const forecastElements = forecastContainer.querySelectorAll('.forecast-day');
@@ -208,7 +227,7 @@ function handleMoreInfoClick(forecastElement, forecasts, index) {
   forecastElement.classList.add('expanded');
 
   // Ajustează înălțimea containerului
-  forecastContainer.style.height = `${forecastContainer.scrollHeight}px`;
+  forecastContainer.style.height = 'auto';
 
   let currentIndex = 0;
 
@@ -218,17 +237,12 @@ function handleMoreInfoClick(forecastElement, forecasts, index) {
     carouselItems.style.transform = `translateX(-${currentIndex * 70}%)`;
   }
 }
+// ------ Codul vechi pentru funcția handleMoreInfoClick se termină aici ------
 
-
-function getWeatherIconUrl(iconCode) {
-  return `https://openweathermap.org/img/wn/${iconCode}.png`;
-}
-
+// Funcție pentru a obține și afișa datele meteo pentru un oraș specific
 export async function fetchAndDisplayWeatherForCity(city) {
   try {
-
     resetToTodayView();
-
     const data = await getWeatherByCityName(city);
     displayWeatherDataOnCard(data);
     await loadAndRenderChart(data.name);
@@ -238,11 +252,10 @@ export async function fetchAndDisplayWeatherForCity(city) {
   }
 }
 
+// Funcție pentru a obține și afișa datele meteo pe baza coordonatelor geografice
 export async function fetchAndDisplayWeatherForLocation(lat, lon) {
   try {
-
     resetToTodayView();
-
     const data = await getWeatherByCoordinates(lat, lon);
     const locationData = await getReverseGeocoding(lat, lon);
     data.name = locationData[0].name;
@@ -254,26 +267,22 @@ export async function fetchAndDisplayWeatherForLocation(lat, lon) {
   }
 }
 
+// Funcție pentru a reseta vizualizarea la datele meteo de azi
 function resetToTodayView() {
+  toggleElementDisplay(masterWeatherCard, 'none');
+  toggleElementDisplay(forecastContainer, 'none');
+  toggleElementDisplay(hiddenButtonContainer, 'none');
 
   const todayButton = document.getElementById('today-weather');
   const fiveDayButton = document.getElementById('five-day-forecast');
-  const weatherCardElement = document.getElementById('weather-card');
-  const forecastContainer = document.getElementById('forecast-container');
-  const forecastLocationElement = document.getElementById('forecast-location');
-  const hiddenButtonContainer = document.querySelector(
-    '.button-container-hidden'
-  );
-
   if (todayButton) todayButton.classList.add('active');
   if (fiveDayButton) fiveDayButton.classList.remove('active');
-  if (weatherCardElement) weatherCardElement.style.display = 'block';
-  if (forecastContainer) forecastContainer.style.display = 'none';
-  if (forecastLocationElement) forecastLocationElement.style.display = 'none';
-  if (hiddenButtonContainer) hiddenButtonContainer.style.display = 'none';
 }
 
+// Inițializează cardul meteo și evenimentele asociate acestuia
 export async function initializeWeatherCard() {
+  hideInitialElements(); // Asigură-te că toate elementele sunt ascunse inițial
+
   document
     .getElementById('location-icon')
     .addEventListener('click', async () => {
@@ -306,32 +315,27 @@ export async function initializeWeatherCard() {
       }
     });
 
+  addButtonEventListeners();
+}
+
+// Adaugă evenimente pentru butoanele din pagină
+function addButtonEventListeners() {
   const todayButton = document.getElementById('today-weather');
   const fiveDayButton = document.getElementById('five-day-forecast');
   const todayButtonForecast = document.getElementById('today-weather-forecast');
   const fiveDayButtonForecast = document.getElementById(
     'five-day-forecast-weather'
   );
-  const forecastContainer = document.getElementById('forecast-container');
-  const weatherCardElement = document.getElementById('weather-card');
-  const hiddenButtonContainer = document.querySelector(
-    '.button-container-hidden'
-  );
   const forecastLocationElement = document.getElementById('forecast-location');
 
   if (todayButton) {
     todayButton.addEventListener('click', async () => {
       resetToTodayView();
-
       const city = document.getElementById('city-name').textContent;
       const cityName = await fetchAndDisplayWeatherForCity(city);
       todayButton.focus();
-      if (forecastLocationElement) {
-        forecastLocationElement.style.display = 'none';
-      }
-      if (weatherCardElement) {
-        weatherCardElement.style.display = 'block';
-      }
+      toggleElementDisplay(forecastLocationElement, 'none');
+      toggleElementDisplay(masterWeatherCard, 'block');
       if (cityName) {
         loadAndRenderChart(cityName);
       }
@@ -341,26 +345,18 @@ export async function initializeWeatherCard() {
   if (todayButtonForecast) {
     todayButtonForecast.addEventListener('click', async () => {
       resetToTodayView();
-
       const city = document.getElementById('city-name').textContent;
       const cityName = await fetchAndDisplayWeatherForCity(city);
       todayButtonForecast.focus();
-      if (forecastLocationElement) {
-        forecastLocationElement.style.display = 'none';
-      }
-      if (forecastContainer) {
-        forecastContainer.style.display = 'none';
-      }
-      if (weatherCardElement) {
-        weatherCardElement.style.display = 'block';
-      }
+      toggleElementDisplay(forecastLocationElement, 'none');
+      toggleElementDisplay(forecastContainer, 'none');
+      toggleElementDisplay(masterWeatherCard, 'block');
       if (cityName) {
         loadAndRenderChart(cityName);
       }
 
-      
-      hiddenButtonContainer.style.display = 'none';
-      buttonContainer.style.display = 'block';
+      toggleElementDisplay(hiddenButtonContainer, 'none');
+      toggleElementDisplay(buttonContainer, 'block');
     });
   }
 
@@ -371,12 +367,8 @@ export async function initializeWeatherCard() {
         const data = await getWeatherForecastByCityName(city);
         displayFiveDayForecast(data);
         fiveDayButton.focus();
-        if (weatherCardElement) {
-          weatherCardElement.style.display = 'none';
-        }
-        if (forecastContainer) {
-          forecastContainer.style.display = 'flex';
-        }
+        toggleElementDisplay(masterWeatherCard, 'none');
+        toggleElementDisplay(forecastContainer, 'flex');
       } catch (error) {
         console.error(
           'Eroare la preluarea datelor de prognoză pentru 5 zile:',
@@ -393,12 +385,8 @@ export async function initializeWeatherCard() {
         const data = await getWeatherForecastByCityName(city);
         displayFiveDayForecast(data);
         fiveDayButtonForecast.focus();
-        if (weatherCardElement) {
-          weatherCardElement.style.display = 'none';
-        }
-        if (forecastContainer) {
-          forecastContainer.style.display = 'flex';
-        }
+        toggleElementDisplay(masterWeatherCard, 'none');
+        toggleElementDisplay(forecastContainer, 'flex');
       } catch (error) {
         console.error(
           'Eroare la preluarea datelor de prognoză pentru 5 zile:',
@@ -406,81 +394,48 @@ export async function initializeWeatherCard() {
         );
       }
 
-      
-      hiddenButtonContainer.style.display = 'block';
-      buttonContainer.style.display = 'none';
+      toggleElementDisplay(hiddenButtonContainer, 'block');
+      toggleElementDisplay(buttonContainer, 'none');
     });
   }
 }
 
+// Funcție pentru a obține datele meteo formatate pentru grafic
 export async function getWeatherDataForChart(city) {
   try {
     const data = await getWeatherForecastByCityName(city);
-    const formattedData = {
-      daysData: data.list
-        .filter((_, index) => index % 8 === 0)
-        .map((forecast, index) => ({
-          date: {
-            month: new Date(forecast.dt * 1000).toLocaleString('en-US', {
-              month: 'short',
-            }),
-            day: new Date(forecast.dt * 1000).getDate(),
-            year: new Date(forecast.dt * 1000).getFullYear(),
-          },
-          forecasts: data.list.slice(index * 8, (index + 1) * 8).map(entry => ({
-            pressure: entry.main.pressure,
-            temperature: entry.main.temp,
-            windSpeed: entry.wind.speed,
-          })),
-        })),
-    };
-    return formattedData;
+    return formatWeatherDataForChart(data);
   } catch (error) {
     console.error('Eroare la preluarea datelor pentru grafic:', error);
   }
 }
 
-
-//modiff Alex =========================================================================
-export function switchToFiveDays() {
-  const masterWeatherCard = document.querySelector('.master-weather-card');
-  const fiveDaysContainer = document.querySelector('.five-days-container');
-
-  // Eliminăm animațiile anterioare și aplicăm animația de ieșire pentru master-weather-card
-  masterWeatherCard.classList.remove('slide-in');
-  masterWeatherCard.classList.add('slide-out');
-
-  // Așteptăm ca animația de ieșire să se termine
-  setTimeout(() => {
-    masterWeatherCard.style.display = 'none'; // Ascundem master-weather-card
-
-    // Asigurăm că fiveDaysContainer nu este vizibil înainte de animație
-    fiveDaysContainer.classList.remove('slide-in', 'slide-out');
-    fiveDaysContainer.style.display = 'block'; // Afișăm five-days-container
-
-    // Aplicăm animația de intrare pentru five-days-container
-    fiveDaysContainer.classList.add('slide-in');
-  }, 500); // Durata animației
+// Formatează datele meteo pentru a fi afișate în grafic
+function formatWeatherDataForChart(data) {
+  return {
+    daysData: data.list
+      .filter((_, index) => index % 8 === 0)
+      .map((forecast, index) => ({
+        date: {
+          month: new Date(forecast.dt * 1000).toLocaleString('en-US', {
+            month: 'short',
+          }),
+          day: new Date(forecast.dt * 1000).getDate(),
+          year: new Date(forecast.dt * 1000).getFullYear(),
+        },
+        forecasts: data.list.slice(index * 8, (index + 1) * 8).map(entry => ({
+          pressure: entry.main.pressure,
+          temperature: entry.main.temp,
+          windSpeed: entry.wind.speed,
+        })),
+      })),
+  };
 }
 
-export function switchToToday() {
-  const masterWeatherCard = document.querySelector('.master-weather-card');
-  const fiveDaysContainer = document.querySelector('.five-days-container');
-
-  // Aplicăm animația de ieșire pentru five-days-container
-  fiveDaysContainer.classList.remove('slide-in');
-  fiveDaysContainer.classList.add('slide-out');
-
-  // Așteptăm ca animația de ieșire să se termine
-  setTimeout(() => {
-    fiveDaysContainer.style.display = 'none'; // Ascundem five-days-container
-
-    // Pregătim master-weather-card pentru intrare
-    masterWeatherCard.classList.remove('slide-in', 'slide-out');
-    masterWeatherCard.style.display = 'block'; // Afișăm master-weather-card
-
-    // Aplicăm animația de intrare pentru master-weather-card
-    masterWeatherCard.classList.add('slide-in');
-  }, 500); // Durata animației
+// Funcție pentru a obține URL-ul pentru iconița meteo
+function getWeatherIconUrl(iconCode) {
+  return `https://openweathermap.org/img/wn/${iconCode}.png`;
 }
-//=================================END=================================================
+
+// Inițializare
+initializeWeatherCard();
