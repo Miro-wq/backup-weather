@@ -45,6 +45,10 @@ function getChartData(weather) {
   chartData.speed = weather.daysData.map(e =>
     average(e.forecasts.map(i => i.windSpeed))
   );
+
+  // Detectarea dimensiunii ecranului
+  const smallScreen = window.innerWidth < 480;
+
   let chartMain = {
     type: 'line',
     data: {
@@ -59,7 +63,7 @@ function getChartData(weather) {
         },
         {
           hidden: true,
-          label: ' —  Humidity, %    ',
+          label: ' —  Humidity, %',
           backgroundColor: 'rgb(10, 6, 234)',
           borderColor: 'rgb(10, 6, 234)',
           data: chartData.humidity,
@@ -90,18 +94,29 @@ function getChartData(weather) {
         title: {
           display: true,
           text: 'AVERAGE:',
-          color: 'rgba(255, 255, 255, 0.54)',
+          color: '#FFFFFF',
           align: 'start',
           position: 'top',
+          font: {
+            size: smallScreen
+              ? '10px'
+              : Math.max(10, Math.min(window.innerWidth * 0.02, 50)) + 'px',
+          },
         },
         legend: {
           align: 'center',
           labels: {
-            boxWidth: 12,
-            boxHeight: 12,
-            padding: 10,
+            boxWidth: smallScreen
+              ? 10
+              : Math.max(10, Math.min(window.innerWidth * 0.01, 30)),
+            boxHeight: smallScreen
+              ? 10
+              : Math.max(10, Math.min(window.innerWidth * 0.01, 30)),
+            padding: smallScreen ? 5 : 10,
             font: {
-              size: 15,
+              size: smallScreen
+                ? '8px'
+                : Math.max(8, Math.min(window.innerWidth * 0.015, 25)) + 'px',
             },
           },
         },
@@ -115,16 +130,25 @@ function getChartData(weather) {
             color: '#911',
             font: {
               family: 'Comic Sans MS',
-              size: 20,
+              size: smallScreen
+                ? '8px'
+                : Math.max(8, Math.min(window.innerWidth * 0.015, 25)) + 'px',
               lineHeight: 1.2,
             },
-            padding: { top: 20, left: 0, right: 0, bottom: 0 },
+            padding: smallScreen
+              ? { top: 10, left: 0, right: 0, bottom: 0 }
+              : { top: 20, left: 0, right: 0, bottom: 0 },
           },
           grid: {
-            color: 'rgba(255, 255, 255, 0.54)',
+            color: '#FFFFFF',
           },
           ticks: {
-            color: 'rgba(255, 255, 255, 0.54)',
+            color: '#FFFFFF',
+            font: {
+              size: smallScreen
+                ? '6px'
+                : Math.max(6, Math.min(window.innerWidth * 0.012, 20)) + 'px',
+            },
           },
         },
         y: {
@@ -132,19 +156,28 @@ function getChartData(weather) {
           title: {
             display: true,
             text: 'Value of indicators',
-            color: 'rgba(255, 255, 255, 0.54)',
+            color: '#FFFFFF',
             font: {
               family: 'Lato',
-              size: 14,
+              size: smallScreen
+                ? '8px'
+                : Math.max(8, Math.min(window.innerWidth * 0.015, 25)) + 'px',
               lineHeight: 1.2,
             },
-            padding: { top: 30, left: 0, right: 0, bottom: 0 },
+            padding: smallScreen
+              ? { top: 20, left: 0, right: 0, bottom: 0 }
+              : { top: 30, left: 0, right: 0, bottom: 0 },
           },
           grid: {
-            color: 'rgba(255, 255, 255, 0.54)',
+            color: '#FFFFFF',
           },
           ticks: {
-            color: 'rgba(255, 255, 255, 0.54)',
+            color: '#FFFFFF',
+            font: {
+              size: smallScreen
+                ? '6px'
+                : Math.max(6, Math.min(window.innerWidth * 0.012, 20)) + 'px',
+            },
             min: -5.0,
             max: -1.0,
           },
