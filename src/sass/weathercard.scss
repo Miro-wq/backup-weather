@@ -1,3 +1,4 @@
+/* Stiluri generale */
 .master-weather-card {
   display: flex !important;
   flex-direction: column;
@@ -21,19 +22,15 @@
   flex-direction: column;
   align-items: center;
 }
-
 .city-name {
   font-size: 1.2vw;
   line-height: 1.222;
-  // margin-bottom: 26px;
-
   color: hsla(0, 0%, 100%, 0.611);
   line-height: 1.375;
   margin-bottom: 0;
   display: flex;
   justify-content: center;
 }
-
 .temperature-card {
   font-family: var(--font-family);
   font-weight: 1vw;
@@ -43,23 +40,18 @@
   color: #fff;
   margin: 0;
 }
-
 .divide-line {
   margin: 0 1vw;
 }
-
 .description {
-  // color: #FFFFFF;
   display: flex;
   justify-content: center;
   margin-top: 1vw;
   font-size: 1vw;
 }
-
 .description img {
   width: 2vw;
 }
-
 .min-temp,
 .max-temp,
 .humidity {
@@ -67,14 +59,12 @@
   display: flex;
   justify-content: center;
 }
-
 .min-temp,
 .max-temp {
   margin-bottom: 0;
   font-size: 1.5vw;
   color: #fcfcfc;
 }
-
 .min-text,
 .max-text {
   font-size: 1.2vw;
@@ -83,44 +73,35 @@
   flex-direction: column;
   color: hsla(0, 100%, 100%, 0.302);
 }
-
 .min,
 .max {
   display: flex;
   padding: 0 1vw;
 }
-
 .min {
   border-right: 0.1vw solid hsla(0, 0%, 100%, 0.302);
 }
-
 .min-max-container {
   display: flex;
   justify-content: center;
   gap: 20px;
 }
-
 .divide-line {
   height: 3vw;
 }
-
 .temps-divide {
   display: flex;
   justify-content: center;
 }
-
 .button-container {
-  // right: 0;
   position: absolute;
   top: 21vw;
   display: flex !important;
   flex-direction: row;
 }
-
 .today-button {
   margin-right: 1vw;
 }
-
 .five-day-button {
   margin-right: 0;
 }
@@ -140,11 +121,9 @@
   color: #000;
   padding: 0;
 }
-
 .weather-button:focus {
   background-color: #ffffff;
 }
-
 #forecast-location {
   font-family: var(--font-family);
   font-weight: 700;
@@ -153,7 +132,6 @@
   text-align: center;
   color: #fff;
 }
-
 #forecast-container {
   flex-direction: row;
   padding: 2vw;
@@ -169,30 +147,26 @@
   height: 20vw;
   justify-content: center;
 }
-
 .five-days-container {
   width: 90vw;
   display: flex;
   position: absolute;
   right: 5vw;
   bottom: 10vh;
+
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
-
 .forecast-day {
   flex: 0 1 18%;
   box-sizing: border-box;
   margin: 0.1vw;
   text-align: center;
 }
-
 .forecast-day h3,
 .forecast-day p {
   margin: 0.2vw 0;
 }
-
 .forecast-day,
 .date-week {
   font-family: var(--font-family);
@@ -201,7 +175,6 @@
   text-align: center;
   color: #fff;
 }
-
 .forecast-day .date {
   font-family: var(--font-family);
   font-weight: 400;
@@ -209,7 +182,6 @@
   text-align: center;
   color: #fff;
 }
-
 .forecast-day p.date {
   color: #fff;
   opacity: 0.55;
@@ -218,20 +190,16 @@
   font-size: 2vw !important;
   text-align: center !important;
 }
-
 .forecast-day .temp {
   font-size: 2vw;
 }
-
 .forecast-day .temp-min {
   border-right: 0.1vw solid hsla(0, 0%, 100%, 0.302);
   padding-right: 10px;
 }
-
 .forecast-day .temp-max {
   padding-left: 10px;
 }
-
 .forecast-day .temp-min,
 .forecast-day .temp-max {
   font-family: var(--font-family);
@@ -242,16 +210,13 @@
   display: flex;
   flex-direction: column;
 }
-
 .forecast-day img {
   width: 3vw;
 }
-
 .five-days-forecast {
   display: flex;
   justify-content: center;
 }
-
 .five-days-min,
 .five-days-max {
   font-family: var(--font-family);
@@ -261,7 +226,6 @@
   color: #fff;
   opacity: 0.55;
 }
-
 .forecast-day .more-info {
   font-family: var(--font-family);
   font-weight: 700;
@@ -271,12 +235,10 @@
   color: #fff;
   opacity: 0.3;
 }
-
 .buttons-five {
-  top: 37px; //modif de la 0 ===========================modif
+  top: 37px;
   left: 60vw;
 }
-
 .hourly {
   font-family: var(--font-family);
   font-weight: 400;
@@ -286,7 +248,6 @@
   opacity: 0.54;
   margin-bottom: 0;
 }
-
 .hourly-temp {
   font-family: var(--font-family);
   font-weight: 700;
@@ -295,69 +256,56 @@
   color: #ff6b09;
   margin: 0;
 }
-
 .hourly-icon img {
   width: 2vw;
 }
-
 .hourly-icon {
   margin: 0;
 }
-
 .hourly-pressure,
 .hourly-humidity,
 .hourly-wind {
   font-family: var(--font-family);
-font-weight: 400;
-font-size: 14px;
-color: #fff;
-opacity: 0.54;
+  font-weight: 400;
+  font-size: 14px;
+  color: #fff;
+  opacity: 0.54;
 }
-
-//daor daca vrem la stanga========================================
+/* Daor daca vrem la stanga */
 .hourly-humidity {
-padding-right: 28px;
+  padding-right: 28px;
 }
-//==============================================================
-
 .hourly-pressure {
   background-image: url(../images/005-barometer.png);
   background-repeat: no-repeat;
   background-position: 5px 0;
 }
-
 .hourly-humidity {
   background-image: url(../images/004-humidity.png);
   background-repeat: no-repeat;
   background-position: 5px 0;
 }
-
 .hourly-wind {
   background-image: url(../images/003-wind.png);
   background-repeat: no-repeat;
   background-position: 5px 0;
 }
-
-
-
 .hourly-forecast-card {
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 25px;
   width: 120px;
-  height: 235px;
+  height: auto;
   margin: 5px;
   text-align: center;
   box-sizing: border-box;
   display: inline-block;
-  width: 120px; 
-  height: 218px;
+  width: 120px;
+
   margin: 5px;
 }
-
 .hourly-forecast-card:hover {
   background: rgba(255, 255, 255, 0.1);
 }
-
 .detailed-forecast {
   display: flex;
   flex-wrap: wrap;
@@ -368,7 +316,6 @@ padding-right: 28px;
   overflow-x: auto;
   white-space: nowrap;
 }
-
 /* CSS adițional pentru carusel */
 .detailed-forecast-carousel {
   display: flex;
@@ -379,29 +326,28 @@ padding-right: 28px;
   width: 85vw;
 }
 
+.detailed-forecast::-webkit-scrollbar {
+  height: 3px; /* Înălțimea scrollbar-ului orizontal */
+}
+.detailed-forecast::-webkit-scrollbar-thumb {
+  background-color: #fd8301; /* Culoarea barei de scroll */
+  border-radius: 8px; /* Rotunjirea colțurilor */
+}
+.detailed-forecast::-webkit-scrollbar-track {
+  background-color: #ccc; /* Culoarea de fundal a track-ului */
+  border-radius: 4px; /* Rotunjirea colțurilor track-ului */
+}
 .carousel-container {
   overflow: hidden;
   width: 90%;
 }
-
 .carousel-items {
   display: flex;
   transition: transform 0.3s ease;
 }
-
 .carousel-arrow {
   display: none;
 }
-
-// .carousel-arrow {
-//   background-color: #36454f;
-//   border: none;
-//   color: white;
-//   font-size: 2vw;
-//   cursor: pointer;
-//   z-index: 2;
-// }
-
 .left-arrow {
   position: absolute;
   right: 84vw;
@@ -409,13 +355,1243 @@ padding-right: 28px;
   border-radius: 50%;
   background-color: #ffffff30;
 }
-
 .right-arrow {
   position: absolute;
   right: 4vw;
   bottom: 50px;
   border-radius: 50%;
   background-color: #ffffff30;
+}
+
+/* Media queries */
+
+@media screen and (min-width: 100px) and (max-width: 400px) {
+  .master-weather-card {
+    top: 50vw;
+    right: 10vw;
+    width: 90vw;
+    height: 50vw;
+  }
+  .weather-card {
+    width: 80vw;
+    height: 40vw;
+    border-radius: 3vw;
+  }
+  .city-name {
+    font-size: 3vw;
+  }
+  .temperature-card {
+    font-size: 9vw;
+  }
+  .description {
+    margin-top: 2vw;
+  }
+  .description img {
+    width: 5vw;
+    margin: 0;
+  }
+  .min-temp,
+  .max-temp {
+    font-size: 2.7vw;
+  }
+  .min-text,
+  .max-text {
+    font-size: 2.5vw;
+  }
+  .min-max-container {
+    gap: 1vw;
+  }
+  .divide-line {
+    height: 2vw;
+  }
+  .button-container {
+    top: 42vw;
+    right: -1vw;
+  }
+  .weather-button {
+    width: 40vw;
+    height: 5vw;
+    font-size: 2.5vw;
+  }
+  #forecast-location {
+    font-size: 2vw;
+  }
+  #forecast-container {
+    padding: 1vw;
+    width: 90vw;
+    height: 20vw;
+  }
+  .five-days-container {
+    bottom: 10vw;
+  }
+  .forecast-day .date {
+    font-size: 2.5vw;
+  }
+  .forecast-day p.date {
+    font-size: 1.8vw !important;
+  }
+  .forecast-day .temp-min,
+  .forecast-day .temp-max {
+    color: #ff6b09;
+    font-size: 1.9vw;
+  }
+  .forecast-day img {
+    width: 4vw;
+  }
+  .forecast-day .more-info {
+    font-size: 1vw;
+  }
+  .buttons-five {
+    top: -2vw;
+    left: 70vw;
+  }
+}
+
+/* 400px și 500px */
+@media screen and (min-width: 400px) and (max-width: 500px) {
+  .master-weather-card {
+    top: 36vw;
+    right: 10vw;
+    width: 90vw;
+    height: 50vw;
+  }
+  .weather-card {
+    width: 80vw;
+    height: 40vw;
+    border-radius: 3vw;
+  }
+  .city-name {
+    font-size: 3vw;
+  }
+  .temperature-card {
+    font-size: 9vw;
+  }
+  .description {
+    margin-top: 2vw;
+  }
+  .description img {
+    width: 5vw;
+    margin: 0;
+  }
+  .min-temp,
+  .max-temp {
+    font-size: 2.7vw;
+  }
+  .min-text,
+  .max-text {
+    font-size: 2.5vw;
+  }
+  .min-max-container {
+    gap: 1vw;
+  }
+  .divide-line {
+    height: 2vw;
+  }
+  .button-container {
+    top: 42vw;
+    right: -1vw;
+  }
+  .weather-button {
+    width: 40vw;
+    height: 5vw;
+    font-size: 2.5vw;
+  }
+  // #forecast-location {
+  //   font-size: 2vw;
+  // }
+  // #forecast-container {
+  //   padding: 1vw;
+  //   width: 90vw;
+  //   height: 20vw;
+  // }
+  // .five-days-container {
+  //   bottom: 10vw;
+  // }
+  // .forecast-day .date {
+  //   font-size: 2.5vw;
+  // }
+  // .forecast-day p.date {
+  //   font-size: 1.8vw !important;
+  // }
+  // .forecast-day .temp-min,
+  // .forecast-day .temp-max {
+  //   color: #ff6b09;
+  //   font-size: 1.9vw;
+  // }
+  // .forecast-day img {
+  //   width: 4vw;
+  // }
+  // .forecast-day .more-info {
+  //   font-size: 1vw;
+  // }
+  // .buttons-five {
+  //   top: -2vw;
+  //   left: 70vw;
+  // }
+
+  #forecast-location {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 2vw;
+    letter-spacing: 0.04em;
+    text-align: center;
+    color: #fff;
+  }
+
+  #forecast-container {
+    flex-direction: row;
+    padding: 2vw;
+    background-color: #36454f;
+    border-radius: 3vw;
+    width: 90vw;
+    height: 14vw;
+    box-shadow: 0 1vw 2vw 0 rgba(16, 33, 54, 0.6);
+    background: rgba(16, 33, 54, 0.8);
+    align-items: center;
+    flex-wrap: wrap;
+    transition: height 0.3s ease, max-height 0.3s ease; /* Animație pentru extensie */
+  }
+
+  .five-days-container {
+    width: 90vw;
+    height: auto;
+    position: absolute;
+    right: 4vw;
+    top: 20vw;
+  }
+
+  .forecast-day {
+    flex: 0 1 18%;
+    box-sizing: border-box;
+    margin: 0.1vw;
+    text-align: center;
+  }
+
+  .forecast-day h3,
+  .forecast-day p {
+    margin: 0.2vw 0;
+  }
+
+  .forecast-day,
+  .date-week {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 2vw;
+    text-align: center;
+    color: #fff;
+  }
+
+  .forecast-day .date {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 1.5vw;
+    text-align: center;
+    color: #fff;
+  }
+
+  .forecast-day p.date {
+    color: #fff;
+    opacity: 0.55;
+    font-family: var(--font-family) !important;
+    font-weight: 400 !important;
+    font-size: 2vw !important;
+    text-align: center !important;
+  }
+
+  .forecast-day .temp {
+    font-size: 0.8vw;
+  }
+
+  .forecast-day .temp-min {
+    border-right: 0.1vw solid #fff;
+    border-color: hsla(0, 0%, 100%, 0.302);
+  }
+
+  .forecast-day .temp-min,
+  .forecast-day .temp-max {
+    font-family: var(--font-family);
+    text-align: center;
+    color: #ff6b09;
+    font-size: 2vw;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .forecast-day img {
+    width: 3vw;
+  }
+
+  .five-days-min,
+  .five-days-max {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 0.3vw;
+    text-align: center;
+    color: #fff;
+    opacity: 0.55;
+  }
+
+  .forecast-day .more-info {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 0.6vw;
+    text-decoration: underline;
+    text-align: center;
+    color: #fff;
+    opacity: 0.3;
+  }
+
+  .buttons-five {
+    top: 2vw;
+    left: 65vw;
+  }
+
+  .hourly {
+    font-size: 1vw;
+  }
+  .hourly-temp {
+    font-size: 2vw;
+  }
+  .hourly-icon img {
+    width: 2vw;
+  }
+
+  .hourly-pressure,
+  .hourly-humidity,
+  .hourly-wind {
+    font-size: 0.8vw;
+  }
+  /* Daor daca vrem la stanga */
+  .hourly-humidity {
+    padding-right: 1vw;
+  }
+
+  .hourly-forecast-card {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    width: 12vw !important;
+    height: auto;
+    margin: 5px;
+    text-align: center;
+    box-sizing: border-box;
+    display: inline-block;
+    width: 120px;
+
+    margin: 5px;
+  }
+}
+
+/* 501px și 768px */
+@media only screen and (min-width: 501px) and (max-width: 768px) {
+  .carousel-arrow {
+    display: none;
+  }
+
+  .detailed-forecast {
+    width: 100%;
+    white-space: nowrap;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-top: 20px;
+    display: flex;
+  }
+
+  .master-weather-card {
+    top: 25vw;
+    right: 10vw;
+    width: 90vw;
+    height: 52vw;
+    z-index: -1;
+  }
+  .weather-card {
+    width: 80vw;
+    height: 26vw;
+    border-radius: 3vw;
+  }
+  .city-name {
+    font-size: 2vw;
+  }
+  .temperature-card {
+    font-size: 5vw;
+  }
+  .description {
+    margin-top: 1vw;
+  }
+  .description img {
+    width: 3vw;
+    margin: 0;
+  }
+  .min-temp,
+  .max-temp {
+    font-size: 1.5vw;
+  }
+  .min-text,
+  .max-text {
+    font-size: 1.3vw;
+  }
+  .min-max-container {
+    gap: 1vw;
+  }
+  .divide-line {
+    height: 2vw;
+  }
+  .button-container {
+    top: 20vw;
+    margin-top: 7vw;
+  }
+  .weather-button {
+    width: 39.5vw;
+    height: 4vw;
+    font-size: 2vw;
+    margin-bottom: 4vw;
+  }
+  // #forecast-location {
+  //   font-size: 2vw;
+  // }
+  // #forecast-container {
+  //   padding: 1vw 1vw 5vw 1vw;
+  //   width: 90vw;
+  //   height: 20vw;
+  // }
+  // .five-days-container {
+  //   bottom: 10vw;
+  // }
+  // .forecast-day .date {
+  //   font-size: 2.5vw;
+  // }
+  // .forecast-day p.date {
+  //   font-size: 1.8vw !important;
+  // }
+  // .forecast-day .temp-min,
+  // .forecast-day .temp-max {
+  //   color: #ff6b09;
+  //   font-size: 1.9vw;
+  // }
+  // .forecast-day img {
+  //   width: 4vw;
+  // }
+  // .forecast-day .more-info {
+  //   font-size: 1vw;
+  // }
+  // .buttons-five {
+  //   top: -2vw;
+  //   left: 70vw;
+  // }
+
+  #forecast-location {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 2vw;
+    letter-spacing: 0.04em;
+    text-align: center;
+    color: #fff;
+  }
+
+  #forecast-container {
+    flex-direction: row;
+    padding: 2vw;
+    background-color: #36454f;
+    border-radius: 3vw;
+    width: 90vw;
+    height: 14vw;
+    box-shadow: 0 1vw 2vw 0 rgba(16, 33, 54, 0.6);
+    background: rgba(16, 33, 54, 0.8);
+    align-items: center;
+    flex-wrap: wrap;
+    transition: height 0.3s ease, max-height 0.3s ease; /* Animație pentru extensie */
+  }
+
+  .five-days-container {
+    width: 90vw;
+    height: auto;
+    position: absolute;
+    right: 4vw;
+    top: 20vw;
+  }
+
+  .forecast-day {
+    flex: 0 1 18%;
+    box-sizing: border-box;
+    margin: 0.1vw;
+    text-align: center;
+  }
+
+  .forecast-day h3,
+  .forecast-day p {
+    margin: 0.2vw 0;
+  }
+
+  .forecast-day,
+  .date-week {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 2vw;
+    text-align: center;
+    color: #fff;
+  }
+
+  .forecast-day .date {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 1.5vw;
+    text-align: center;
+    color: #fff;
+  }
+
+  .forecast-day p.date {
+    color: #fff;
+    opacity: 0.55;
+    font-family: var(--font-family) !important;
+    font-weight: 400 !important;
+    font-size: 2vw !important;
+    text-align: center !important;
+  }
+
+  .forecast-day .temp {
+    font-size: 0.8vw;
+  }
+
+  .forecast-day .temp-min {
+    border-right: 0.1vw solid #fff;
+    border-color: hsla(0, 0%, 100%, 0.302);
+  }
+
+  .forecast-day .temp-min,
+  .forecast-day .temp-max {
+    font-family: var(--font-family);
+    text-align: center;
+    color: #ff6b09;
+    font-size: 2vw;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .forecast-day img {
+    width: 3vw;
+  }
+
+  .five-days-min,
+  .five-days-max {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 0.3vw;
+    text-align: center;
+    color: #fff;
+    opacity: 0.55;
+  }
+
+  .forecast-day .more-info {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 0.6vw;
+    text-decoration: underline;
+    text-align: center;
+    color: #fff;
+    opacity: 0.3;
+  }
+
+  .buttons-five {
+    top: 2vw;
+    left: 65vw;
+  }
+
+  .hourly {
+    font-size: 1vw;
+  }
+  .hourly-temp {
+    font-size: 2vw;
+  }
+  .hourly-icon img {
+    width: 2vw;
+  }
+
+  .hourly-pressure,
+  .hourly-humidity,
+  .hourly-wind {
+    font-size: 0.8vw;
+  }
+  /* Daor daca vrem la stanga */
+  .hourly-humidity {
+    padding-right: 1vw;
+  }
+
+  .hourly-forecast-card {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    width: 12vw !important;
+    height: auto;
+    margin: 5px;
+    text-align: center;
+    box-sizing: border-box;
+    display: inline-block;
+    width: 120px;
+
+    margin: 5px;
+  }
+}
+
+/* 769px și 1024px */
+@media only screen and (min-width: 769px) and (max-width: 1025px) {
+  .master-weather-card {
+    top: 15vw;
+    right: 10vw;
+    width: 90vw;
+    height: 52vw;
+    z-index: -1;
+  }
+  .weather-card {
+    width: 80vw;
+    height: 22vw;
+    border-radius: 3vw;
+  }
+  .city-name {
+    font-size: 2vw;
+  }
+  .temperature-card {
+    font-size: 5vw;
+  }
+  .description {
+    margin-top: 1vw;
+  }
+  .description img {
+    width: 3vw;
+    margin: 0;
+  }
+  .min-temp,
+  .max-temp {
+    font-size: 1.5vw;
+  }
+  .min-text,
+  .max-text {
+    font-size: 1.3vw;
+  }
+  .min-max-container {
+    gap: 1vw;
+  }
+  .divide-line {
+    height: 2vw;
+  }
+  .button-container {
+    top: 20vw;
+    margin-top: 4vw;
+  }
+  .weather-button {
+    width: 39.5vw;
+    height: 4vw;
+    font-size: 2vw;
+    margin-bottom: 4vw;
+  }
+  // #forecast-location {
+  //   font-size: 2vw;
+  // }
+  // #forecast-container {
+  //   padding: 1vw 1vw 5vw 1vw;
+  //   width: 90vw;
+  //   height: 20vw;
+  // }
+  // .five-days-container {
+  //   bottom: 10vw;
+  // }
+  // .forecast-day .date {
+  //   font-size: 2.5vw;
+  // }
+  // .forecast-day p.date {
+  //   font-size: 1.8vw !important;
+  // }
+  // .forecast-day .temp-min,
+  // .forecast-day .temp-max {
+  //   color: #ff6b09;
+  //   font-size: 1.9vw;
+  // }
+  // .forecast-day img {
+  //   width: 4vw;
+  // }
+  // .forecast-day .more-info {
+  //   font-size: 1vw;
+  // }
+  // .buttons-five {
+  //   top: -2vw;
+  //   left: 70vw;
+  // }
+
+  #forecast-location {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 2vw;
+    letter-spacing: 0.04em;
+    text-align: center;
+    color: #fff;
+  }
+
+  #forecast-container {
+    flex-direction: row;
+    padding: 2vw;
+    background-color: #36454f;
+    border-radius: 3vw;
+    width: 90vw;
+    height: 14vw;
+    box-shadow: 0 1vw 2vw 0 rgba(16, 33, 54, 0.6);
+    background: rgba(16, 33, 54, 0.8);
+    align-items: center;
+    flex-wrap: wrap;
+    transition: height 0.3s ease, max-height 0.3s ease; /* Animație pentru extensie */
+  }
+
+  .five-days-container {
+    width: 90vw;
+    height: auto;
+    position: absolute;
+    right: 4vw;
+    top: 20vw;
+  }
+
+  .forecast-day {
+    flex: 0 1 18%;
+    box-sizing: border-box;
+    margin: 0.1vw;
+    text-align: center;
+  }
+
+  .forecast-day h3,
+  .forecast-day p {
+    margin: 0.2vw 0;
+  }
+
+  .forecast-day,
+  .date-week {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 2vw;
+    text-align: center;
+    color: #fff;
+  }
+
+  .forecast-day .date {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 1.5vw;
+    text-align: center;
+    color: #fff;
+  }
+
+  .forecast-day p.date {
+    color: #fff;
+    opacity: 0.55;
+    font-family: var(--font-family) !important;
+    font-weight: 400 !important;
+    font-size: 2vw !important;
+    text-align: center !important;
+  }
+
+  .forecast-day .temp {
+    font-size: 0.8vw;
+  }
+
+  .forecast-day .temp-min {
+    border-right: 0.1vw solid #fff;
+    border-color: hsla(0, 0%, 100%, 0.302);
+  }
+
+  .forecast-day .temp-min,
+  .forecast-day .temp-max {
+    font-family: var(--font-family);
+    text-align: center;
+    color: #ff6b09;
+    font-size: 2vw;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .forecast-day img {
+    width: 3vw;
+  }
+
+  .five-days-min,
+  .five-days-max {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 0.3vw;
+    text-align: center;
+    color: #fff;
+    opacity: 0.55;
+  }
+
+  .forecast-day .more-info {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 0.6vw;
+    text-decoration: underline;
+    text-align: center;
+    color: #fff;
+    opacity: 0.3;
+  }
+
+  .buttons-five {
+    top: 2vw;
+    left: 65vw;
+  }
+
+  .hourly {
+    font-size: 1vw;
+  }
+  .hourly-temp {
+    font-size: 2vw;
+  }
+  .hourly-icon img {
+    width: 2vw;
+  }
+
+  .hourly-pressure,
+  .hourly-humidity,
+  .hourly-wind {
+    font-size: 0.8vw;
+  }
+  /* Daor daca vrem la stanga */
+  .hourly-humidity {
+    padding-right: 1vw;
+  }
+
+  .hourly-forecast-card {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    width: 12vw !important;
+    height: auto;
+    margin: 5px;
+    text-align: center;
+    box-sizing: border-box;
+    display: inline-block;
+    width: 120px;
+
+    margin: 5px;
+  }
+}
+
+/* 1025px și 1300px */
+@media only screen and (min-width: 1025px) and (max-width: 1301px) {
+  .master-weather-card {
+    right: 0;
+    top: 20vw;
+    width: 32vw;
+    height: 42vw;
+  }
+  .weather-card {
+    width: 25vw;
+    height: 20vw;
+  }
+
+  .city-name {
+    font-size: 1vw;
+  }
+
+  .temperature-card {
+    font-size: 4vw;
+  }
+
+  .divide-line {
+    margin: 0 0.5vw;
+  }
+
+  .description {
+    margin-top: 2vw;
+  }
+
+  .description img {
+    width: 3vw;
+  }
+
+  .min-temp,
+  .max-temp {
+    font-size: 1vw;
+  }
+
+  .min-text,
+  .max-text {
+    font-size: 1vw;
+  }
+
+  .button-container {
+    top: 21vw;
+  }
+
+  .weather-button {
+    text-transform: uppercase;
+    width: 12vw;
+    height: 2.5vw;
+    border-radius: 3vw;
+    border: none;
+    margin-top: 0;
+    background-color: #ffffff81;
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 1.4vw;
+    text-transform: uppercase;
+    text-align: center;
+    color: #000;
+    padding: 0;
+  }
+
+  .weather-button:focus {
+    background-color: #ffffff;
+  }
+
+  #forecast-location {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 2vw;
+    letter-spacing: 0.04em;
+    text-align: center;
+    color: #fff;
+  }
+
+  #forecast-container {
+    flex-direction: row;
+    padding: 2vw;
+    background-color: #36454f;
+    border-radius: 3vw;
+    width: 90vw;
+    height: 14vw;
+    box-shadow: 0 1vw 2vw 0 rgba(16, 33, 54, 0.6);
+    background: rgba(16, 33, 54, 0.8);
+    align-items: center;
+    flex-wrap: wrap;
+    transition: height 0.3s ease, max-height 0.3s ease; /* Animație pentru extensie */
+  }
+
+  .five-days-container {
+    width: 90vw;
+    height: auto;
+    position: absolute;
+    right: 4vw;
+    top: 20vw;
+  }
+
+  .forecast-day {
+    flex: 0 1 18%;
+    box-sizing: border-box;
+    margin: 0.1vw;
+    text-align: center;
+  }
+
+  .forecast-day h3,
+  .forecast-day p {
+    margin: 0.2vw 0;
+  }
+
+  .forecast-day,
+  .date-week {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 2vw;
+    text-align: center;
+    color: #fff;
+  }
+
+  .forecast-day .date {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 1.5vw;
+    text-align: center;
+    color: #fff;
+  }
+
+  .forecast-day p.date {
+    color: #fff;
+    opacity: 0.55;
+    font-family: var(--font-family) !important;
+    font-weight: 400 !important;
+    font-size: 2vw !important;
+    text-align: center !important;
+  }
+
+  .forecast-day .temp {
+    font-size: 0.8vw;
+  }
+
+  .forecast-day .temp-min {
+    border-right: 0.1vw solid #fff;
+    border-color: hsla(0, 0%, 100%, 0.302);
+  }
+
+  .forecast-day .temp-min,
+  .forecast-day .temp-max {
+    font-family: var(--font-family);
+    text-align: center;
+    color: #ff6b09;
+    font-size: 2vw;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .forecast-day img {
+    width: 3vw;
+  }
+
+  .five-days-min,
+  .five-days-max {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 0.3vw;
+    text-align: center;
+    color: #fff;
+    opacity: 0.55;
+  }
+
+  .forecast-day .more-info {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 0.6vw;
+    text-decoration: underline;
+    text-align: center;
+    color: #fff;
+    opacity: 0.3;
+  }
+
+  .buttons-five {
+    top: 2vw;
+    left: 65vw;
+  }
+  /* Ascunde ruselul */
+  .carousel-arrow {
+    display: none;
+  }
+
+  .hourly {
+    font-size: 1vw;
+  }
+  .hourly-temp {
+    font-size: 2vw;
+  }
+  .hourly-icon img {
+    width: 2vw;
+  }
+
+  .hourly-pressure,
+  .hourly-humidity,
+  .hourly-wind {
+    font-size: 0.8vw;
+  }
+  /* Daor daca vrem la stanga */
+  .hourly-humidity {
+    padding-right: 1vw;
+  }
+
+  .hourly-forecast-card {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    width: 12vw !important;
+    height: auto;
+    margin: 5px;
+    text-align: center;
+    box-sizing: border-box;
+    display: inline-block;
+    width: 120px;
+
+    margin: 5px;
+  }
+}
+
+/* 1301px min */
+@media only screen and (min-width: 1301px) {
+  .master-weather-card {
+    top: 14vw;
+    width: 32vw;
+    height: 32vw;
+  }
+  .weather-card {
+    width: 25vw;
+    height: 20vw;
+  }
+  .city-name {
+    font-size: 1vw;
+  }
+  .temperature-card {
+    font-size: 4vw;
+  }
+  .description {
+    margin-top: 2vw;
+  }
+  .description img {
+    width: 3vw;
+  }
+  .min-temp,
+  .max-temp {
+    font-size: 1vw;
+  }
+  .min-text,
+  .max-text {
+    font-size: 1vw;
+  }
+  .weather-button {
+    width: 12vw;
+    height: 2.5vw;
+    font-size: 1.4vw;
+  }
+  .forecast-day .temp-min,
+  .forecast-day .temp-max {
+    font-size: 0.9vw;
+  }
+  .forecast-day img {
+    width: 2vw;
+  }
+  /* Ascunde ruselul */
+  .carousel-arrow {
+    display: none;
+  }
+  #forecast-location {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 2vw;
+    letter-spacing: 0.04em;
+    text-align: center;
+    color: #fff;
+  }
+
+  #forecast-container {
+    flex-direction: row;
+    padding: 2vw;
+    background-color: #36454f;
+    border-radius: 3vw;
+    width: 90vw;
+    height: 14vw;
+    box-shadow: 0 1vw 2vw 0 rgba(16, 33, 54, 0.6);
+    background: rgba(16, 33, 54, 0.8);
+    align-items: center;
+    flex-wrap: wrap;
+    transition: height 0.3s ease, max-height 0.3s ease; /* Animație pentru extensie */
+  }
+
+  .five-days-container {
+    width: 90vw;
+    height: auto;
+    position: absolute;
+    right: 4vw;
+    top: 20vw;
+  }
+
+  .forecast-day {
+    flex: 0 1 18%;
+    box-sizing: border-box;
+    margin: 0.1vw;
+    text-align: center;
+  }
+
+  .forecast-day h3,
+  .forecast-day p {
+    margin: 0.2vw 0;
+  }
+
+  .forecast-day,
+  .date-week {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 2vw;
+    text-align: center;
+    color: #fff;
+  }
+
+  .forecast-day .date {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 1.5vw;
+    text-align: center;
+    color: #fff;
+  }
+
+  .forecast-day p.date {
+    color: #fff;
+    opacity: 0.55;
+    font-family: var(--font-family) !important;
+    font-weight: 400 !important;
+    font-size: 2vw !important;
+    text-align: center !important;
+  }
+
+  .forecast-day .temp {
+    font-size: 0.8vw;
+  }
+
+  .forecast-day .temp-min {
+    border-right: 0.1vw solid #fff;
+    border-color: hsla(0, 0%, 100%, 0.302);
+  }
+
+  .forecast-day .temp-min,
+  .forecast-day .temp-max {
+    font-family: var(--font-family);
+    text-align: center;
+    color: #ff6b09;
+    font-size: 2vw;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .forecast-day img {
+    width: 3vw;
+  }
+
+  .five-days-min,
+  .five-days-max {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 0.3vw;
+    text-align: center;
+    color: #fff;
+    opacity: 0.55;
+  }
+
+  .forecast-day .more-info {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 0.6vw;
+    text-decoration: underline;
+    text-align: center;
+    color: #fff;
+    opacity: 0.3;
+  }
+
+  .buttons-five {
+    top: 2vw;
+    left: 65vw;
+  }
+
+  .hourly {
+    font-size: 1vw;
+  }
+  .hourly-temp {
+    font-size: 2vw;
+  }
+  .hourly-icon img {
+    width: 2vw;
+  }
+
+  .hourly-pressure,
+  .hourly-humidity,
+  .hourly-wind {
+    font-size: 0.8vw;
+  }
+  /* Daor daca vrem la stanga */
+  .hourly-humidity {
+    padding-right: 1vw;
+  }
+
+  .hourly-forecast-card {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    width: 12vw !important;
+    height: auto;
+    margin: 5px;
+    text-align: center;
+    box-sizing: border-box;
+    display: inline-block;
+    width: 120px;
+
+    margin: 5px;
+  }
 }
 
 @media screen and (min-width: 2600px) {
@@ -503,7 +1679,7 @@ padding-right: 28px;
     background-color: #36454f;
     border-radius: 3vw;
     width: 90vw;
-    height: 20vw;
+    height: 220vw !important;
     box-shadow: 0 1vw 2vw 0 rgba(16, 33, 54, 0.6);
     background: rgba(16, 33, 54, 0.8);
     align-items: center;
@@ -512,14 +1688,11 @@ padding-right: 28px;
 
   .five-days-container {
     width: 90vw;
-    height: 20vw;
-    display: flex;
+    height: auto;
+
     position: absolute;
     right: 5vw;
     top: 15vw;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
   }
 
   .forecast-day {
@@ -599,7 +1772,6 @@ padding-right: 28px;
     font-weight: 700;
     font-size: 0.6vw;
     text-decoration: underline;
-    // text-decoration-skip-ink: none;
     text-align: center;
     color: #fff;
     opacity: 0.3;
@@ -607,407 +1779,6 @@ padding-right: 28px;
 
   .buttons-five {
     top: 0;
-    left: 70vw;
-  }
-}
-
-@media (max-width: 1012px) {
-  .carousel-arrow {
-    display: block;
-    background-color: #36454f;
-    border: none;
-    color: white;
-    font-size: 2vw;
-    cursor: pointer;
-    z-index: 2;
-  }
-
-  .carousel-arrow:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-}
-
-// @media (max-width: 580px) {
-
-//   .carousel-arrow {
-//     display: none;
-//   }
-  
-//   .detailed-forecast {
-//     width: 100%;
-//     white-space: nowrap;
-//     flex-wrap: wrap;
-//     justify-content: space-evenly;
-//     margin-top: 20px;
-//     display: flex;
-//     overflow-x: auto;
-//   }
-// }
-
-@media only screen and (min-width: 320px) and (max-width: 768px){
-  .master-weather-card {
-    top: 15vw;
-    right: 10vw;
-    width: 90vw;
-    height: 52vw;
-    z-index: -1;
-  }
-
-
-  .weather-card {
-    width: 80vw;
-    height: 40vw;
-    border-radius: 3vw;
-  }
-
-  h2 {
-    margin: 0;
-  }
-
-  .city-name {
-    font-size: 3vw;
-  }
-
-  .temperature-card {
-    font-size: 9vw;
-  }
-
-  .description {
-    margin-top: 2vw;
-  }
-
-  .description img {
-    width: 5vw;
-    margin: 0;
-  }
-
-  .min-temp,
-  .max-temp {
-    font-size: 2.7vw;
-  }
-
-  .min-text,
-  .max-text {
-    font-size: 2.5vw;
-  }
-
-  .min-max-container {
-    gap: 1vw;
-  }
-
-  .divide-line {
-    height: 2vw;
-  }
-
-  .button-container {
-    top: 42vw;
-    right: -1vw;
-    position: static;
-    margin-top: 12vw;
-  }
-
-  .five-day-button {
-    margin-right: 1vw;
-  }
-
-  .weather-button {
-    width: 39.5vw;
-    height: 4vw;
-    font-size: 2vw;
-    margin-bottom: 4vw;
-  }
-
-  #forecast-location {
-    font-size: 2vw;
-  }
-
-  #forecast-container {
-    padding: 1vw 1vw 5vw 1vw;
-    width: 90vw;
-    height: 20vw;
-  }
-
-  .five-days-container {
-    bottom: 10vw;
-  }
-
-  .forecast-day .date {
-    font-size: 2.5vw;
-  }
-
-  .forecast-day p.date {
-    font-size: 1.8vw !important;
-  }
-
-  .forecast-day .temp-min,
-  .forecast-day .temp-max {
-    color: #ff6b09;
-    font-size: 1.9vw;
-  }
-
-  .forecast-day img {
-    width: 4vw;
-  }
-
-  .forecast-day .more-info {
-    font-size: 1vw;
-  }
-
-  .buttons-five {
-    top: -2vw;
-    left: 70vw;
-  }
-
-  .detailed-forecast {
-    overflow-x: hidden;
-  }
-}
-
-
-@media only screen and (min-width: 580px) and (max-width: 768px) {
-  .carousel-arrow {
-    display: none;
-  }
-
-  .detailed-forecast {
-    width: 100%;
-    white-space: nowrap;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    margin-top: 20px;
-    display: flex;
-    overflow-x: auto;
-  }
-
-  .custom-scrollbar {
-    overflow-x: scroll;
-  }
-}
-
-@media only screen and (min-width: 768px) and (max-width: 1280px) {
-  .master-weather-card {
-    top: 15vw;
-    right: 10vw;
-    width: 90vw;
-    height: 52vw;
-    z-index: -1;
-  }
-
-
-  .weather-card {
-    width: 80vw;
-    height: 40vw;
-    border-radius: 3vw;
-  }
-
-  h2 {
-    margin: 0;
-  }
-
-  .city-name {
-    font-size: 3vw;
-  }
-
-  .temperature-card {
-    font-size: 9vw;
-  }
-
-  .description {
-    margin-top: 2vw;
-  }
-
-  .description img {
-    width: 5vw;
-    margin: 0;
-  }
-
-  .min-temp,
-  .max-temp {
-    font-size: 2.7vw;
-  }
-
-  .min-text,
-  .max-text {
-    font-size: 2.5vw;
-  }
-
-  .min-max-container {
-    gap: 1vw;
-  }
-
-  .divide-line {
-    height: 2vw;
-  }
-
-  .button-container {
-    top: 42vw;
-    right: -1vw;
-    position: static;
-    margin-top: 12vw;
-  }
-
-  .five-day-button {
-    margin-right: 1vw;
-  }
-
-  .weather-button {
-    width: 39.5vw;
-    height: 4vw;
-    font-size: 2vw;
-    margin-bottom: 4vw;
-  }
-
-  #forecast-location {
-    font-size: 2vw;
-  }
-
-  #forecast-container {
-    padding: 1vw 1vw 5vw 1vw;
-    width: 90vw;
-    height: 20vw;
-  }
-
-  .five-days-container {
-    bottom: 10vw;
-  }
-
-  .forecast-day .date {
-    font-size: 2.5vw;
-  }
-
-  .forecast-day p.date {
-    font-size: 1.8vw !important;
-  }
-
-  .forecast-day .temp-min,
-  .forecast-day .temp-max {
-    color: #ff6b09;
-    font-size: 1.9vw;
-  }
-
-  .forecast-day img {
-    width: 4vw;
-  }
-
-  .forecast-day .more-info {
-    font-size: 1vw;
-  }
-
-  .buttons-five {
-    top: -2vw;
-    left: 70vw;
-  }
-
-  .detailed-forecast {
-    overflow-x: hidden;
-  }
-}
-
-@media screen and (min-width: 100px) and (max-width: 500px) {
-  .master-weather-card {
-    top: 40vw;
-    right: 10vw;
-    width: 90vw;
-    height: 50vw;
-  }
-  .weather-card {
-    width: 80vw;
-    height: 40vw;
-    border-radius: 3vw;
-  }
-  h2 {
-    margin: 0;
-  }
-
-  .city-name {
-    font-size: 3vw;
-  }
-
-  .temperature-card {
-    font-size: 9vw;
-  }
-
-  .description {
-    margin-top: 2vw;
-  }
-
-  .description img {
-    width: 5vw;
-    margin: 0;
-  }
-
-  .min-temp,
-  .max-temp {
-    font-size: 2.7vw;
-  }
-
-  .min-text,
-  .max-text {
-    font-size: 2.5vw;
-  }
-
-  .min-max-container {
-    gap: 1vw;
-  }
-
-  .divide-line {
-    height: 2vw;
-  }
-
-  .button-container {
-    top: 42vw;
-    right: -1vw;
-  }
-
-  .five-day-button {
-    margin-right: 1vw;
-  }
-
-  .weather-button {
-    width: 40vw;
-    height: 5vw;
-    font-size: 2.5vw;
-  }
-
-  #forecast-location {
-    font-size: 2vw;
-  }
-
-  #forecast-container {
-    padding: 1vw;
-    width: 90vw;
-    height: 20vw;
-  }
-
-  .five-days-container {
-    bottom: 10vw;
-  }
-
-  .forecast-day .date {
-    font-size: 2.5vw;
-  }
-
-  .forecast-day p.date {
-    font-size: 1.8vw !important;
-  }
-
-  .forecast-day .temp-min,
-  .forecast-day .temp-max {
-    color: #ff6b09;
-    font-size: 1.9vw;
-  }
-
-  .forecast-day img {
-    width: 4vw;
-  }
-
-  .forecast-day .more-info {
-    font-size: 1vw;
-  }
-
-  .buttons-five {
-    top: -2vw;
     left: 70vw;
   }
 }
