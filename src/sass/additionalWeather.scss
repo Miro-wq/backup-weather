@@ -61,7 +61,7 @@
 .current-month {
   border-right: 1px solid rgba(255, 255, 255, 1);
   padding-right: 5px;
-  padding-right: 18px;
+  padding-right: 20px;
 }
 
 .sunrise-time {
@@ -76,6 +76,8 @@
   bottom: 20px;
   right: 16px;
   padding: 10px;
+  max-width: 80%;
+  overflow-wrap: break-word;
 }
 
 .quote-text {
@@ -102,7 +104,6 @@
 
 @media only screen and (min-width: 320px) and (max-width: 1024px) {
   #additional-weather-card {
-    height: auto;
     border-radius: 34px;
     // padding: 32px 207px;
     padding: 50px;
@@ -110,6 +111,7 @@
     bottom: 32%;
     left: 10vw;
     width: 80%;
+    top: 106vw;
   }
 
   .additional-card {
@@ -119,10 +121,9 @@
     display: flex;
     flex-direction: column;
   }
-  
 
   .current-date {
-    font-size: 5.6vw;
+    font-size: 45px;
     margin: 0;
     width: max-content;
     height: 96px;
@@ -144,10 +145,11 @@
     margin: 0 auto;
     // bottom: 20px;
     right: 11%;
+    top: 190vw;
   }
 
   .quote-text {
-    font-size: 22px;
+    font-size: 18px;
     line-height: 26.4px;
   }
 
@@ -157,245 +159,7 @@
   }
 }
 
-// @media screen and (max-width: 767px) {
-//   #additional-weather-card {
-//     width: 276px;
-//     height: 184px;
-//     margin: 0 auto 80px;
-//     padding: 32px 61px 32px 61px;
-//   }
-
-//   .additional-card {
-//     position: absolute;
-//   }
-
-//   .current-date {
-//     font-size: 45px;
-//   }
-
-//   .current-info {
-//     width: 154px;
-//     height: 22px;
-//   }
-
-//   .current-month,
-//   .current-time,
-//   .sunrise-time,
-//   .sunset-time {
-//     font-size: 14px;
-//     line-height: 16.8px;
-//   }
-
-//   #quote-card {
-//     width: 280px;
-//     height: 81px;
-//   }
-
-//   .quote-text {
-//     font-size: 14px;
-//     line-height: 16.8px;
-//   }
-// }
-
-// #additional-weather-card {
-//   box-sizing: border-box;
-//   background: rgba(16, 33, 54, 0.8);
-//   border-radius: 0 2vw 0 0;
-//   flex-direction: column;
-//   justify-content: left;
-//   align-items: center;
-//   position: absolute;
-//   bottom: 0;
-//   left: 0;
-//   width: 40vw;
-//   height: 15vw;
-//   transition: all 0.5s ease-in-out;
-// }
-
-// sup {
-//   vertical-align: super;
-//   font-size: smaller;
-// }
-
-// .current-date {
-//   font-family: var(--font-family);
-//   font-weight: 300;
-//   font-size: 4vw;
-//   letter-spacing: 0.3vw;
-//   color: #fff;
-//   margin: 0;
-//   margin-top: 2vw;
-//   margin-left: 1vw;
-// }
-
-// .current-info {
-//   display: flex;
-//   align-items: center;
-//   justify-content: flex-start;
-// }
-
-// .current-info span {
-//   margin: 0 1vw;
-//   display: flex;
-//   align-items: center;
-// }
-
-// .current-info .current-month,
-// .current-info .current-time,
-// .current-info .sunrise-time,
-// .current-info .sunset-time {
-//   font-family: var(--font-family);
-//   font-weight: 400;
-//   font-size: 1vw;
-//   letter-spacing: 0.04vw;
-//   color: #fff;
-//   margin-top: 3vw;
-// }
-
-// .current-month {
-//   border-right: 0.1vw solid white;
-//   padding-right: 1.5vw;
-// }
-
-// .current-info .current-time {
-//   margin-left: 0.5vw;
-//   margin-right: 6vw;
-// }
-
-// .sunrise-time {
-//   padding-right: 1vw;
-//   border-right: 0.1vw solid white;
-// }
-
-// .current-info,
-// .sunset-time {
-//   margin-left: 0.1vw;
-// }
-
-// .current-info img {
-//   width: 1.5vw;
-// }
-// #quote-card {
-//   box-sizing: border-box;
-//   text-align: right;
-//   color: #fff;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: flex-end;
-//   padding: 1vw;
-//   display: flex;
-//   position: absolute;
-//   bottom: 3vw;
-//   right: 0;
-//   width: 40vw;
-// }
-
-// .quote-text,
-// .quote-author {
-//   font-weight: bold;
-// }
-
-// .quote-text {
-//   font-family: var(--font-family);
-//   font-style: italic;
-//   font-weight: 400;
-//   font-size: 1.5vw;
-//   text-align: right;
-//   color: #fff;
-// }
-
-// .quote-author {
-//   font-family: var(--font-family);
-//   font-weight: 400;
-//   font-size: 0.8vw;
-//   text-align: right;
-//   color: #fff;
-// }
-
-// @media screen and (max-width: 1224px) {
-//   #additional-weather-card {
-//     border-radius: 2vw;
-//     top: 70vw;
-//     left: 15vw;
-//     width: 70vw;
-//     height: 22vw;
-//   }
-
-//   .current-date {
-//     font-size: 7vw;
-//     margin-left: 6vw;
-//   }
-
-//   .current-info .current-month,
-//   .current-info .current-time,
-//   .current-info .sunrise-time,
-//   .current-info .sunset-time {
-//     font-size: 2.5vw;
-//     margin-top: 4vw;
-//   }
-
-//   .sunrise-time {
-//     padding-right: 4vw;
-//   }
-
-//   .current-info img {
-//     width: 3vw;
-//   }
-//   #quote-card {
-//     width: 60vw;
-//     top: 100vw;
-//     right: 15vw;
-//   }
-
-//   .quote-text {
-//     font-size: 2.5vw;
-//   }
-
-//   .quote-author {
-//     font-size: 2vw;
-//   }
-// }
-
-// @media screen and (max-width: 500px) {
-//   #additional-weather-card {
-//     border-radius: 2vw;
-//     top: 100vw;
-//     left: 15vw;
-//     width: 70vw;
-//     height: 42vw;
-//   }
-
-//   .current-date {
-//     font-size: 7vw;
-//     margin-left: 6vw;
-//   }
-
-//   .current-info .current-month,
-//   .current-info .current-time,
-//   .current-info .sunrise-time,
-//   .current-info .sunset-time {
-//     font-size: 2.5vw;
-//     margin-top: 4vw;
-//   }
-
-//   .sunrise-time {
-//     padding-right: 4vw;
-//   }
-
-//   .current-info img {
-//     width: 3vw;
-//   }
-//   #quote-card {
-//     width: 60vw;
-//     top: 160vw;
-//     right: 15vw;
-//   }
-
-//   .quote-text {
-//     font-size: 3.5vw;
-//   }
-
-//   .quote-author {
-//     font-size: 2vw;
-//   }
-// }
+#additional-weather-card,
+#quote-card {
+  display: none;
+}
