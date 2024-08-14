@@ -294,13 +294,12 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 25px;
   width: 120px;
-  height: 235px;
+  height: auto;
   margin: 5px;
   text-align: center;
   box-sizing: border-box;
   display: inline-block;
   width: 120px;
-  height: 218px;
   margin: 5px;
 }
 .hourly-forecast-card:hover {
@@ -671,13 +670,12 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 25px;
     width: 12vw !important;
-    height: 235px;
+    height: auto;
     margin: 5px;
     text-align: center;
     box-sizing: border-box;
     display: inline-block;
     width: 120px;
-    height: 218px;
     margin: 5px;
   }
 }
@@ -921,13 +919,12 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 25px;
     width: 12vw !important;
-    height: 235px;
+    height: auto;
     margin: 5px;
     text-align: center;
     box-sizing: border-box;
     display: inline-block;
     width: 120px;
-    height: 218px;
     margin: 5px;
   }
 }
@@ -1158,13 +1155,12 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 25px;
     width: 12vw !important;
-    height: 235px;
+    height: auto;
     margin: 5px;
     text-align: center;
     box-sizing: border-box;
     display: inline-block;
     width: 120px;
-    height: 218px;
     margin: 5px;
   }
 }
@@ -1383,13 +1379,12 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 25px;
     width: 12vw !important;
-    height: 235px;
+    height: auto;
     margin: 5px;
     text-align: center;
     box-sizing: border-box;
     display: inline-block;
     width: 120px;
-    height: 218px;
     margin: 5px;
   }
 }
@@ -1583,13 +1578,12 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 25px;
     width: 12vw !important;
-    height: 235px;
+    height: auto;
     margin: 5px;
     text-align: center;
     box-sizing: border-box;
     display: inline-block;
     width: 120px;
-    height: 218px;
     margin: 5px;
   }
 }
@@ -1679,7 +1673,7 @@
     background-color: #36454f;
     border-radius: 3vw;
     width: 90vw;
-    height: 20vw;
+    height: 220vw !important;
     box-shadow: 0 1vw 2vw 0 rgba(16, 33, 54, 0.6);
     background: rgba(16, 33, 54, 0.8);
     align-items: center;
@@ -1688,14 +1682,11 @@
 
   .five-days-container {
     width: 90vw;
-    height: 10vw;
-    display: flex;
+    height: auto;
+
     position: absolute;
     right: 5vw;
     top: 15vw;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
   }
 
   .forecast-day {
