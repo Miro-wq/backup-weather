@@ -181,6 +181,7 @@
   font-size: 1.5vw;
   text-align: center;
   color: #fff;
+  opacity: 0.55;
 }
 .forecast-day p.date {
   color: #fff;
@@ -405,7 +406,7 @@
   }
   .button-container {
     top: 42vw;
-    right: -1vw;
+    right: 0;
   }
   .weather-button {
     width: 40vw;
@@ -421,7 +422,7 @@
     height: 20vw;
   }
   .five-days-container {
-    bottom: 10vw;
+    top: 45vw;
   }
   .forecast-day .date {
     font-size: 2.5vw;
