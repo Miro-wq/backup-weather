@@ -104,17 +104,27 @@
   #additional-weather-card {
     height: auto;
     border-radius: 34px;
-    padding: 32px 207px;
+    // padding: 32px 207px;
+    padding: 50px;
     position: absolute;
-    bottom: 20%;
+    bottom: 32%;
     left: 10vw;
     width: 80%;
   }
 
+  .additional-card {
+    align-items: center;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  
+
   .current-date {
     font-size: 5.6vw;
     margin: 0;
-    width: 290px;
+    width: max-content;
     height: 96px;
   }
 
@@ -133,7 +143,7 @@
     height: 145px;
     margin: 0 auto;
     // bottom: 20px;
-    right: 90px;
+    right: 11%;
   }
 
   .quote-text {
