@@ -91,7 +91,7 @@ export function displayWeatherDataOnCard(data) {
   }
 }
 
-// ------ Codul vechi pentru funcția displayFiveDayForecast începe aici ------
+// ------ Codul pentru funcția displayFiveDayForecast ------
 export function displayFiveDayForecast(data) {
   const chartContainer = document.getElementById('chart-container');
   const forecastLocationElement = document.getElementById('forecast-location');
@@ -100,6 +100,29 @@ export function displayFiveDayForecast(data) {
 
   forecastLocationElement.textContent = data.city.name;
   toggleElementDisplay(forecastLocationElement, 'block');
+
+  // Creăm containerul pentru carduri cu overflow și săgețile
+  const overflowContainer = document.createElement('div');
+  overflowContainer.classList.add('overflow-five-days-container');
+
+  const leftArrow = document.createElement('button');
+  leftArrow.classList.add('arrow', 'arrow-left');
+  leftArrow.innerHTML = '&#9664;';
+
+  const rightArrow = document.createElement('button');
+  rightArrow.classList.add('arrow', 'arrow-right');
+  rightArrow.innerHTML = '&#9654;';
+
+  const cardsContainer = document.createElement('div');
+  cardsContainer.classList.add('overflow-five-days');
+
+  // Adăugăm săgețile și containerul de carduri în containerul de overflow
+  overflowContainer.appendChild(leftArrow);
+  overflowContainer.appendChild(cardsContainer);
+  overflowContainer.appendChild(rightArrow);
+
+  // Adăugăm containerul de overflow în forecastContainer
+  forecastContainer.appendChild(overflowContainer);
 
   data.list.forEach((forecast, index) => {
     if (index % 8 === 0) {
@@ -113,7 +136,6 @@ export function displayFiveDayForecast(data) {
         month: 'short',
       });
 
-      // ATENȚIE: Conține stilizări!!! A nu se modifica ===========================
       forecastElement.innerHTML = `
         <h3 class="date">${dayName}</h3>
         <p class="date">${dateString}</p>
@@ -126,14 +148,15 @@ export function displayFiveDayForecast(data) {
         </div>
         <p class="more-info">more info</p>
       `;
-      // Până aici ==================================================================
+
       forecastElement
         .querySelector('.more-info')
         .addEventListener('click', () => {
           handleMoreInfoClick(forecastElement, data.list, index);
         });
 
-      forecastContainer.appendChild(forecastElement);
+      // Adăugăm cardurile în containerul de overflow
+      cardsContainer.appendChild(forecastElement);
     }
   });
 
@@ -155,10 +178,40 @@ export function displayFiveDayForecast(data) {
     toggleElementDisplay(chartContainer, 'block');
     addAnimation(chartContainer, 'animate__fadeInUp');
   }
-}
-// ------ Codul vechi pentru funcția displayFiveDayForecast se termină aici ------
 
-// ------ Codul vechi pentru funcția handleMoreInfoClick începe aici ------
+  // --- Codul pentru gestionarea scroll-ului ---
+  let scrollAmount = 0;
+  const scrollStep = overflowContainer.clientWidth / 2;
+
+  rightArrow.addEventListener('click', () => {
+    const maxScroll =
+      cardsContainer.scrollWidth - overflowContainer.clientWidth;
+    scrollAmount += scrollStep;
+    if (scrollAmount > maxScroll) scrollAmount = maxScroll;
+    cardsContainer.style.transform = `translateX(-${scrollAmount}px)`;
+    updateArrows();
+  });
+
+  leftArrow.addEventListener('click', () => {
+    scrollAmount -= scrollStep;
+    if (scrollAmount < 0) scrollAmount = 0;
+    cardsContainer.style.transform = `translateX(-${scrollAmount}px)`;
+    updateArrows();
+  });
+
+  function updateArrows() {
+    leftArrow.disabled = scrollAmount === 0;
+    rightArrow.disabled =
+      scrollAmount >=
+      cardsContainer.scrollWidth - overflowContainer.clientWidth;
+  }
+
+  updateArrows(); // La inițializare
+
+  // --- Sfârșitul codului pentru gestionarea scroll-ului ---
+}
+
+// ------ Codul pentru funcția handleMoreInfoClick ------
 function handleMoreInfoClick(forecastElement, forecasts, index) {
   const existingDetailedContainer =
     forecastContainer.querySelector('.detailed-forecast');
@@ -237,7 +290,6 @@ function handleMoreInfoClick(forecastElement, forecasts, index) {
     carouselItems.style.transform = `translateX(-${currentIndex * 70}%)`;
   }
 }
-// ------ Codul vechi pentru funcția handleMoreInfoClick se termină aici ------
 
 // Funcție pentru a obține și afișa datele meteo pentru un oraș specific
 export async function fetchAndDisplayWeatherForCity(city) {
