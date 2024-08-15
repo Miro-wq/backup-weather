@@ -1,7 +1,7 @@
 {
   "name": "parcel-project-template",
   "version": "2.0.0",
-  "description": "[![My Skills](https://skillicons.dev/icons?i=nodejs,npm,webpack,js,html,css,)](https://skillicons.dev)",
+  "description": "",
   "homepage": "https://Miro-wq.github.io/backup-weather",
   "scripts": {
     "start": "parcel src/*.html",
@@ -19,6 +19,7 @@
     "url": "https://github.com/Miro-wq/backup-weather/issues"
   },
   "dependencies": {
+    "animate.css": "^4.1.1",
     "chart.js": "^4.4.3",
     "compression": "^1.7.4",
     "express": "^4.19.2",
