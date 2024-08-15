@@ -1,15 +1,18 @@
+p {
+  margin-bottom: 0;
+}
 #additional-weather-card {
   display: flex;
   box-sizing: border-box;
   background: rgba(16, 33, 54, 0.8);
-  border-radius: 0 34px 0 0;
+  border-radius: 0 7vw 0 0;
   justify-content: flex-start;
   align-items: center;
-  width: 624px;
-  height: 264px;
+  width: 60vw;
+  height: 26vw;
   position: absolute;
-  bottom: 0px;
-  left: 0%;
+  bottom: 0;
+  left: 0;
 }
 
 .additional-card {
@@ -20,13 +23,13 @@
 
 .current-date {
   font-family: var(--font-family);
-  font-size: 90px;
+  font-size: 4vw;
   font-weight: 300;
-  line-height: 54px;
+  line-height: 4vw;
   letter-spacing: 0.04em;
   color: rgba(255, 255, 255, 1);
   text-align: left;
-  margin: 50px 200px 32px 16px;
+  margin: 2vw 5vw 1.5vw 1vw;
 }
 
 .current-info {
@@ -41,7 +44,7 @@
 .current-info span {
   display: flex;
   align-items: center;
-  margin: 0 10px;
+  margin: 0 2vw;
 }
 
 .current-month,
@@ -49,66 +52,69 @@
 .sunrise-time,
 .sunset-time {
   font-family: var(--font-family);
-  font-size: 18px;
+  font-size: 1.2vw;
   font-weight: 400;
-  line-height: 21.6px;
+  line-height: 1.5vw;
   letter-spacing: 0.04em;
   text-align: left;
   color: rgba(255, 255, 255, 1);
 }
 
 .current-month {
-  border-right: 1px solid rgba(255, 255, 255, 1);
-  padding-right: 5px;
-  padding-right: 20px;
+  border-right: 0.1vw solid rgba(255, 255, 255, 1);
+  padding-right: 2vw;
 }
 
 .sunrise-time {
-  border-right: 1px solid rgba(255, 255, 255, 1);
-  padding-right: 5px;
+  border-right: 0.1vw solid rgba(255, 255, 255, 1);
+  padding-right: 1vw;
 }
 
 #quote-card {
-  width: 395px;
-  height: 132px;
+  width: 35vw;
+  height: auto;
   position: absolute;
-  bottom: 20px;
-  right: 16px;
-  padding: 10px;
+  bottom: 1.5vw;
+  right: 2vw;
   max-width: 80%;
   overflow-wrap: break-word;
 }
 
 .quote-text {
   font-family: var(--font-family);
-  font-size: 22px;
+  font-size: 2vw;
   font-style: italic;
-  font-weight: 400;
+  font-weight: bold;
   letter-spacing: 0.04em;
   text-align: right;
   color: rgba(255, 255, 255, 1);
-  font-weight: bold;
 }
 
 .quote-author {
   font-family: var(--font-family);
-  font-size: 18px;
-  font-weight: 400;
+  font-size: 1.5vw;
+  font-weight: bold;
+  font-style: italic;
   letter-spacing: 0.04em;
   text-align: right;
   color: rgba(255, 255, 255, 1);
-  font-weight: bold;
-  font-style: italic;
 }
 
-@media screen and (max-width: 480px) {
+span img {
+  width: 3vw;
+  height: 3vw;
+}
+
+/* Pentru telefoane mobile (max-width 480px) */
+@media screen and (max-width: 499px) {
   #additional-weather-card {
-    border-radius: 34px;
-    padding: 50px;
+    border-radius: 7vw;
+    padding: 10vw;
+    padding-bottom: 23vw;
     position: absolute;
-    bottom: 32%;
-    left: 10vw;
-    width: 80%;
+    bottom: 15vw;
+    left: 5vw;
+    width: 90vw;
     top: 90vw;
   }
 
@@ -118,13 +124,17 @@
     height: auto;
     display: flex;
     flex-direction: column;
+    position: absolute;
+    top: 6vw;
+    right: 0;
   }
 
   .current-date {
-    font-size: 45px;
+    font-size: 7vw;
     margin: 0;
     width: max-content;
-    height: 96px;
+    height: auto;
+    margin-bottom: 5vw;
   }
 
   .current-info {
@@ -134,35 +144,37 @@
   }
 
   .current-info .first-row {
-    margin-bottom: 16px;
+    margin-bottom: 3vw;
   }
 
   #quote-card {
-    width: 380px;
-    height: 145px;
+    width: 90vw;
+    height: auto;
     margin: 0 auto;
-    right: 11%;
-    top: 155vw;
+    right: 5vw;
+    top: 130vw;
   }
 
   .quote-text {
-    font-size: 18px;
-    line-height: 26.4px;
+    font-size: 4vw;
+    line-height: 5vw;
   }
 
   .quote-author {
-    font-size: 18px;
-    line-height: 21.6px;
+    font-size: 3vw;
+    line-height: 4vw;
   }
 }
-@media only screen and (min-width: 481px) and (max-width: 1024px) {
+
+/* Pentru tablete (min-width 481px până la 1024px) */
+@media only screen and (min-width: 500px) and (max-width: 768px) {
   #additional-weather-card {
-    border-radius: 34px;
-    padding: 50px;
+    border-radius: 7vw;
+    padding: 8vw;
     position: absolute;
-    bottom: 32%;
+    bottom: 10vw;
     left: 10vw;
-    width: 80%;
+    width: 80vw;
     top: 60vw;
   }
 
@@ -172,13 +184,17 @@
     height: auto;
     display: flex;
     flex-direction: column;
+    position: absolute;
+    top: 2vw;
+    right: 0;
   }
 
   .current-date {
-    font-size: 45px;
-    margin: 0;
+    font-size: 8vw;
+    margin-bottom: 2vw;
     width: max-content;
-    height: 96px;
+    height: auto;
+    margin-bottom: 5vw;
   }
 
   .current-info {
@@ -188,25 +204,122 @@
   }
 
   .current-info .first-row {
-    margin-bottom: 16px;
+    margin-bottom: 2vw;
+  }
+
+  .current-month,
+  .current-time,
+  .sunrise-time,
+  .sunset-time {
+    font-size: 2vw;
   }
 
   #quote-card {
-    width: 380px;
-    height: 145px;
+    width: 80vw;
+    height: auto;
     margin: 0 auto;
-    right: 11%;
+    right: 10vw;
     top: 110vw;
   }
 
   .quote-text {
-    font-size: 18px;
-    line-height: 26.4px;
+    font-size: 3vw;
+    line-height: 4vw;
   }
 
   .quote-author {
-    font-size: 18px;
-    line-height: 21.6px;
+    font-size: 2.5vw;
+    line-height: 3vw;
+  }
+}
+
+/* Pentru desktopuri mici și medii (până la 1440px) */
+@media only screen and (min-width: 769px) and (max-width: 1440px) {
+  #additional-weather-card {
+    width: auto;
+    height: auto;
+    border-radius: 0 7vw 0 0;
+    bottom: 0;
+    left: 0;
+    padding: 2vw;
+  }
+
+  #quote-card {
+    width: 30vw;
+    height: auto;
+    bottom: 2vw;
+    right: 2vw;
+  }
+
+  .current-date {
+    font-size: 3.5vw;
+    margin: 1vw;
+  }
+
+  .current-month,
+  .current-time,
+  .sunrise-time,
+  .sunset-time {
+    font-size: 1.5vw;
+  }
+
+  .quote-text {
+    font-size: 1.5vw;
+  }
+
+  .quote-author {
+    font-size: 1.2vw;
+  }
+}
+
+/* Pentru desktopuri mari (min-width 1441px) */
+@media only screen and (min-width: 1441px) {
+  #additional-weather-card {
+    width: auto;
+    height: 14vw;
+    border-radius: 0 5vw 0 0;
+    bottom: 0;
+    left: 0;
+    padding: 2vw;
+  }
+
+  #quote-card {
+    width: 25vw;
+    height: auto;
+    bottom: 0;
+    right: 2vw;
+  }
+
+  .current-date {
+    font-size: 3vw;
+    margin: 1vw;
+  }
+
+  .quote-text {
+    font-size: 1.6vw;
+  }
+
+  .quote-author {
+    font-size: 1.2vw;
+  }
+
+  .current-info span {
+    margin: 0 1vw;
+  }
+
+  .current-month,
+  .current-time,
+  .sunrise-time,
+  .sunset-time {
+    font-size: 1.8vw;
+  }
+
+  .current-month {
+    padding-right: 2vw;
+  }
+
+  .sunrise-time {
+    padding-right: 1.5vw;
   }
 }
 
