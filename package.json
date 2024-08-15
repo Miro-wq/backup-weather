@@ -6,7 +6,8 @@
   "scripts": {
     "start": "parcel src/*.html",
     "sass": "node-sass --include-path scss src/sass/index.scss src/index.css -w",
-    "build": "parcel build src/*.html --public-url /backup-weather/"
+    "build": "parcel build src/*.html --public-url /backup-weather/",
+    "clean": "rimraf dist .cache"
   },
   "repository": {
     "type": "git",
@@ -31,11 +32,13 @@
     "assert": "^2.1.0",
     "browserify-zlib": "^0.2.0",
     "buffer": "^6.0.3",
+    "cssnano": "^5.1.15",
     "events": "^3.3.0",
     "https-browserify": "^1.0.0",
     "parcel": "^2.6.0",
     "parcel-reporter-clean-dist": "^1.0.4",
     "path-browserify": "^1.0.1",
+    "postcss": "^8.4.41",
     "posthtml-include": "^1.7.4",
     "process": "^0.11.10",
     "stream-browserify": "^3.0.0",
