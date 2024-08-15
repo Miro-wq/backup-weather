@@ -10,6 +10,74 @@ function capitalizeCityName(city) {
   return city.charAt(0).toUpperCase() + city.slice(1).toLowerCase();
 }
 
+// Funcție pentru a afișa modalul personalizat
+function showCustomAlert(city, isAdded) {
+  let language = 'ro'; // Implicit pe română
+
+  const messages = {
+    ro: {
+      added: `${capitalizeCityName(city)} a fost adăugat la favorite.`,
+      exists: `${capitalizeCityName(city)} este deja în lista de favorite.`,
+    },
+    en: {
+      added: `${capitalizeCityName(city)} has been added to favorites.`,
+      exists: `${capitalizeCityName(city)} is already in the favorites list.`,
+    },
+  };
+
+  // Funcție pentru actualizarea mesajului în funcție de limbă
+  function updateMessage() {
+    const message = isAdded
+      ? messages[language].added
+      : messages[language].exists;
+    modalMessage.textContent = message;
+  }
+
+  const modal = document.getElementById('custom-alert');
+  const modalMessage = document.getElementById('modal-message');
+  const closeModal = document.getElementById('close-modal');
+  const btnRo = document.getElementById('btn-ro');
+  const btnEn = document.getElementById('btn-en');
+
+  // Setează mesajul inițial (în română)
+  updateMessage();
+
+  // Afișează modalul
+  modal.style.display = 'block';
+
+  // Închide modalul când se apasă pe X
+  closeModal.onclick = function () {
+    modal.style.display = 'none';
+  };
+
+  // Închide modalul dacă se face click în afara acestuia
+  window.onclick = function (event) {
+    if (event.target === modal) {
+      modal.style.display = 'none';
+    }
+  };
+
+  // Eveniment pentru butonul RO (activează româna)
+  btnRo.onclick = function () {
+    language = 'ro'; // Schimbă limba la română
+    btnRo.classList.add('active');
+    btnEn.classList.remove('active');
+    updateMessage(); // Actualizează mesajul
+  };
+
+  // Eveniment pentru butonul EN (activează engleza)
+  btnEn.onclick = function () {
+    language = 'en'; // Schimbă limba la engleză
+    btnEn.classList.add('active');
+    btnRo.classList.remove('active');
+    updateMessage(); // Actualizează mesajul
+  };
+}
+
+function capitalizeCityName(city) {
+  return city.charAt(0).toUpperCase() + city.slice(1).toLowerCase();
+}
+
 function addToFavorites(city) {
   city = capitalizeCityName(city); // Capitalizează numele orașului
   let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
@@ -17,9 +85,9 @@ function addToFavorites(city) {
     favorites.push(city);
     localStorage.setItem('favorites', JSON.stringify(favorites));
     displayFavorites();
-    alert(`${city} a fost adăugat la favorite.`);
+    showCustomAlert(city, true); // Mesaj pentru adăugare la favorite
   } else {
-    alert(`${city} este deja în lista de favorite.`);
+    showCustomAlert(city, false); // Mesaj pentru deja în favorite
   }
 }
 
