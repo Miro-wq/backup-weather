@@ -524,8 +524,10 @@ h2 {
     right: 12vw;
   }
   .buttons-five {
-    top: 1vh;
-    right: -3vw;
+    // top: 1vh;
+    // right: -3vw;
+    position: static;
+    padding: 3vw;
   }
 
   .five-days-container {
@@ -535,6 +537,10 @@ h2 {
   #forecast-container {
     width: 90vw;
     height: auto;
+  }
+
+  #forecast-location {
+    padding: 3vw;
   }
 
   .forecast-day {
@@ -622,14 +628,17 @@ h2 {
     right: 12vw;
   }
   .buttons-five {
-    top: 1vh;
-    right: -3vw;
+    // padding: 3vw;
+    position: static;
   }
 
   #forecast-container {
     width: 85vw;
-
     height: auto;
+  }
+
+  #forecast-location {
+    padding: 3vw;
   }
 
   .forecast-day {
@@ -718,13 +727,18 @@ h2 {
   }
 
   .buttons-five {
-    top: 1vh;
-    right: -3vw;
+    // top: 1vh;
+    // right: -3vw;
+    position: static;
   }
 
   #forecast-container {
     width: 75vw;
     height: auto;
+  }
+
+  #forecast-location {
+    padding: 3vw;
   }
 
   .forecast-day {
