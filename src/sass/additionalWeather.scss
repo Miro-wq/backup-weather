@@ -24,7 +24,6 @@
   font-weight: 300;
   line-height: 54px;
   letter-spacing: 0.04em;
-  // text-align: center;
   color: rgba(255, 255, 255, 1);
   text-align: left;
   margin: 50px 200px 32px 16px;
@@ -102,16 +101,15 @@
   font-style: italic;
 }
 
-@media only screen and (min-width: 320px) and (max-width: 1024px) {
+@media screen and (max-width: 480px) {
   #additional-weather-card {
     border-radius: 34px;
-    // padding: 32px 207px;
     padding: 50px;
     position: absolute;
     bottom: 32%;
     left: 10vw;
     width: 80%;
-    top: 106vw;
+    top: 90vw;
   }
 
   .additional-card {
@@ -143,9 +141,62 @@
     width: 380px;
     height: 145px;
     margin: 0 auto;
-    // bottom: 20px;
     right: 11%;
-    top: 190vw;
+    top: 155vw;
+  }
+
+  .quote-text {
+    font-size: 18px;
+    line-height: 26.4px;
+  }
+
+  .quote-author {
+    font-size: 18px;
+    line-height: 21.6px;
+  }
+}
+@media only screen and (min-width: 481px) and (max-width: 1024px) {
+  #additional-weather-card {
+    border-radius: 34px;
+    padding: 50px;
+    position: absolute;
+    bottom: 32%;
+    left: 10vw;
+    width: 80%;
+    top: 60vw;
+  }
+
+  .additional-card {
+    align-items: center;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .current-date {
+    font-size: 45px;
+    margin: 0;
+    width: max-content;
+    height: 96px;
+  }
+
+  .current-info {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .current-info .first-row {
+    margin-bottom: 16px;
+  }
+
+  #quote-card {
+    width: 380px;
+    height: 145px;
+    margin: 0 auto;
+    right: 11%;
+    top: 110vw;
   }
 
   .quote-text {
