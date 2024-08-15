@@ -1,3 +1,4 @@
+
 import {
   getWeatherByCoordinates,
   getReverseGeocoding,
@@ -181,14 +182,13 @@ export function displayFiveDayForecast(data) {
 
   // --- Codul pentru gestionarea scroll-ului ---
   let scrollAmount = 0;
-  const scrollStep = overflowContainer.clientWidth / 1;
+  const scrollStep = overflowContainer.clientWidth / 2;
 
   rightArrow.addEventListener('click', () => {
     const maxScroll =
       cardsContainer.scrollWidth - overflowContainer.clientWidth;
     scrollAmount += scrollStep;
     if (scrollAmount > maxScroll) scrollAmount = maxScroll;
-
     cardsContainer.style.transform = `translateX(-${scrollAmount}px)`;
     updateArrows();
   });
@@ -196,7 +196,6 @@ export function displayFiveDayForecast(data) {
   leftArrow.addEventListener('click', () => {
     scrollAmount -= scrollStep;
     if (scrollAmount < 0) scrollAmount = 0;
-
     cardsContainer.style.transform = `translateX(-${scrollAmount}px)`;
     updateArrows();
   });
@@ -263,13 +262,13 @@ function handleMoreInfoClick(forecastElement, forecasts, index) {
   }
 
   const leftArrow = document.createElement('button');
-  leftArrow.classList.add('carousel-arrow', 'right-arrow');
-  leftArrow.innerHTML = '&gt;';
+  leftArrow.classList.add('carousel-arrow', 'left-arrow');
+  leftArrow.innerHTML = '&lt;';
   leftArrow.addEventListener('click', () => scrollCarousel(-1));
 
   const rightArrow = document.createElement('button');
-  rightArrow.classList.add('carousel-arrow', 'left-arrow');
-  rightArrow.innerHTML = '&lt;';
+  rightArrow.classList.add('carousel-arrow', 'right-arrow');
+  rightArrow.innerHTML = '&gt;';
   rightArrow.addEventListener('click', () => scrollCarousel(1));
 
   detailedContainer.appendChild(leftArrow);
@@ -287,44 +286,9 @@ function handleMoreInfoClick(forecastElement, forecasts, index) {
   let currentIndex = 0;
 
   function scrollCarousel(direction) {
-    const scrollStep = 200; // Dimensiunea unui pas de derulare în pixeli (ajustează-l la dimensiunea unui card)
-    const containerWidth = detailedContainer.clientWidth; // Lățimea containerului vizibil
-    const contentWidth = carouselItems.scrollWidth; // Lățimea totală a conținutului
-
-    const maxRightScroll = contentWidth - containerWidth; // Limita maximă de derulare la dreapta
-
-    // Obținem valoarea curentă a transformării aplicate cu translateX
-    const currentTransform = getComputedStyle(carouselItems).transform;
-
-    let translateX = 0; // Valoarea de translateX implicită
-    if (currentTransform !== 'none') {
-      // Extragem valoarea de translateX existentă din matricea de transformare
-      translateX = parseInt(currentTransform.split(',')[4].trim());
-
-      // Verificăm dacă valoarea translateX este validă
-      if (isNaN(translateX)) {
-        translateX = 0; // Dacă valoarea nu este validă, resetează la 0
-      }
-    }
-
-    // Calculăm noua valoare de derulare în funcție de direcție
-    let newScrollAmount = translateX + direction * scrollStep;
-
-    // Limitează derularea la dreapta
-    if (newScrollAmount < -maxRightScroll) {
-      newScrollAmount = -maxRightScroll;
-    }
-
-    // Limitează derularea la stânga
-    if (newScrollAmount > 0) {
-      newScrollAmount = 0;
-    }
-    if (newScrollAmount === translateX) {
-      return; // Ieși din funcție dacă nu e nevoie să derulezi
-    }
-
-    // Aplicăm transformarea pentru a derula conținutul
-    carouselItems.style.transform = `translateX(${newScrollAmount}px)`;
+    const maxIndex = Math.ceil(carouselItems.children.length / 3) - 1;
+    currentIndex = Math.max(0, Math.min(currentIndex + direction, maxIndex));
+    carouselItems.style.transform = `translateX(-${currentIndex * 70}%)`;
   }
 }
 
