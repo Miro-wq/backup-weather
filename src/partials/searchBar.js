@@ -30,22 +30,25 @@ function displayFavorites() {
   if (favoritesList) {
     favoritesList.innerHTML = '';
     let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    favorites.forEach((city, index) => {
+    favorites.forEach(city => {
       const li = document.createElement('li');
+      li.classList.add('favorite-item');
       li.textContent = city;
       li.addEventListener('click', () => {
         fetchAndDisplayWeatherForCity(city);
       });
+
       const removeBtn = document.createElement('span');
-      removeBtn.textContent = '×';
       removeBtn.classList.add('remove-favorite');
       removeBtn.addEventListener('click', event => {
-        event.stopPropagation(); // Optează evenimentul de click pe listă
+        event.stopPropagation();
         removeFromFavorites(city);
       });
+
       li.appendChild(removeBtn);
       favoritesList.appendChild(li);
     });
+
     const items = favoritesList.querySelectorAll('li');
     items.forEach((item, index) => {
       item.style.display = index < 4 ? 'inline-block' : 'none';
@@ -70,7 +73,6 @@ export function initializeSearch() {
   const showLessBtn = document.getElementById('show-less-btn');
   const searchForm = document.getElementById('search-form');
 
-  // Animatia de deschidere a search bar-ului
   if (searchForm) {
     searchForm.style.width = '0';
     searchForm.style.overflow = 'hidden';
@@ -101,8 +103,6 @@ export function initializeSearch() {
         addToFavorites(city);
       }
     });
-  } else {
-    console.warn('Star icon element not found.');
   }
 
   if (locationIcon) {
@@ -135,8 +135,6 @@ export function initializeSearch() {
         }
       }
     });
-  } else {
-    console.warn('Location icon element not found.');
   }
 
   if (showMoreBtn) {
@@ -172,7 +170,6 @@ export function initializeSearch() {
       showLessBtn.style.display = 'none';
     });
   }
-
 
   displayFavorites(); // Display favorites when the page loads
 }

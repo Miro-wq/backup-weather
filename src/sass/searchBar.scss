@@ -1,218 +1,258 @@
+/* Bara de căutare principală */
 .search-bar {
   height: auto;
-  width: 75vw;
+  width: 65vw; /* Bara de căutare mai subțire */
   flex-direction: column;
   align-items: center;
   display: flex;
   position: absolute;
-  top: 6vw;
+  top: 4vw;
   right: 5vw;
 }
 
+/* Formularul de căutare */
 #search-form {
   display: flex;
   align-items: center;
-  background-color: #fff;
-  border-radius: 3vw;
-  padding: 0.5vw;
-  width: 60vw;
-  height: 1.8vw;
+  background: linear-gradient(
+    135deg,
+    rgba(236, 239, 240, 0.5) 0%,
+    rgba(51, 61, 102, 0.5) 100%
+  );
+  border-radius: 2vw; /* Dimensiune mai mică pentru un aspect mai fin */
+  padding: 0.4vw;
+  width: 55vw; /* Ajustare la lățimea barei */
+  height: auto;
+  box-shadow: 0 0.3vw 0.8vw rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
 }
 
+/* Input pentru oraș */
 #city-input {
-  border-radius: 3vw;
+  border-radius: 2vw;
   flex: 1;
-  width: 1vw;
-  height: 1.5vw;
+  width: 100%;
+  height: 1.8vw; /* Mai subțire */
   border: none;
   padding: 0.5em;
-  font-size: 1.2vw;
+  font-size: 1.3vw;
   outline: none;
+  background-color: #fff;
+  box-shadow: inset 0 0.2vw 0.5vw rgba(144, 142, 142, 0.551);
+  transition: all 0.3s ease;
 }
 
+#city-input:focus {
+  box-shadow: 0 0 1vw rgba(70, 130, 180, 0.5); /* Albastru deschis */
+}
+
+/* Iconițele pentru locație și stea */
 #location-icon,
 #star-icon {
-  font-size: 1.5vw;
-  width: 2vw;
-  fill: #999;
+  font-size: 1.6vw; /* Mai mic */
+  width: 2.5vw;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-#location-icon:hover,
+#location-icon {
+  margin-left: 0.8vw;
+  color: #313030;
+}
+
+#star-icon {
+  margin-left: 0.8vw;
+  color: #b0afaf;
+}
+
+#location-icon:hover {
+  color: #ffffff;
+  transform: scale(1.3);
+}
+
 #star-icon:hover {
-  fill: #666;
+  color: #ffffff;
+  transform: scale(1.3);
 }
 
+/* Elemente favorite */
 .position-favorite-elemet {
   display: flex;
-  margin-top: 1vw;
+  justify-items: center;
+  align-items: center;
 }
 
-#favorites-list {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0;
+ul {
   margin: 0;
-  list-style: none;
+  padding: 0;
 }
 
+/* Stilizare pentru elementele din lista de favorite */
+#favorites-list {
+  margin-top: 1vw;
+  height: auto;
+}
 #favorites-list li {
+  position: relative;
+  list-style: none;
   display: inline-block;
-  background-color: rgba(16, 33, 54, 0.5);
-  color: #ffffff;
-  padding: 0.5vw;
-  text-align: center;
-  font-size: 1.5vw;
-  margin: 0 0.5vw 0 0;
-  border-radius: 1.2vw;
+  margin: 0 0.8vw;
+  padding: 0.8vw;
+  border-radius: 1vw;
+  background-color: rgba(255, 255, 255, 0.3);
+  transition: transform 0.3s ease, background-color 0.3s ease;
   cursor: pointer;
-  white-space: nowrap;
+  font-size: 1.3vw;
+  color: #fffdfd;
 }
 
+#favorites-list li:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1); /* Mărește ușor cardul la hover */
+}
+
+/* Buton de eliminare coș de gunoi */
 .remove-favorite {
-  cursor: pointer;
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 1.6vw;
-  margin-left: 0.3vw;
-  transition: color 0.3s ease;
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  font-size: 2vw;
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
 }
 
-.remove-favorite:hover {
-  color: #cc0000;
+#favorites-list li:hover .remove-favorite {
+  opacity: 1;
+  color: #ff6347;
+}
+
+.remove-favorite::before {
+  content: '\f1f8';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+}
+
+#favorites-list li:hover .remove-favorite {
+  transform: rotate(0deg);
+}
+
+/* Butoane de extindere/retragere */
+#show-more-btn svg {
+  width: 3vw;
+  height: 3vw;
+}
+#show-less-btn svg {
+  width: 3vw;
+  height: 3vw;
 }
 
 #show-more-btn,
 #show-less-btn {
+  display: flex;
+  justify-items: center;
+  align-items: center;
   text-align: center;
-  width: 2vw;
-  height: 3vw;
-  padding: 0;
-  font-size: 0.7vw;
-  margin-top: 1.3w;
-  color: #fff;
-  background-color: rgba(16, 33, 54, 0.5);
+  width: 3vw; /* Mărește dimensiunea butonului */
+  height: 3vw; /* Ajustează înălțimea */
+  padding: 0.5vw;
+  font-size: 2vw; /* Mărește dimensiunea fontului pentru iconiță */
+  background-color: transparent;
   border: none;
-  border-radius: 8vw;
+  border-radius: 50%;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 #show-more-btn:hover,
 #show-less-btn:hover {
-  background-color: #929292;
+  transform: scale(1.3);
 }
 
-/* Stilizare iconițe */
-.show-more-icon::before {
-  content: '\f078'; /* Font Awesome chevron-down */
-  font-family: FontAwesome;
-}
-
+/* Stilizarea pentru iconițele din butoane */
+.show-more-icon::before,
 .show-less-icon::before {
-  content: '\f077'; /* Font Awesome chevron-up */
-  font-family: FontAwesome;
+  font-family: 'Font Awesome 5 Free'; /* Asigură-te că ai Font Awesome */
+  font-weight: 900;
+  font-size: 2.5vw; /* Mărește dimensiunea iconiței */
+  color: rgb(98, 95, 95);
 }
 
-@media screen and (max-width: 500px) {
+#show-more-btn:hover,
+#show-less-btn:hover {
+  transform: scale(1.3);
+}
+
+/* Responsive pentru ecrane mici */
+@media screen and (max-width: 440px) {
   .search-bar {
     width: 90vw;
+    top: 6vw;
+    right: 5vw;
   }
+
   #search-form {
-    display: flex;
-    align-items: center;
-    background-color: #fff;
-    border-radius: 3vw;
-    padding: 0.5vw;
-    width: 70vw;
-    height: auto;
+    width: 85vw;
   }
 
   #city-input {
-    width: 1vw;
-    height: 2.5vw;
-    font-size: 1.8vw;
+    font-size: 2vw;
+    height: 3vw;
+  }
+
+  #location-icon,
+  #star-icon {
+    font-size: 2vw;
+  }
+
+  #favorites-list li {
+    font-size: 2vw;
+  }
+
+  #show-more-btn,
+  #show-less-btn {
+    width: 3vw;
+    height: 3vw;
+    font-size: 1.5vw;
+  }
+}
+
+/* Responsive pentru telefoane mici - până la 200px */
+@media screen and (max-width: 200px) {
+  .search-bar {
+    width: 90vw;
+    top: 5vw;
+    right: 3vw;
+    padding: 0 1vw;
+  }
+
+  #search-form {
+    width: 95vw;
+    padding: 1vw;
+  }
+
+  #city-input {
+    font-size: 2.5vw;
+    height: 3vw;
+    padding: 0.5em;
   }
 
   #location-icon,
   #star-icon {
     font-size: 2.5vw;
-    width: 4vw;
-  }
-
-  #favorites-list {
-    margin-top: 3vw;
   }
 
   #favorites-list li {
-    display: inline-block;
-    background-color: rgba(16, 33, 54, 0.5);
-    color: #ffffff;
-    padding: 0.5vw 0.5vw;
-    font-size: 3.2vw;
-    margin: 0 1.5vw 0.5vw 0;
-    border-radius: 1.5vw;
-    cursor: pointer;
-    white-space: nowrap;
+    font-size: 2.5vw;
   }
 
-  .remove-favorite {
-    cursor: pointer;
-    color: rgba(255, 255, 255, 0.5);
-    font-size: 2.6vw;
-    padding-left: 1.3vw;
-    transition: color 0.3s ease;
+  #show-more-btn svg {
+    width: 4vw;
+    height: 4vw;
   }
-  #show-more-btn,
-  #show-less-btn {
-    text-align: center;
-    width: 5vw;
-    height: 5vw;
-    padding: 0;
-    font-size: 2vw;
-    margin-left: 5vw;
-    margin-top: 3vw;
-    color: #fff;
-    background-color: rgba(84, 85, 86, 0.5);
-    border: none;
-    border-radius: 8vw;
-    cursor: pointer;
+  #show-less-btn svg {
+    width: 4vw;
+    height: 4vw;
   }
-}
-
-/* Animația pentru bara de căutare */
-@keyframes slideOpen {
-  0% {
-    width: 0;
-  }
-  100% {
-    width: 100%;
-  }
-}
-
-#search-form {
-  display: flex;
-  align-items: center;
-  background-color: #fff;
-  border-radius: 3vw;
-  padding: 0.5vw;
-  width: 60vw; /* Inițial, bara este complet deschisă */
-  height: 1.8vw;
-  overflow: hidden;
-}
-
-#search-form.slide-open {
-  animation: slideOpen 1s forwards; /* Aplica animația */
-  width: 0; /* Bara începe închisă */
-  margin-left: auto;
-  margin-right: auto;
-}
-
-#city-input {
-  border-radius: 3vw;
-  flex: 1;
-  width: 100%;
-  height: 1.5vw;
-  border: none;
-  padding: 0.5em;
-  font-size: 1.2vw;
-  outline: none;
 }
