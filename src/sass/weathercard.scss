@@ -1,3 +1,13 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  cursor: default;
+}
+
 h2 {
   margin: 0;
 }
@@ -9,7 +19,7 @@ h2 {
   position: absolute;
   right: 0;
   top: 10vw;
-  overflow-x: hidden;
+
   width: 35vw;
   height: 25vw;
 }
@@ -175,7 +185,7 @@ h2 {
 
 #forecast-container {
   flex-direction: row;
-  padding: 3vw;
+  padding: 4vw;
   background-color: #36454f;
   border-radius: 3vw;
   width: 90vw;
@@ -270,13 +280,14 @@ h2 {
   color: #fff;
   opacity: 0.3;
   margin-bottom: 2vw;
+  cursor: pointer;
 }
 
 /* Containere și Săgeți pentru Carusel */
 
 .detailed-forecast {
+  width: 100%;
   overflow: hidden;
-  width: 80vw;
 }
 .detailed-forecast-carousel {
   display: flex;
@@ -313,10 +324,10 @@ h2 {
   top: 90%;
   transform: translateY(-50%);
   border-radius: 5vw;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(100, 100, 100, 0.466);
   color: rgb(228, 225, 225);
   border: none;
-  padding: 10px;
+  padding: 8px;
   cursor: pointer;
   z-index: 10;
 }
@@ -331,7 +342,6 @@ h2 {
 
 .arrow:disabled {
   opacity: 0.5;
-  cursor: not-allowed;
 }
 
 /* Stilizare carduri individuale */
@@ -363,6 +373,7 @@ h2 {
   justify-content: space-between;
   width: max-content;
   gap: 4vw;
+  scroll-behavior: smooth;
 }
 
 /* Ascunde săgețile pentru carusel */
@@ -372,7 +383,7 @@ h2 {
 
 .left-arrow {
   position: absolute;
-  top: 66%;
+  top: 35vw;
   transform: translateY(-50%);
   width: 3vw;
   height: 3vw;
@@ -391,7 +402,7 @@ h2 {
 
 .right-arrow {
   position: absolute;
-  top: 66%;
+  top: 35vw;
   transform: translateY(-50%);
   width: 3vw;
   height: 3vw;
@@ -448,8 +459,13 @@ h2 {
 }
 
 /* Cardurile pentru prognoza pe ore */
+.carousel-items {
+  display: flex;
+  width: max-content; /* Asigură că toate elementele din carusel sunt la dimensiunea necesară */
+  overflow: hidden;
+}
 .hourly-forecast-card {
-  border: 0.05vw solid rgba(255, 255, 255, 0.2);
+  border: 0.1vw solid rgba(255, 255, 255, 0.3);
   border-radius: 1.3vw;
   width: 9vw;
   height: auto;
@@ -481,7 +497,7 @@ h2 {
 /* Media queries */
 
 /* Telefoane mobile (până la 480px) */
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 500px) {
   .master-weather-card {
     width: 70vw;
     height: 37vw;
@@ -531,61 +547,104 @@ h2 {
   }
 
   .five-days-container {
-    top: 35vw;
+    top: 50vh;
+  }
+  .overflow-five-days {
+    width: 90%;
   }
 
   #forecast-container {
-    width: 90vw;
+    width: 65vw;
     height: auto;
   }
-
   #forecast-location {
-    padding: 3vw;
+    margin-bottom: 1vw;
+    padding: 1vw 2vw;
+    border-radius: 50%;
+    background-color: hsla(0, 0%, 35%, 0.502);
   }
 
   .forecast-day {
-    font-size: 4vw;
-    margin-left: 16vw;
-    padding: 2vw;
+    font-size: 2vw;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    padding: 0.2vw;
+    padding: 2vw 0;
   }
 
   .forecast-day img {
-    width: 10vw;
+    width: 2.5vw;
+  }
+  .forecast-day .date {
+    font-size: 1vw;
   }
 
-  .hourly-temp {
-    font-size: 3vw;
+  .forecast-day .temp-min,
+  .forecast-day .temp-max {
+    font-size: 1.5vw;
+    font-weight: 700;
+    padding: 0;
+  }
+
+  .carousel-items {
+    gap: 19vw;
   }
 
   .hourly-forecast-card {
-    width: 15vw;
-    margin-left: 7vw;
+    width: 22.1vw;
+    border: 0.3vw solid #ffffff4d;
+  }
+
+  .hourly {
+    font-size: 2vw;
+  }
+
+  .hourly-temp {
+    font-size: 2.8vw;
+    font-weight: 700;
+  }
+
+  .hourly-pressure,
+  .hourly-humidity,
+  .hourly-wind {
+    font-size: 2vw;
+    color: #fff;
+    opacity: 0.54;
+    font-weight: 400;
+  }
+
+  .hourly-wind {
+    padding-bottom: 2vw;
   }
   .arrow-right {
     font-size: 1vw;
-    left: 48vw;
+    padding: 1vw;
+    left: 39vw;
   }
   .arrow-left {
     font-size: 1vw;
-    right: 48vw;
+    padding: 1vw;
+    right: 37vw;
   }
 
   .right-arrow {
     font-size: 0.8vw;
-    right: -3vw;
+    right: 36vw;
     width: 2vw;
     height: 2vw;
+    top: 78vw;
   }
   .left-arrow {
     font-size: 0.8vw;
-    left: -3vw;
+    left: 38vw;
     width: 2vw;
     height: 2vw;
+    top: 78vw;
   }
 }
 
 /* Tablete (481px până la 768px) */
-@media screen and (min-width: 481px) and (max-width: 768px) {
+@media screen and (min-width: 501px) and (max-width: 768px) {
   .master-weather-card {
     width: 70vw;
     height: 37vw;
@@ -631,176 +690,115 @@ h2 {
     // padding: 3vw;
     position: static;
   }
+  .five-days-container {
+    top: 35vh;
+  }
+  .overflow-five-days {
+    width: 90%;
+  }
 
   #forecast-container {
-    width: 85vw;
-    height: auto;
-  }
-
-  #forecast-location {
-    padding: 3vw;
-  }
-
-  .forecast-day {
-    font-size: 3vw;
-    margin-left: 6vw;
-    padding: 1.5vw;
-  }
-
-  .forecast-day img {
-    width: 8vw;
-  }
-
-  .hourly-temp {
-    font-size: 2.5vw;
-  }
-
-  .hourly-forecast-card {
-    width: 15vw;
-  }
-
-  .arrow-right {
-    font-size: 1vw;
-    left: 45vw;
-  }
-  .arrow-left {
-    font-size: 1vw;
-    right: 45vw;
-  }
-
-  .right-arrow {
-    font-size: 0.8vw;
-    right: 0;
-    width: 2vw;
-    height: 2vw;
-  }
-  .left-arrow {
-    font-size: 0.8vw;
-    left: 0;
-    width: 2vw;
-    height: 2vw;
-  }
-}
-
-/* Desktopuri medii (769px până la 1024px) */
-@media screen and (min-width: 769px) and (max-width: 1024px) {
-  .master-weather-card {
-    width: 70vw;
-    height: 37vw;
-    top: 20vw;
-    right: 15vw;
-  }
-
-  .weather-card {
     width: 65vw;
     height: auto;
-    border-radius: 3vw;
-    padding: 3vw 0;
   }
-
-  .city-name {
-    font-size: 3vw;
-  }
-
-  .temperature-card {
-    font-size: 7vw;
-  }
-
-  .description img {
-    width: 3.5vw;
-  }
-
-  .min-temp,
-  .max-temp {
-    font-size: 2.5vw;
-  }
-
-  .weather-button {
-    width: 20vw;
-    height: 2.5vw;
-    font-size: 2vw;
-  }
-
-  .button-container {
-    top: 33vw;
-    right: 12vw;
-  }
-
-  .buttons-five {
-    // top: 1vh;
-    // right: -3vw;
-    position: static;
-  }
-
-  #forecast-container {
-    width: 75vw;
-    height: auto;
-  }
-
   #forecast-location {
-    padding: 3vw;
+    margin-bottom: 1vw;
+    padding: 1vw 2vw;
+    border-radius: 50%;
+    background-color: hsla(0, 0%, 35%, 0.502);
   }
 
   .forecast-day {
-    font-size: 2.5vw;
-    margin-left: 6vw;
-    padding: 1vw;
+    font-size: 2vw;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    padding: 0.2vw;
+    padding: 2vw 0;
   }
 
   .forecast-day img {
-    width: 6vw;
+    width: 2.5vw;
+  }
+  .forecast-day .date {
+    font-size: 1vw;
   }
 
-  .hourly-temp {
-    font-size: 2vw;
+  .forecast-day .temp-min,
+  .forecast-day .temp-max {
+    font-size: 1.5vw;
+    font-weight: 700;
+  }
+
+  .carousel-items {
+    gap: 4.6vw;
   }
 
   .hourly-forecast-card {
-    width: 12vw;
+    width: 12.1vw;
+  }
+
+  .hourly-temp {
+    font-size: 1.8vw;
+    font-weight: 700;
+  }
+
+  .hourly-pressure,
+  .hourly-humidity,
+  .hourly-wind {
+    font-size: 1vw;
+    color: #fff;
+    opacity: 0.54;
+    font-weight: 400;
+  }
+
+  .hourly-wind {
+    padding-bottom: 2vw;
   }
   .arrow-right {
     font-size: 1vw;
-    left: 40vw;
+    left: 33vw;
   }
   .arrow-left {
     font-size: 1vw;
-    right: 40vw;
+    right: 33vw;
   }
 
   .right-arrow {
     font-size: 0.8vw;
-    right: 5vw;
+    right: 33vw;
     width: 2vw;
     height: 2vw;
+    top: 57vw;
   }
   .left-arrow {
     font-size: 0.8vw;
-    left: 5vw;
+    left: 33vw;
     width: 2vw;
     height: 2vw;
+    top: 57vw;
   }
 }
 
 /* Ecrane mari (1025px până la 1300px) */
-@media screen and (min-width: 1025px) and (max-width: 1300px) {
+@media screen and (min-width: 769px) and (max-width: 1300px) {
   .master-weather-card {
     width: 38vw;
     height: 25vw;
-    top: 18vw;
+    top: 33vh;
   }
 
   .weather-card {
-    width: 32vw;
-    height: 17vw;
+    width: 30vw;
+    height: 13vw;
     padding-bottom: 2vw;
   }
 
   .city-name {
-    font-size: 1.5vw;
+    font-size: 1.2vw;
   }
 
   .temperature-card {
-    font-size: 5vw;
+    font-size: 4vw;
   }
 
   .description img {
@@ -809,11 +807,11 @@ h2 {
 
   .min-temp,
   .max-temp {
-    font-size: 1.5vw;
+    font-size: 1.2vw;
   }
 
   .button-container {
-    top: 20vw;
+    top: 17vw;
   }
 
   .buttons-five {
@@ -821,32 +819,71 @@ h2 {
     right: 7vw;
   }
   .five-days-container {
-    top: 27vh;
+    top: 35vh;
+  }
+
+  .overflow-five-days {
+    width: 89%;
   }
 
   #forecast-container {
     width: 65vw;
     height: auto;
   }
+  #forecast-location {
+    margin-bottom: 1vw;
+    padding: 1vw 2vw;
+    border-radius: 50%;
+    background-color: hsla(0, 0%, 35%, 0.502);
+  }
 
   .forecast-day {
-    font-size: 2vw;
-
-    margin-right: 0.8vw;
-    padding: 1vw;
+    font-size: 1vw;
+    margin-left: 0.4vw;
+    margin-right: 0.4vw;
+    padding: 0.2vw;
+    padding: 2vw 0;
   }
 
   .forecast-day img {
-    width: 5vw;
+    width: 2.5vw;
+  }
+  .forecast-day .date {
+    font-size: 1vw;
   }
 
-  .hourly-temp {
+  .forecast-day .temp-min,
+  .forecast-day .temp-max {
     font-size: 1.5vw;
+    font-weight: 700;
+  }
+
+  .carousel-items {
+    gap: 3vw;
   }
 
   .hourly-forecast-card {
     width: 10vw;
   }
+
+  .hourly-temp {
+    font-size: 1.8vw;
+    font-weight: 700;
+  }
+
+  .hourly-pressure,
+  .hourly-humidity,
+  .hourly-wind {
+    font-size: 1vw;
+    color: #fff;
+    opacity: 0.54;
+    font-weight: 400;
+  }
+
+  .hourly-wind {
+    padding-bottom: 2vw;
+  }
+
   .arrow-right {
     font-size: 1vw;
     left: 35vw;
@@ -861,127 +898,41 @@ h2 {
     right: 10vw;
     width: 2vw;
     height: 2vw;
+    top: 40vw;
   }
   .left-arrow {
     font-size: 0.8vw;
     left: 10vw;
     width: 2vw;
     height: 2vw;
+    top: 40vw;
+  }
+
+  .arrow {
+    display: none;
   }
 }
 
-/* Monitoare foarte mari (1301px și mai mari) */
-/* Ecrane mari (1301px până la 2699px) */
-@media screen and (min-width: 1301px) and (max-width: 2699px) {
-  .master-weather-card {
-    width: 38vw;
-    height: 25vw;
-    top: 20vw;
-  }
-
-  .weather-card {
-    width: 32vw;
-    height: 17vw;
-    padding-bottom: 2vw;
-  }
-
-  .city-name {
-    font-size: 1.5vw;
-  }
-
-  .temperature-card {
-    font-size: 5vw;
-  }
-
-  .description img {
-    width: 2.5vw;
-  }
-
-  .min-temp,
-  .max-temp {
-    font-size: 1.5vw;
-  }
-
-  .button-container {
-    top: 20vw;
-  }
-  .buttons-five {
-    top: -1vh;
-    right: 7vw;
-  }
-
-  .five-days-container {
-    top: 27vh;
-  }
-
-  .weather-button {
-    width: 15vw;
-    height: 2vw;
-    font-size: 1.5vw;
-  }
-
-  #forecast-container {
-    width: 60vw;
-    height: auto;
-  }
-
-  .forecast-day {
-    font-size: 1.8vw;
-    margin-left: 1vw;
-    margin-right: 1vw;
-    padding: 0.5vw;
-  }
-
-  .forecast-day img {
-    width: 4vw;
-  }
-
-  .hourly-temp {
-    font-size: 1.3vw;
-  }
-
-  .hourly-forecast-card {
-    width: 8vw;
-  }
-  .arrow-right {
-    font-size: 1vw;
-    left: 32vw;
-  }
-  .arrow-left {
-    font-size: 1vw;
-    right: 32vw;
-  }
-
-  .right-arrow {
-    font-size: 1vw;
-    right: 12vw;
-  }
-  .left-arrow {
-    font-size: 1vw;
-    left: 12vw;
-  }
-}
-
-/* Ecrane foarte mari (2700px și mai mari) */
-@media screen and (min-width: 2700px) {
+/* Ecrane foarte mari (1301px și mai mari) */
+@media screen and (min-width: 1301px) {
   .master-weather-card {
     width: 30vw;
     height: 28vw;
-    top: 20vw;
+    top: 30vh;
   }
 
   .weather-card {
     width: 28vw;
-    height: auto;
+    height: 13.5vw;
     padding-bottom: 2vw;
   }
 
   .city-name {
-    font-size: 1.8vw;
+    font-size: 1.3vw;
   }
 
   .temperature-card {
-    font-size: 4.5vw;
+    font-size: 3.5vw;
   }
 
   .description img {
@@ -990,7 +941,7 @@ h2 {
 
   .min-temp,
   .max-temp {
-    font-size: 1.5vw;
+    font-size: 1.2vw;
   }
 
   .btns-today {
@@ -1000,18 +951,18 @@ h2 {
   }
 
   .button-container {
-    top: 21vw;
+    top: 17vw;
   }
 
   .buttons-five {
-    top: -1vh;
+    top: 3vh;
     right: 7vw;
   }
 
   .weather-button {
-    width: 14vw;
+    width: 13vw;
     height: 2vw;
-    font-size: 1.6vw;
+    font-size: 1.4vw;
   }
   .btns-today {
     width: 19vw;
@@ -1019,30 +970,76 @@ h2 {
     font-size: 1.6vw;
   }
   .five-days-container {
-    top: 27vh;
+    top: 33vh;
+  }
+
+  .detailed-forecast {
+    margin-top: 4vw;
+  }
+
+  .overflow-five-days-container {
+    padding-bottom: 0;
+  }
+
+  .overflow-five-days {
+    width: 88%;
   }
   #forecast-container {
     width: 60vw;
     height: 80wv;
   }
 
+  #forecast-location {
+    margin-bottom: 1vw;
+    padding: 1vw 2vw;
+    border-radius: 50%;
+    background-color: hsla(0, 0%, 35%, 0.502);
+  }
+
   .forecast-day {
-    font-size: 1.8vw;
-    margin-left: 0.8vw;
-    margin-right: 0.8vw;
-    padding: 0.6vw;
+    font-size: 1vw;
+    margin-left: 0.4vw;
+    margin-right: 0.4vw;
+    padding: 0.2vw;
+    padding: 2vw 0;
   }
 
   .forecast-day img {
-    width: 3.5vw;
+    width: 2.5vw;
+  }
+  .forecast-day .date {
+    font-size: 1vw;
+  }
+
+  .forecast-day .temp-min,
+  .forecast-day .temp-max {
+    font-size: 1.5vw;
+    font-weight: 700;
+  }
+
+  .carousel-items {
+    gap: 1vw;
   }
 
   .hourly-temp {
-    font-size: 1.4vw;
+    font-size: 1.8vw;
+  }
+  .hourly-pressure,
+  .hourly-humidity,
+  .hourly-wind {
+    font-size: 1vw;
+    color: #fff;
+    opacity: 0.54;
+    font-weight: 400;
+  }
+
+  .hourly-wind {
+    padding-bottom: 2vw;
   }
 
   .hourly-forecast-card {
     width: 7.5vw;
+    font-weight: 700;
   }
 
   .arrow-right {
@@ -1056,10 +1053,16 @@ h2 {
 
   .right-arrow {
     font-size: 1vw;
-    right: 13vw;
+    right: 11.5vw;
   }
   .left-arrow {
     font-size: 1vw;
-    left: 13vw;
+    left: 11.5vw;
+  }
+
+  .arrow,
+  .left-arrow,
+  .right-arrow {
+    display: none;
   }
 }
