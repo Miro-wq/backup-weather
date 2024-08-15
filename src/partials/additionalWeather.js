@@ -1,7 +1,6 @@
 import moment from 'moment-timezone'; // Biblioteca pt manipularea timpului.
 import { getWeatherByCityName } from '../apiOpenWeather.js';
 import { getTimeZoneByCoordinates } from '../timezoneApi.js';
-import 'animate.css';
 
 export async function fetchAdditionalWeatherData(city) {
   if (!city) {
